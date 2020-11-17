@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">Daily Tasks</string>
+    <string name="daily_progress">Daily Progress</string>
+    <string name="progress_percent">%d %%</string>
+    <string name="work">Work</string>
+    <string name="personal">Personal</string>
+    <string name="your_tasks">Your Tasks</string>
+    <string name="title_hint">ex. Reply all email works</string>
+    <string name="task_name">Task Name</string>
+    <string name="time">Time</string>
+    <string name="repeat">Repeat</string>
+    <string name="category">Category</string>
+    <string name="add_task">Add Task</string>
+</resources>

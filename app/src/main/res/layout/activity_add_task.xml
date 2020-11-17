@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    tools:context=".ui.activity.AddTaskActivity">
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/taskLabelTV"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/task_name"
+        android:textAppearance="?textAppearanceSubtitle1"
+        android:textStyle="bold"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/taskNameET"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/input_border"
+        android:hint="@string/title_hint"
+        android:paddingHorizontal="24dp"
+        android:paddingVertical="16dp"
+        android:textColor="@color/white"
+        android:textColorHint="@color/bright_gray"
+        app:layout_constraintTop_toBottomOf="@id/taskLabelTV" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/timeLabelTV"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:gravity="center_vertical"
+        android:text="@string/time"
+        android:textAppearance="?textAppearanceSubtitle1"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@id/repeatSwitch"
+        app:layout_constraintEnd_toStartOf="@id/repeatSwitch"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/taskNameET" />
+
+    <com.google.android.material.switchmaterial.SwitchMaterial
+        android:id="@+id/repeatSwitch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/repeat"
+        android:textAppearance="?textAppearanceSubtitle1"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/timeLabelTV" />
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/timePickerET"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/input_border"
+        android:focusable="false"
+        android:inputType="none"
+        android:paddingHorizontal="24dp"
+        android:paddingVertical="16dp"
+        android:textColor="@color/white"
+        android:textColorHint="@color/bright_gray"
+        app:layout_constraintTop_toBottomOf="@id/timeLabelTV"
+        tools:text="9:00 PM" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/categoryLabelTV"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/category"
+        android:textAppearance="?textAppearanceSubtitle1"
+        android:textStyle="bold"
+        app:layout_constraintTop_toBottomOf="@id/timePickerET" />
+
+    <RadioGroup
+        android:id="@+id/categortRadioGroup"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:checkedButton="@id/work_radio_btn"
+        android:orientation="horizontal"
+        android:weightSum="8"
+        app:layout_constraintTop_toBottomOf="@id/categoryLabelTV">
+
+        <com.google.android.material.radiobutton.MaterialRadioButton
+            android:id="@+id/work_radio_btn"
+            style="@style/RadioButtonStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="4dp"
+            android:layout_weight="1"
+            android:text="@string/work" />
+
+        <com.google.android.material.radiobutton.MaterialRadioButton
+            android:id="@+id/personal_radio_btn"
+            style="@style/RadioButtonStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="4dp"
+            android:layout_weight="1"
+            android:text="@string/personal" />
+    </RadioGroup>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/add_tasks_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/scooter"
+        android:paddingVertical="8dp"
+        android:text="@string/add_task"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        app:cornerRadius="8dp"
+        app:icon="@android:drawable/ic_input_add"
+        app:iconGravity="textStart"
+        app:iconTint="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>
