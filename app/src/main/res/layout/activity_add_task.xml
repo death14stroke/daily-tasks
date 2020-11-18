@@ -51,13 +51,11 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@id/timeLabelTV" />
 
-    <com.google.android.material.textfield.TextInputEditText
+    <com.andruid.magic.dailytasks.ui.custom.TimePickerEditText
         android:id="@+id/timePickerET"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/input_border"
-        android:focusable="false"
-        android:inputType="none"
         android:paddingHorizontal="24dp"
         android:paddingVertical="16dp"
         android:textColor="@color/white"

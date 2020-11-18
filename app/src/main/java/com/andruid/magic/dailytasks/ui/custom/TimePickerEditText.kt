@@ -2,19 +2,40 @@ package com.andruid.magic.dailytasks.ui.custom
 
 import android.app.TimePickerDialog
 import android.content.Context
+import android.os.Build
+import android.text.InputType
 import android.util.AttributeSet
 import android.view.View
-import com.andruid.magic.dailytasks.util.getTaskTimeFromPicker
 import com.google.android.material.textfield.TextInputEditText
-import java.text.SimpleDateFormat
-import java.util.*
 
 class TimePickerEditText @JvmOverloads constructor(
     context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
 ) : TextInputEditText(context, attrs, defStyleAttr) {
-    private var onTimeChangeListener: ((Int, Int) -> Unit)? = null
+    private val timeSelectListener =
+        TimePickerDialog.OnTimeSetListener { _, hour, minute ->
+            val ms = getMilliSecondsForTime(hour, minute)
+            setText(formatTime(ms))
+
+            selectedHour = hour
+            selectedMinute = minute
+
+            onTimeChangeListener?.invoke(hour, minute)
+        }
+
+    var onTimeChangeListener: ((Int, Int) -> Unit)? = null
+
+    var selectedHour = 0
+        private set
+    var selectedMinute = 0
+        private set
 
     init {
+        inputType = InputType.TYPE_NULL
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)
+            isFocusable = false
+
+        val (currHours, currMinutes) = getCurrentHourMinutes()
+        timeSelectListener.onTimeSet(null, currHours, currMinutes)
         setOnClickListener(null)
     }
 
@@ -30,23 +51,9 @@ class TimePickerEditText @JvmOverloads constructor(
     private fun showTimePicker() {
         val (hour, minute) = getCurrentHourMinutes()
 
-        TimePickerDialog(context, { _, selectedHour, selectedMinute ->
-            val ms = getTaskTimeFromPicker(selectedHour, selectedMinute)
-            val dateFormat = SimpleDateFormat(" hh:mm a", Locale.getDefault())
-            setText(dateFormat.format(ms))
-            onTimeChangeListener?.invoke(selectedHour, selectedMinute)
-        }, hour, minute, false).apply {
+        TimePickerDialog(context, timeSelectListener, hour, minute, false).apply {
             setTitle("Select time")
             show()
-        }
-    }
-
-    private fun getCurrentHourMinutes(): Pair<Int, Int> {
-        return Calendar.getInstance().run {
-            val hour = get(Calendar.HOUR_OF_DAY)
-            val minute = get(Calendar.MINUTE)
-
-            hour to minute
         }
     }
 }

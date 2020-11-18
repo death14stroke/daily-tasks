@@ -1,7 +1,7 @@
 package com.andruid.magic.dailytasks.ui.activity
 
-import android.app.TimePickerDialog
 import android.os.Bundle
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import com.andruid.magic.dailytasks.R
@@ -14,8 +14,6 @@ import com.andruid.magic.dailytasks.databinding.ActivityAddTaskBinding
 import com.andruid.magic.dailytasks.ui.viewbinding.viewBinding
 import com.andruid.magic.dailytasks.util.getTaskTimeFromPicker
 import kotlinx.coroutines.launch
-import java.text.SimpleDateFormat
-import java.util.*
 
 class AddTaskActivity : AppCompatActivity() {
     private val binding by viewBinding(ActivityAddTaskBinding::inflate)
@@ -29,10 +27,22 @@ class AddTaskActivity : AppCompatActivity() {
 
     private fun initListeners() {
         binding.addTasksBtn.setOnClickListener {
+            val title = binding.taskNameET.text.toString().trim()
+            if (title.isBlank()) {
+                binding.taskNameET.error = "Please enter task name"
+                return@setOnClickListener
+            }
+
+            val hour = binding.timePickerET.selectedHour
+            val minutes = binding.timePickerET.selectedMinute
+
+            val taskMillis = getTaskTimeFromPicker(hour, minutes)
+            Log.d("msLog", "selected time = $taskMillis")
+
             val task = Task(
-                title = binding.taskNameET.text.toString().trim(),
+                title = title,
                 repeat = binding.repeatSwitch.isChecked,
-                time = System.currentTimeMillis(),
+                time = taskMillis,
                 category = getCategoryFromRadioGroup(),
                 status = STATUS_PENDING
             )
@@ -40,21 +50,6 @@ class AddTaskActivity : AppCompatActivity() {
             lifecycleScope.launch {
                 TaskRepository.insertTask(task)
                 finish()
-            }
-        }
-
-        binding.timePickerET.setOnClickListener {
-            val currentTime = Calendar.getInstance()
-            val hour: Int = currentTime.get(Calendar.HOUR_OF_DAY)
-            val minute: Int = currentTime.get(Calendar.MINUTE)
-
-            TimePickerDialog(this, { _, selectedHour, selectedMinute ->
-                val ms = getTaskTimeFromPicker(selectedHour, selectedMinute)
-                val dateFormat = SimpleDateFormat(" hh:mm a", Locale.getDefault())
-                binding.timePickerET.setText(dateFormat.format(ms))
-            }, hour, minute, false).apply {
-                title = "Select time"
-                show()
             }
         }
     }
