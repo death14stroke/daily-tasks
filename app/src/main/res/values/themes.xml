@@ -20,4 +20,16 @@
         <item name="android:gravity">center</item>
         <item name="android:textColor">@drawable/radio_text_selector</item>
     </style>
+
+    <style name="EditTextStyle" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        <item name="boxBackgroundColor">@color/ebony</item>
+        <item name="boxCornerRadiusBottomEnd">8dp</item>
+        <item name="boxCornerRadiusBottomStart">8dp</item>
+        <item name="boxCornerRadiusTopEnd">8dp</item>
+        <item name="boxCornerRadiusTopStart">8dp</item>
+        <item name="boxStrokeColor">@drawable/box_color_selector</item>
+        <item name="boxStrokeWidth">2dp</item>
+        <item name="boxStrokeWidthFocused">2dp</item>
+        <item name="hintEnabled">false</item>
+    </style>
 </resources>

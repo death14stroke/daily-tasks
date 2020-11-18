@@ -29,7 +29,7 @@ class AddTaskActivity : AppCompatActivity() {
         binding.addTasksBtn.setOnClickListener {
             val title = binding.taskNameET.text.toString().trim()
             if (title.isBlank()) {
-                binding.taskNameET.error = "Please enter task name"
+                binding.taskNameInput.error = "Please enter task name"
                 return@setOnClickListener
             }
 

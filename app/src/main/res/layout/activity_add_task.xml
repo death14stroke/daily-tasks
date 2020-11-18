@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/ebony_light"
     android:padding="16dp"
     tools:context=".ui.activity.AddTaskActivity">
 
@@ -11,22 +12,30 @@
         android:id="@+id/taskLabelTV"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
         android:text="@string/task_name"
         android:textAppearance="?textAppearanceSubtitle1"
         android:textStyle="bold"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintBottom_toTopOf="@id/taskNameInput" />
 
-    <com.google.android.material.textfield.TextInputEditText
-        android:id="@+id/taskNameET"
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/taskNameInput"
+        style="@style/EditTextStyle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/input_border"
-        android:hint="@string/title_hint"
-        android:paddingHorizontal="24dp"
-        android:paddingVertical="16dp"
-        android:textColor="@color/white"
-        android:textColorHint="@color/bright_gray"
-        app:layout_constraintTop_toBottomOf="@id/taskLabelTV" />
+        android:layout_marginBottom="24dp"
+        app:layout_constraintBottom_toTopOf="@id/timeLabelTV">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/taskNameET"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/title_hint"
+            android:paddingHorizontal="24dp"
+            android:paddingVertical="16dp"
+            android:textColor="@color/white"
+            android:textColorHint="@color/bright_gray" />
+    </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/timeLabelTV"
@@ -39,47 +48,57 @@
         app:layout_constraintBottom_toBottomOf="@id/repeatSwitch"
         app:layout_constraintEnd_toStartOf="@id/repeatSwitch"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/taskNameET" />
+        app:layout_constraintTop_toTopOf="@id/repeatSwitch" />
 
     <com.google.android.material.switchmaterial.SwitchMaterial
         android:id="@+id/repeatSwitch"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
         android:text="@string/repeat"
         android:textAppearance="?textAppearanceSubtitle1"
         android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@id/timeLabelTV" />
+        app:layout_constraintBottom_toTopOf="@id/timePickerInput"
+        app:layout_constraintEnd_toEndOf="parent" />
 
-    <com.andruid.magic.dailytasks.ui.custom.TimePickerEditText
-        android:id="@+id/timePickerET"
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/timePickerInput"
+        style="@style/EditTextStyle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/input_border"
-        android:paddingHorizontal="24dp"
-        android:paddingVertical="16dp"
-        android:textColor="@color/white"
-        android:textColorHint="@color/bright_gray"
-        app:layout_constraintTop_toBottomOf="@id/timeLabelTV"
-        tools:text="9:00 PM" />
+        android:layout_marginBottom="24dp"
+        app:layout_constraintBottom_toTopOf="@id/categoryLabelTV">
+
+        <com.andruid.magic.dailytasks.ui.custom.TimePickerEditText
+            android:id="@+id/timePickerET"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="24dp"
+            android:paddingVertical="16dp"
+            android:textColor="@color/white"
+            android:textColorHint="@color/bright_gray"
+            tools:text="9:00 PM" />
+    </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/categoryLabelTV"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
         android:text="@string/category"
         android:textAppearance="?textAppearanceSubtitle1"
         android:textStyle="bold"
-        app:layout_constraintTop_toBottomOf="@id/timePickerET" />
+        app:layout_constraintBottom_toTopOf="@id/categortRadioGroup" />
 
     <RadioGroup
         android:id="@+id/categortRadioGroup"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="24dp"
         android:checkedButton="@id/work_radio_btn"
         android:orientation="horizontal"
         android:weightSum="8"
-        app:layout_constraintTop_toBottomOf="@id/categoryLabelTV">
+        app:layout_constraintBottom_toTopOf="@id/add_tasks_btn">
 
         <com.google.android.material.radiobutton.MaterialRadioButton
             android:id="@+id/work_radio_btn"
