@@ -54,7 +54,6 @@
         android:id="@+id/repeatSwitch"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
         android:text="@string/repeat"
         android:textAppearance="?textAppearanceSubtitle1"
         android:textStyle="bold"

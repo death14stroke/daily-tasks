@@ -14,4 +14,8 @@ object TaskRepository {
     }
 
     fun getTasks() = database.taskDao().getTasks()
+
+    suspend fun updateTaskStatus(id: Long, status: String) {
+        database.taskDao().updateStatus(id, status)
+    }
 }

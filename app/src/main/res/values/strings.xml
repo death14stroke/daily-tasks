@@ -11,4 +11,8 @@
     <string name="repeat">Repeat</string>
     <string name="category">Category</string>
     <string name="add_task">Add Task</string>
+    <string name="dialog_task_complete_title">Task status</string>
+    <string name="dialog_task_complete_body">Have you completed this task??</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
 </resources>

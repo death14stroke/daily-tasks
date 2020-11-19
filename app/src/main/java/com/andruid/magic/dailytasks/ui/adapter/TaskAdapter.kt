@@ -14,11 +14,13 @@ private val DIFF_CALLBACK = object : DiffUtil.ItemCallback<Task>() {
         oldItem == newItem
 }
 
-class TaskAdapter : PagingDataAdapter<Task, TaskViewHolder>(DIFF_CALLBACK) {
+class TaskAdapter(private val clickListener: (Task) -> Unit) : PagingDataAdapter<Task, TaskViewHolder>(DIFF_CALLBACK) {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
         TaskViewHolder.from(parent)
 
     override fun onBindViewHolder(holder: TaskViewHolder, position: Int) {
-        getItem(position)?.let { holder.bind(it) }
+        getItem(position)?.let {
+            holder.bind(it, clickListener)
+        }
     }
 }

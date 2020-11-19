@@ -16,8 +16,12 @@ class TaskViewHolder private constructor(private val binding: LayoutTaskBinding)
         }
     }
 
-    fun bind(task: Task) {
+    fun bind(task: Task, clickListener: (Task) -> Unit) {
         binding.task = task
         binding.taskStateIv.isSelected = task.status == STATUS_DONE
+
+        binding.taskStateIv.setOnClickListener {
+            clickListener.invoke(task)
+        }
     }
 }

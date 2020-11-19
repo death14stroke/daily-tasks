@@ -13,4 +13,7 @@ interface TaskDao {
 
     @Query("SELECT * FROM tasks")
     fun getTasks(): PagingSource<Int, Task>
+
+    @Query("UPDATE tasks SET status = :status WHERE id = :id")
+    suspend fun updateStatus(id: Long, status: String)
 }
