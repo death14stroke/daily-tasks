@@ -32,4 +32,10 @@
         <item name="boxStrokeWidthFocused">2dp</item>
         <item name="hintEnabled">false</item>
     </style>
+
+    <style name="TextInputLayoutAppearance" parent="Widget.Design.TextInputLayout">
+        <item name="colorControlNormal">@color/white</item>
+        <item name="colorControlActivated">@color/scooter</item>
+        <item name="colorControlHighlight">@color/bright_gray</item>
+    </style>
 </resources>
