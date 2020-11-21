@@ -2,6 +2,7 @@ package com.andruid.magic.dailytasks.database
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import com.andruid.magic.dailytasks.data.STATUS_PENDING
 
 @Entity(tableName = "tasks")
 data class Task(
@@ -11,5 +12,5 @@ data class Task(
     val repeat: Boolean = false,
     val time: Long,
     val category: String,
-    val status: String = "Upcoming"
+    val status: Int = STATUS_PENDING
 )

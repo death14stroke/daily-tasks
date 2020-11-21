@@ -11,9 +11,9 @@ interface TaskDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertTask(task: Task)
 
-    @Query("SELECT * FROM tasks ORDER BY time DESC")
+    @Query("SELECT * FROM tasks ORDER BY status, time DESC")
     fun getTasks(): PagingSource<Int, Task>
 
     @Query("UPDATE tasks SET status = :status WHERE id = :id")
-    suspend fun updateStatus(id: Long, status: String)
+    suspend fun updateStatus(id: Long, status: Int)
 }

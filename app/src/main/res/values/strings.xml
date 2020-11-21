@@ -15,4 +15,5 @@
     <string name="dialog_task_complete_body">Have you completed this task??</string>
     <string name="yes">Yes</string>
     <string name="no">No</string>
+    <string name="create_new_task">Create New Task</string>
 </resources>

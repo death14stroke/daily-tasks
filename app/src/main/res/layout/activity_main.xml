@@ -4,9 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingStart="12dp"
-    android:paddingTop="12dp"
-    android:paddingEnd="12dp"
+    android:background="@color/bright_gray"
     tools:context=".ui.activity.MainActivity">
 
     <com.google.android.material.textview.MaterialTextView
@@ -17,7 +15,7 @@
         android:text="Good morning,\nSteve Wozniak"
         app:layout_constraintBottom_toBottomOf="@id/profile_iv"
         app:layout_constraintEnd_toStartOf="@id/profile_iv"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toEndOf="@id/start_guideline"
         app:layout_constraintTop_toTopOf="parent" />
 
     <com.google.android.material.imageview.ShapeableImageView
@@ -25,7 +23,7 @@
         android:layout_width="50dp"
         android:layout_height="0dp"
         app:layout_constraintDimensionRatio="1"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/end_guideline"
         app:layout_constraintTop_toTopOf="parent"
         tools:src="@tools:sample/avatars" />
 
@@ -41,7 +39,7 @@
         android:layout_height="0dp"
         app:layout_constraintDimensionRatio="1"
         app:layout_constraintEnd_toStartOf="@id/tasks_rate_btn"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toEndOf="@id/start_guideline"
         app:layout_constraintTop_toBottomOf="@id/progress_view"
         app:layout_constraintWidth_percent="0.33"
         tools:src="@tools:sample/backgrounds/scenic" />
@@ -62,40 +60,65 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:layout_constraintDimensionRatio="1"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/end_guideline"
         app:layout_constraintStart_toEndOf="@id/tasks_rate_btn"
         app:layout_constraintTop_toBottomOf="@id/progress_view"
         app:layout_constraintWidth_percent="0.33"
         tools:src="@tools:sample/backgrounds/scenic" />
+
+    <androidx.constraintlayout.widget.Group
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:background="@drawable/rounded_background"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="@id/tasks_header_tv" />
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/tasks_header_tv"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:gravity="center_vertical"
+        android:paddingTop="16dp"
         android:text="@string/your_tasks"
         android:textAppearance="?textAppearanceHeadline6"
         app:layout_constraintBottom_toTopOf="@id/recycler_view"
         app:layout_constraintEnd_toStartOf="@id/add_tasks_iv"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toEndOf="@id/start_guideline"
         app:layout_constraintTop_toBottomOf="@id/completed_tasks_btn" />
 
     <androidx.appcompat.widget.AppCompatImageButton
         android:id="@+id/add_tasks_iv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
         android:background="@drawable/rounded_button"
         android:padding="16dp"
         android:src="@drawable/ic_add"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/end_guideline"
         app:layout_constraintTop_toTopOf="@id/tasks_header_tv" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_view"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="0dp"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/end_guideline"
+        app:layout_constraintStart_toEndOf="@id/start_guideline"
         app:layout_constraintTop_toBottomOf="@id/add_tasks_iv"
         tools:listitem="@layout/layout_task" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/start_guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="16dp" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/end_guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_end="16dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>

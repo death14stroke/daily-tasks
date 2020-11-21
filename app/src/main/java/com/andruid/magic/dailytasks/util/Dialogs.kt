@@ -13,10 +13,10 @@ suspend fun Context.showCompleteTaskDialog(): Boolean {
     MaterialAlertDialogBuilder(this)
         .setTitle(R.string.dialog_task_complete_title)
         .setMessage(R.string.dialog_task_complete_body)
-        .setPositiveButton(R.string.yes) { dialog, _ ->
+        .setPositiveButton(R.string.yes) { _, _ ->
             result.resume(true)
         }
-        .setNegativeButton(R.string.no) { dialog, _ ->
+        .setNegativeButton(R.string.no) { _, _ ->
             result.resume(false)
         }
         .create()
