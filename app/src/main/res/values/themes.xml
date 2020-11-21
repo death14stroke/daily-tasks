@@ -19,6 +19,9 @@
         <item name="android:button">@null</item>
         <item name="android:gravity">center</item>
         <item name="android:textColor">@drawable/radio_text_selector</item>
+        <item name="android:outlineSpotShadowColor" tools:targetApi="p">@color/dodger_blue</item>
+        <item name="android:outlineAmbientShadowColor" tools:targetApi="p">@color/dodger_blue</item>
+        <item name="android:stateListAnimator">@animator/elevation_animator</item>
     </style>
 
     <style name="EditTextStyle" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
@@ -37,5 +40,10 @@
         <item name="colorControlNormal">@color/white</item>
         <item name="colorControlActivated">@color/scooter</item>
         <item name="colorControlHighlight">@color/bright_gray</item>
+    </style>
+
+    <style name="CircularImageAppearance">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">50%</item>
     </style>
 </resources>
