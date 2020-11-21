@@ -23,6 +23,15 @@ class AddTaskActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         initListeners()
+        initActionBar()
+    }
+
+    private fun initActionBar() {
+        supportActionBar?.let {
+            it.setDisplayHomeAsUpEnabled(true)
+            it.title = null
+            it.setHomeAsUpIndicator(R.drawable.ic_close)
+        }
     }
 
     private fun initListeners() {

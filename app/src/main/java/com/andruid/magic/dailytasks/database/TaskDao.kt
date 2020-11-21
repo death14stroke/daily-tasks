@@ -5,6 +5,7 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
+import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface TaskDao {
@@ -16,4 +17,10 @@ interface TaskDao {
 
     @Query("UPDATE tasks SET status = :status WHERE id = :id")
     suspend fun updateStatus(id: Long, status: Int)
+
+    @Query("SELECT COUNT(*) FROM tasks WHERE time >= :from AND time <= :to")
+    fun getTotalTasksCount(from: Long, to: Long): Flow<Int>
+
+    @Query("SELECT COUNT(*) FROM tasks WHERE status = :status AND time >= :from AND time <= :to")
+    fun getStatusTasksCount(status: Int, from: Long, to: Long): Flow<Int>
 }

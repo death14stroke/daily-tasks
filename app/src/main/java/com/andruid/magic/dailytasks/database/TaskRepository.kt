@@ -18,4 +18,10 @@ object TaskRepository {
     suspend fun updateTaskStatus(id: Long, status: Int) {
         database.taskDao().updateStatus(id, status)
     }
+
+    fun getTotalTasksCount(fromMillis: Long, toMillis: Long) =
+        database.taskDao().getTotalTasksCount(fromMillis, toMillis)
+
+    fun getStatusTasksCount(status: Int, fromMillis: Long, toMillis: Long) =
+        database.taskDao().getStatusTasksCount(status, fromMillis, toMillis)
 }

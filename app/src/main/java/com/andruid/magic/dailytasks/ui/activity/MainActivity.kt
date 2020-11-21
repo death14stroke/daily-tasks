@@ -40,6 +40,10 @@ class MainActivity : AppCompatActivity() {
         taskViewModel.tasksLiveData.observe(this) {
             taskAdapter.submitData(lifecycle, it)
         }
+
+        taskViewModel.progressLiveData.observe(this) {
+            binding.progressView.progress = it
+        }
     }
 
     private fun initRecyclerView() {

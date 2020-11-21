@@ -12,5 +12,12 @@
         <!-- Customize your theme here. -->
         <item name="android:ambientShadowAlpha">0.4</item>
         <item name="android:spotShadowAlpha">0.8</item>
+        <item name="windowActionBarOverlay">true</item>
+        <item name="android:windowActionBarOverlay">true</item>
+        <item name="actionBarStyle">@style/Theme.DailyTasks.TransparentActionBar</item>
+    </style>
+
+    <style name="Theme.DailyTasks.TransparentActionBar">
+        <item name="background">@null</item>
     </style>
 </resources>
