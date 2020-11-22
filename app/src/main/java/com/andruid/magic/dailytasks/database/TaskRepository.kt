@@ -30,4 +30,7 @@ object TaskRepository {
 
     fun searchCompletedTasks(query: String) =
         database.taskDao().searchCompletedTasks(query)
+
+    suspend fun getCompletedTasksCount(category: String) =
+        database.taskDao().getCompletedTasksCountByCategory(category)
 }

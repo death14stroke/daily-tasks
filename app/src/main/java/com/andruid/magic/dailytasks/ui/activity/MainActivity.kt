@@ -66,5 +66,9 @@ class MainActivity : AppCompatActivity() {
         binding.completedTasksBtn.setOnClickListener {
             startActivity(Intent(this, CompletedTasksActivity::class.java))
         }
+
+        binding.tasksRateBtn.setOnClickListener {
+            startActivity(Intent(this, StatisticsActivity::class.java))
+        }
     }
 }

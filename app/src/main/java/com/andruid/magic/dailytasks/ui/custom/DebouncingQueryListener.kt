@@ -1,6 +1,5 @@
 
 import androidx.appcompat.widget.SearchView
-import com.miguelcatalan.materialsearchview.MaterialSearchView
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay

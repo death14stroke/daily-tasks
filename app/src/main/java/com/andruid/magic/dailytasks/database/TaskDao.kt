@@ -29,4 +29,7 @@ interface TaskDao {
 
     @Query("SELECT * FROM tasks WHERE status = 1 AND title LIKE '%' || :query || '%'")
     fun searchCompletedTasks(query: String): PagingSource<Int, Task>
+
+    @Query("SELECT COUNT(*) FROM tasks WHERE status = 1 AND category = :category")
+    suspend fun getCompletedTasksCountByCategory(category: String): Int
 }
