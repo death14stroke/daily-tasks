@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/bright_gray"
+    android:background="@color/ebony"
     tools:context=".ui.activity.MainActivity">
 
     <com.google.android.material.textview.MaterialTextView
@@ -33,7 +33,7 @@
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@id/greetings_tv" />
 
-    <com.google.android.material.imageview.ShapeableImageView
+    <com.andruid.magic.dailytasks.ui.custom.StatsView
         android:id="@+id/completed_tasks_btn"
         android:layout_width="0dp"
         android:layout_height="0dp"
@@ -41,21 +41,20 @@
         app:layout_constraintEnd_toStartOf="@id/tasks_rate_btn"
         app:layout_constraintStart_toEndOf="@id/start_guideline"
         app:layout_constraintTop_toBottomOf="@id/progress_view"
-        app:layout_constraintWidth_percent="0.33"
         tools:src="@tools:sample/backgrounds/scenic" />
 
-    <com.google.android.material.imageview.ShapeableImageView
+    <com.andruid.magic.dailytasks.ui.custom.StatsView
         android:id="@+id/tasks_rate_btn"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:layout_marginHorizontal="8dp"
         app:layout_constraintDimensionRatio="1"
         app:layout_constraintEnd_toStartOf="@id/productivity_btn"
         app:layout_constraintStart_toEndOf="@id/completed_tasks_btn"
         app:layout_constraintTop_toBottomOf="@id/progress_view"
-        app:layout_constraintWidth_percent="0.33"
         tools:src="@tools:sample/backgrounds/scenic" />
 
-    <com.google.android.material.imageview.ShapeableImageView
+    <com.andruid.magic.dailytasks.ui.custom.StatsView
         android:id="@+id/productivity_btn"
         android:layout_width="0dp"
         android:layout_height="0dp"
@@ -63,7 +62,6 @@
         app:layout_constraintEnd_toStartOf="@id/end_guideline"
         app:layout_constraintStart_toEndOf="@id/tasks_rate_btn"
         app:layout_constraintTop_toBottomOf="@id/progress_view"
-        app:layout_constraintWidth_percent="0.33"
         tools:src="@tools:sample/backgrounds/scenic" />
 
     <androidx.constraintlayout.widget.Group

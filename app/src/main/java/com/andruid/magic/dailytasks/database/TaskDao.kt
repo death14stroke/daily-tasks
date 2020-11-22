@@ -23,4 +23,10 @@ interface TaskDao {
 
     @Query("SELECT COUNT(*) FROM tasks WHERE status = :status AND time >= :from AND time <= :to")
     fun getStatusTasksCount(status: Int, from: Long, to: Long): Flow<Int>
+
+    @Query("SELECT COUNT(*) FROM tasks WHERE status = :status")
+    fun getStatusTasksCount(status: Int): Flow<Int>
+
+    @Query("SELECT * FROM tasks WHERE status = 1 AND title LIKE '%' || :query || '%'")
+    fun searchCompletedTasks(query: String): PagingSource<Int, Task>
 }

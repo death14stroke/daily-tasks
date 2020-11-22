@@ -14,6 +14,8 @@
         <!-- Customize your theme here. -->
     </style>
 
+    <style name="Theme.DailyTasks.NoActionBar" parent="Theme.MaterialComponents.DayNight.NoActionBar" />
+
     <style name="RadioButtonStyle" parent="Theme.DailyTasks">
         <item name="android:background">@drawable/radio_selector</item>
         <item name="android:button">@null</item>

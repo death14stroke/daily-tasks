@@ -14,7 +14,11 @@ object StatsCalculator {
         val doneTasks = TaskRepository.getStatusTasksCount(STATUS_DONE, fromMillis, toMillis)
 
         return totalTasks.zip(doneTasks) { total: Int, done: Int ->
-            done * 100 / total
+            try {
+                done * 100 / total
+            } catch (e: ArithmeticException) {
+                0
+            }
         }
     }
 }

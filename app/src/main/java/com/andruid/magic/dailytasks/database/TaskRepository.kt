@@ -24,4 +24,10 @@ object TaskRepository {
 
     fun getStatusTasksCount(status: Int, fromMillis: Long, toMillis: Long) =
         database.taskDao().getStatusTasksCount(status, fromMillis, toMillis)
+
+    fun getStatusTasksCount(status: Int) =
+        database.taskDao().getStatusTasksCount(status)
+
+    fun searchCompletedTasks(query: String) =
+        database.taskDao().searchCompletedTasks(query)
 }

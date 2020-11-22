@@ -36,6 +36,7 @@ class MainActivity : AppCompatActivity() {
 
         initListeners()
         initRecyclerView()
+        initStats()
 
         taskViewModel.tasksLiveData.observe(this) {
             taskAdapter.submitData(lifecycle, it)
@@ -46,6 +47,13 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    private fun initStats() {
+        binding.completedTasksBtn.title = "Completed"
+        taskViewModel.tasksCompletedLiveData.observe(this) {
+            binding.completedTasksBtn.count = it
+        }
+    }
+
     private fun initRecyclerView() {
         binding.recyclerView.adapter = taskAdapter
     }
@@ -53,6 +61,10 @@ class MainActivity : AppCompatActivity() {
     private fun initListeners() {
         binding.addTasksIv.setOnClickListener {
             startActivity(Intent(this, AddTaskActivity::class.java))
+        }
+
+        binding.completedTasksBtn.setOnClickListener {
+            startActivity(Intent(this, CompletedTasksActivity::class.java))
         }
     }
 }

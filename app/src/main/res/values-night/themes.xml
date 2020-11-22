@@ -17,6 +17,8 @@
         <item name="actionBarStyle">@style/Theme.DailyTasks.TransparentActionBar</item>
     </style>
 
+    <style name="Theme.DailyTasks.NoActionBar" parent="Theme.MaterialComponents.DayNight.NoActionBar" />
+
     <style name="Theme.DailyTasks.TransparentActionBar">
         <item name="background">@null</item>
     </style>
