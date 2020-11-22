@@ -10,8 +10,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.DailyTasks">
-        <activity android:name=".ui.activity.CompletedTasksActivity"
-            android:theme="@style/Theme.DailyTasks.NoActionBar"/>
+
         <activity android:name=".ui.activity.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -19,9 +18,15 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <activity
             android:name=".ui.activity.AddTaskActivity"
             android:parentActivityName=".ui.activity.MainActivity" />
+
+        <activity
+            android:name=".ui.activity.CompletedTasksActivity"
+            android:parentActivityName=".ui.activity.MainActivity"
+            android:theme="@style/Theme.DailyTasks.NoActionBar" />
     </application>
 
 </manifest>

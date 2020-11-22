@@ -16,4 +16,5 @@
     <string name="yes">Yes</string>
     <string name="no">No</string>
     <string name="create_new_task">Create New Task</string>
+    <string name="search_query">Search task</string>
 </resources>
