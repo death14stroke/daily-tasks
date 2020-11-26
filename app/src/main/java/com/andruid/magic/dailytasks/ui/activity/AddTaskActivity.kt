@@ -12,6 +12,7 @@ import com.andruid.magic.dailytasks.database.Task
 import com.andruid.magic.dailytasks.database.TaskRepository
 import com.andruid.magic.dailytasks.databinding.ActivityAddTaskBinding
 import com.andruid.magic.dailytasks.ui.viewbinding.viewBinding
+import com.andruid.magic.dailytasks.util.getDateDetails
 import com.andruid.magic.dailytasks.util.getTaskTimeFromPicker
 import kotlinx.coroutines.launch
 
@@ -46,12 +47,16 @@ class AddTaskActivity : AppCompatActivity() {
             val minutes = binding.timePickerET.selectedMinute
 
             val taskMillis = getTaskTimeFromPicker(hour, minutes)
+            val (day, month, year) = getDateDetails(taskMillis)
             Log.d("msLog", "selected time = $taskMillis")
 
             val task = Task(
                 title = title,
                 repeat = binding.repeatSwitch.isChecked,
                 time = taskMillis,
+                day = day,
+                month = month,
+                year = year,
                 category = getCategoryFromRadioGroup(),
                 status = STATUS_PENDING
             )

@@ -11,6 +11,9 @@ data class Task(
     val title: String,
     val repeat: Boolean = false,
     val time: Long,
+    val day: Int,
+    val month: Int,
+    val year: Int,
     val category: String,
     val status: Int = STATUS_PENDING
 )

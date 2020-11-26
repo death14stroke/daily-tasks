@@ -32,4 +32,10 @@ interface TaskDao {
 
     @Query("SELECT COUNT(*) FROM tasks WHERE status = 1 AND category = :category")
     suspend fun getCompletedTasksCountByCategory(category: String): Int
+
+    @Query("SELECT COUNT(*) FROM tasks WHERE status = 1 AND year = :year AND month = :month GROUP BY day,month,year ORDER BY day")
+    suspend fun getMonthlyStats(month: Int, year: Int): List<Int>
+
+    @Query("SELECT MIN(time) FROM tasks WHERE status = 1")
+    suspend fun getOldestCompletedTaskTime(): Long
 }

@@ -23,3 +23,15 @@ fun getMidnightTimeMillis(dayOffset: Int = 0): Long {
 
     return calendar.timeInMillis
 }
+
+fun getDateDetails(millis: Long): Array<Int> {
+    val calendar = Calendar.getInstance().apply {
+        timeInMillis = millis
+    }
+
+    val day = calendar.get(Calendar.DAY_OF_MONTH)
+    val month = calendar.get(Calendar.MONTH)
+    val year = calendar.get(Calendar.YEAR)
+
+    return arrayOf(day, month, year)
+}

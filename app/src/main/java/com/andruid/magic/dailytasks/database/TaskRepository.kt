@@ -33,4 +33,10 @@ object TaskRepository {
 
     suspend fun getCompletedTasksCount(category: String) =
         database.taskDao().getCompletedTasksCountByCategory(category)
+
+    suspend fun getMonthlyStats(month: Int, year: Int) =
+        database.taskDao().getMonthlyStats(month, year)
+
+    suspend fun getTaskHistoryStartTime() =
+        database.taskDao().getOldestCompletedTaskTime()
 }
