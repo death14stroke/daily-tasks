@@ -2,13 +2,16 @@ package com.andruid.magic.dailytasks.ui.activity
 
 import android.os.Bundle
 import android.util.Log
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.lifecycleScope
 import com.andruid.magic.dailytasks.R
 import com.andruid.magic.dailytasks.database.TaskRepository
 import com.andruid.magic.dailytasks.databinding.ActivityStatisticsBinding
+import com.andruid.magic.dailytasks.ui.adapter.MonthAdapter
 import com.andruid.magic.dailytasks.ui.viewbinding.viewBinding
+import com.andruid.magic.dailytasks.ui.viewmodel.MonthViewModel
 import com.github.mikephil.charting.components.XAxis
 import com.github.mikephil.charting.data.Entry
 import com.github.mikephil.charting.data.LineData
@@ -21,10 +24,17 @@ import java.util.*
 
 class StatisticsActivity : AppCompatActivity() {
     private val binding by viewBinding(ActivityStatisticsBinding::inflate)
+    private val monthViewModel by viewModels<MonthViewModel>()
+    private val monthAdapter = MonthAdapter()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
+
+        binding.monthsRv.adapter = monthAdapter
+        monthViewModel.monthsLiveData.observe(this) {
+            monthAdapter.submitData(lifecycle, it)
+        }
 
         initLineChart()
 
@@ -39,6 +49,11 @@ class StatisticsActivity : AppCompatActivity() {
 
         val data = TaskRepository.getMonthlyStats(month, year)
         val startTime = TaskRepository.getTaskHistoryStartTime()
+        val (startMonth, startYear) = Calendar.getInstance().run {
+            timeInMillis = startTime
+
+            return@run get(Calendar.MONTH) to get(Calendar.YEAR)
+        }
 
         Log.d("dataLog", "$data - start time = $startTime")
     }

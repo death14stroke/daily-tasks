@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <variable
+            name="month"
+            type="com.andruid.magic.dailytasks.data.Month" />
+    </data>
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/month_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        tools:text="Apr '20"
+        android:padding="8dp"
+        android:text="@{month.title}"
+        android:textAlignment="gravity" />
+</layout>
