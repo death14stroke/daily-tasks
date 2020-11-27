@@ -1,5 +1,6 @@
 package com.andruid.magic.dailytasks.ui.adapter
 
+import android.view.View
 import android.view.ViewGroup
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
@@ -14,11 +15,17 @@ private val DIFF_CALLBACK = object : DiffUtil.ItemCallback<Month>() {
         oldItem.month == newItem.month && oldItem.year == newItem.year
 }
 
-class MonthAdapter : PagingDataAdapter<Month, MonthViewHolder>(DIFF_CALLBACK) {
+class MonthAdapter(private val itemClickListener: ((View) -> Unit)?) :
+    PagingDataAdapter<Month, MonthViewHolder>(DIFF_CALLBACK) {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
         MonthViewHolder.from(parent)
 
     override fun onBindViewHolder(holder: MonthViewHolder, position: Int) {
-        getItem(position)?.let { holder.bind(it) }
+        getItem(position)?.let { month ->
+            holder.bind(month)
+            holder.itemView.setOnClickListener { itemClickListener?.invoke(it) }
+        }
     }
+
+    fun getItemAt(position: Int) = getItem(position)
 }

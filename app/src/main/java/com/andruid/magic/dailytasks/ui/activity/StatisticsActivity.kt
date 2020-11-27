@@ -2,20 +2,26 @@ package com.andruid.magic.dailytasks.ui.activity
 
 import android.os.Bundle
 import android.util.Log
+import android.view.View
+import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.lifecycleScope
+import androidx.recyclerview.widget.LinearSnapHelper
 import com.andruid.magic.dailytasks.R
+import com.andruid.magic.dailytasks.data.CATEGORY_PERSONAL
+import com.andruid.magic.dailytasks.data.CATEGORY_WORK
+import com.andruid.magic.dailytasks.data.Month
 import com.andruid.magic.dailytasks.database.TaskRepository
 import com.andruid.magic.dailytasks.databinding.ActivityStatisticsBinding
 import com.andruid.magic.dailytasks.ui.adapter.MonthAdapter
+import com.andruid.magic.dailytasks.ui.custom.SliderLayoutManager
 import com.andruid.magic.dailytasks.ui.viewbinding.viewBinding
 import com.andruid.magic.dailytasks.ui.viewmodel.MonthViewModel
+import com.andruid.magic.dailytasks.util.ScreenUtils
 import com.github.mikephil.charting.components.XAxis
-import com.github.mikephil.charting.data.Entry
-import com.github.mikephil.charting.data.LineData
-import com.github.mikephil.charting.data.LineDataSet
+import com.github.mikephil.charting.data.*
 import com.github.mikephil.charting.formatter.IAxisValueFormatter
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -25,37 +31,88 @@ import java.util.*
 class StatisticsActivity : AppCompatActivity() {
     private val binding by viewBinding(ActivityStatisticsBinding::inflate)
     private val monthViewModel by viewModels<MonthViewModel>()
-    private val monthAdapter = MonthAdapter()
+    private val monthAdapter = MonthAdapter {
+        val position = binding.monthsRv.getChildLayoutPosition(it)
+        binding.monthsRv.smoothScrollToPosition(position)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
-        binding.monthsRv.adapter = monthAdapter
+        initMonthSlider()
+
         monthViewModel.monthsLiveData.observe(this) {
             monthAdapter.submitData(lifecycle, it)
         }
 
         initLineChart()
-
-        lifecycleScope.launch { buildLineChart() }
-        lifecycleScope.launch { buildBarChart() }
+        initBarChart()
     }
 
-    private suspend fun buildBarChart() {
-        val (month, year) = Calendar.getInstance().run {
-            get(Calendar.MONTH) to get(Calendar.YEAR)
+    private fun initMonthSlider() {
+        binding.monthsRv.apply {
+            adapter = monthAdapter
+
+            val padding =
+                ScreenUtils.getScreenWidth(this@StatisticsActivity) /
+                        2 - ScreenUtils.dpToPx(this@StatisticsActivity, 32)
+            setPadding(padding, 0, padding, 0)
+
+            layoutManager = SliderLayoutManager(
+                this@StatisticsActivity,
+                binding.monthsRv,
+                object : SliderLayoutManager.OnItemSelectedListener {
+                    override fun onItemSelected(position: Int, view: View?) {
+                        val month = monthAdapter.getItemAt(position) ?: return
+                        Toast.makeText(
+                            this@StatisticsActivity,
+                            "selected: ${month.title}",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                        lifecycleScope.launch { buildLineChart(month) }
+                        lifecycleScope.launch { buildBarChart(month) }
+                    }
+                })
+
+            LinearSnapHelper().attachToRecyclerView(this)
+        }
+    }
+
+    private fun initBarChart() {
+
+    }
+
+    private suspend fun buildBarChart(month: Month) {
+        val stats = TaskRepository.getMonthlyStats(month.month, month.year)
+        val cal = Calendar.getInstance().apply {
+            set(Calendar.MONTH, month.month)
+            set(Calendar.YEAR, month.year)
         }
 
-        val data = TaskRepository.getMonthlyStats(month, year)
-        val startTime = TaskRepository.getTaskHistoryStartTime()
-        val (startMonth, startYear) = Calendar.getInstance().run {
-            timeInMillis = startTime
+        val noOfDays = cal.getActualMaximum(Calendar.DAY_OF_MONTH)
 
-            return@run get(Calendar.MONTH) to get(Calendar.YEAR)
+        val dbData = mutableMapOf<Int, Int>()
+        repeat(noOfDays) { day ->
+            dbData[day] = 0
         }
 
-        Log.d("dataLog", "$data - start time = $startTime")
+        stats?.forEach { monthStats ->
+            dbData[monthStats.day - 1] = monthStats.taskCnt
+        }
+
+        Log.d("dataLog", "$dbData")
+
+        val entries = dbData.map { entry ->
+            BarEntry(entry.key.toFloat(), entry.value.toFloat())
+        }
+        val barDataSet = BarDataSet(entries, "Daily tasks count")
+        val barData = BarData(barDataSet)
+
+        binding.barChart.apply {
+            data = barData
+            invalidate()
+        }
     }
 
     private fun initLineChart() {
@@ -83,21 +140,24 @@ class StatisticsActivity : AppCompatActivity() {
         }
     }
 
-    private suspend fun buildLineChart() {
+    private suspend fun buildLineChart(month: Month) {
         val lineData = withContext(Dispatchers.Default) {
-            //TODO: commented for actual use
-            /*val workEntry =
-                Entry(0f, TaskRepository.getCompletedTasksCount(CATEGORY_WORK).toFloat())
+            val workEntry =
+                Entry(
+                    0f,
+                    TaskRepository.getCompletedTasksCount(month.month, month.year, CATEGORY_WORK)
+                        .toFloat()
+                )
             val personalEntry =
-                Entry(1f, TaskRepository.getCompletedTasksCount(CATEGORY_PERSONAL).toFloat())
-            val entryList = listOf(workEntry, personalEntry)*/
-
-            val originEntry = Entry(0f, 0f)
-            val workEntry = Entry(1f, 101f)
-            val personalEntry = Entry(2f, 148f)
-            val hobbyEntry = Entry(3f, 53f)
-            val endEntry = Entry(4f, 0f)
-            val entryList = listOf(originEntry, workEntry, personalEntry, hobbyEntry, endEntry)
+                Entry(
+                    1f,
+                    TaskRepository.getCompletedTasksCount(
+                        month.month,
+                        month.year,
+                        CATEGORY_PERSONAL
+                    ).toFloat()
+                )
+            val entryList = listOf(workEntry, personalEntry)
 
             val lineDataSet = LineDataSet(entryList, "Completed Tasks").apply {
                 setDrawFilled(true)

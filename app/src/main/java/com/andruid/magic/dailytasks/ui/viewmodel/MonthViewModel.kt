@@ -15,7 +15,7 @@ class MonthViewModel : ViewModel() {
         initialKey = Calendar.getInstance(),
         pagingSourceFactory = {
             val limitMillis = runBlocking { TaskRepository.getTaskHistoryStartTime() }
-            MonthDataSource(limitMillis)
+            MonthDataSource(limitMillis ?: System.currentTimeMillis())
         }
     ).liveData
 }

@@ -31,12 +31,12 @@ object TaskRepository {
     fun searchCompletedTasks(query: String) =
         database.taskDao().searchCompletedTasks(query)
 
-    suspend fun getCompletedTasksCount(category: String) =
-        database.taskDao().getCompletedTasksCountByCategory(category)
+    suspend fun getCompletedTasksCount(month: Int, year: Int, category: String) =
+        database.taskDao().getCompletedTasksCountByCategory(month, year, category)
 
     suspend fun getMonthlyStats(month: Int, year: Int) =
         database.taskDao().getMonthlyStats(month, year)
 
     suspend fun getTaskHistoryStartTime() =
-        database.taskDao().getOldestCompletedTaskTime()
+        database.taskDao().getOldestCompletedTaskTime() ?: System.currentTimeMillis()
 }

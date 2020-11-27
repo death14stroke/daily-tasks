@@ -5,6 +5,7 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
+import com.andruid.magic.dailytasks.data.MonthStats
 import kotlinx.coroutines.flow.Flow
 
 @Dao
@@ -30,12 +31,12 @@ interface TaskDao {
     @Query("SELECT * FROM tasks WHERE status = 1 AND title LIKE '%' || :query || '%'")
     fun searchCompletedTasks(query: String): PagingSource<Int, Task>
 
-    @Query("SELECT COUNT(*) FROM tasks WHERE status = 1 AND category = :category")
-    suspend fun getCompletedTasksCountByCategory(category: String): Int
+    @Query("SELECT COUNT(*) FROM tasks WHERE status = 1 AND month = :month AND year = :year AND category = :category")
+    suspend fun getCompletedTasksCountByCategory(month: Int, year: Int, category: String): Int
 
-    @Query("SELECT COUNT(*) FROM tasks WHERE status = 1 AND year = :year AND month = :month GROUP BY day,month,year ORDER BY day")
-    suspend fun getMonthlyStats(month: Int, year: Int): List<Int>
+    @Query("SELECT day, COUNT(*) as taskCnt FROM tasks WHERE status = 1 AND year = :year AND month = :month GROUP BY day,month,year ORDER BY day")
+    suspend fun getMonthlyStats(month: Int, year: Int): List<MonthStats>?
 
     @Query("SELECT MIN(time) FROM tasks WHERE status = 1")
-    suspend fun getOldestCompletedTaskTime(): Long
+    suspend fun getOldestCompletedTaskTime(): Long?
 }
