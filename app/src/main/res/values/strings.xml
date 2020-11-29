@@ -17,4 +17,11 @@
     <string name="no">No</string>
     <string name="create_new_task">Create New Task</string>
     <string name="search_query">Search task</string>
+    <string name="user_name_hint">What should we call you?</string>
+    <string name="proceed">Proceed</string>
+    <string name="select_your_avatar">Select your avatar</string>
+    <string name="menu_select_camera">Take picture</string>
+    <string name="menu_select_gallery">Select from gallery</string>
+    <string name="menu_remove_photo">Remove photo</string>
+    <string name="user_name">User name</string>
 </resources>

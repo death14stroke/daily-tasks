@@ -12,7 +12,7 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:gravity="center_vertical"
-        android:text="Good morning,\nSteve Wozniak"
+        tools:text="Good morning,\nSteve Wozniak"
         app:layout_constraintBottom_toBottomOf="@id/profile_iv"
         app:layout_constraintEnd_toStartOf="@id/profile_iv"
         app:layout_constraintStart_toEndOf="@id/start_guideline"
@@ -20,9 +20,11 @@
 
     <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/profile_iv"
-        android:layout_width="50dp"
+        android:layout_width="60dp"
         android:layout_height="0dp"
+        android:scaleType="fitXY"
         app:layout_constraintDimensionRatio="1"
+        app:shapeAppearanceOverlay="@style/CircularImageAppearance"
         app:layout_constraintEnd_toStartOf="@id/end_guideline"
         app:layout_constraintTop_toTopOf="parent"
         tools:src="@tools:sample/avatars" />
