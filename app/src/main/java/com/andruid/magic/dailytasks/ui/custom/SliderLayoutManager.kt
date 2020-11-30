@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.LinearSnapHelper
 import androidx.recyclerview.widget.RecyclerView
 import com.andruid.magic.dailytasks.util.ScreenUtils
 import kotlin.math.abs
+import kotlin.math.sqrt
 
 class SliderLayoutManager(
     context: Context,
@@ -18,6 +19,23 @@ class SliderLayoutManager(
         recyclerView.setPadding(padding, 0, padding, 0)
 
         LinearSnapHelper().attachToRecyclerView(recyclerView)
+    }
+
+    override fun onLayoutChildren(recycler: RecyclerView.Recycler?, state: RecyclerView.State) {
+        super.onLayoutChildren(recycler, state)
+        scaleDownView()
+    }
+
+    override fun scrollHorizontallyBy(
+        dx: Int, recycler: RecyclerView.Recycler?, state: RecyclerView.State?
+    ): Int {
+        return if (orientation == HORIZONTAL) {
+            val scrolled = super.scrollHorizontallyBy(dx, recycler, state)
+            scaleDownView()
+            scrolled
+        } else {
+            0
+        }
     }
 
     override fun onScrollStateChanged(state: Int) {
@@ -45,6 +63,34 @@ class SliderLayoutManager(
 
             // Notify on the selected item
             callback?.onItemSelected(position, view)
+        }
+    }
+
+    private fun scaleDownView() {
+        val mid = width / 2.0f
+
+        for (i in 0 until childCount) {
+
+            // Calculating the distance of the child from the center
+            val child = getChildAt(i) ?: continue
+            val childMid = (getDecoratedLeft(child) + getDecoratedRight(child)) / 2.0f
+            val distanceFromCenter = abs(mid - childMid)
+
+            val viewHolder = recyclerView.getChildViewHolder(child)
+            if (viewHolder !is ISliderViewHolder?)
+                throw ClassCastException("Expected viewHolder of type ${ISliderViewHolder::class.simpleName}")
+
+            if (distanceFromCenter < child.width / 2)
+                viewHolder?.select()
+            else
+                viewHolder?.deselect()
+
+            // The scaling formula
+            val scale = 1 - sqrt((distanceFromCenter / width).toDouble()).toFloat() * 0.66f
+
+            // Set scale to view
+            child.scaleX = scale
+            child.scaleY = scale
         }
     }
 

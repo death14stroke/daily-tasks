@@ -14,7 +14,9 @@
         android:layout_height="match_parent"
         android:gravity="center"
         tools:text="Apr '20"
-        android:padding="16dp"
+        android:padding="8dp"
+        android:textColor="@color/bright_gray"
+        android:textAppearance="?textAppearanceHeadline5"
         android:text="@{month.title}"
         android:textAlignment="gravity" />
 </layout>
