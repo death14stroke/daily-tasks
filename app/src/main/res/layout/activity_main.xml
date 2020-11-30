@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/ebony"
+    android:paddingTop="16dp"
     tools:context=".ui.activity.MainActivity">
 
     <com.google.android.material.textview.MaterialTextView
@@ -12,11 +13,13 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:gravity="center_vertical"
-        tools:text="Good morning,\nSteve Wozniak"
+        android:textAppearance="?textAppearanceSubtitle1"
+        android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="@id/profile_iv"
         app:layout_constraintEnd_toStartOf="@id/profile_iv"
         app:layout_constraintStart_toEndOf="@id/start_guideline"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="Good morning,\nSteve Wozniak" />
 
     <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/profile_iv"
@@ -24,47 +27,52 @@
         android:layout_height="0dp"
         android:scaleType="fitXY"
         app:layout_constraintDimensionRatio="1"
-        app:shapeAppearanceOverlay="@style/CircularImageAppearance"
         app:layout_constraintEnd_toStartOf="@id/end_guideline"
         app:layout_constraintTop_toTopOf="parent"
+        app:shapeAppearanceOverlay="@style/CircularImageAppearance"
         tools:src="@tools:sample/avatars" />
 
     <com.andruid.magic.dailytasks.ui.custom.DailyProgressView
         android:id="@+id/progress_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:paddingBottom="16dp"
         app:layout_constraintTop_toBottomOf="@id/greetings_tv" />
 
     <com.andruid.magic.dailytasks.ui.custom.StatsView
         android:id="@+id/completed_tasks_btn"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        app:background="@drawable/stats_completed_bg"
         app:layout_constraintDimensionRatio="1"
         app:layout_constraintEnd_toStartOf="@id/tasks_rate_btn"
         app:layout_constraintStart_toEndOf="@id/start_guideline"
-        app:layout_constraintTop_toBottomOf="@id/progress_view"
-        tools:src="@tools:sample/backgrounds/scenic" />
+        app:layout_constraintTop_toBottomOf="@id/stats_guideline"
+        app:title="@string/stats_completed_title" />
 
     <com.andruid.magic.dailytasks.ui.custom.StatsView
         android:id="@+id/tasks_rate_btn"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginHorizontal="8dp"
+        android:layout_marginHorizontal="16dp"
+        app:background="@drawable/stats_daily_bg"
         app:layout_constraintDimensionRatio="1"
         app:layout_constraintEnd_toStartOf="@id/productivity_btn"
         app:layout_constraintStart_toEndOf="@id/completed_tasks_btn"
-        app:layout_constraintTop_toBottomOf="@id/progress_view"
-        tools:src="@tools:sample/backgrounds/scenic" />
+        app:layout_constraintTop_toBottomOf="@id/stats_guideline"
+        app:title="@string/stats_daily_title" />
 
     <com.andruid.magic.dailytasks.ui.custom.StatsView
         android:id="@+id/productivity_btn"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        app:background="@drawable/stats_productivity_bg"
         app:layout_constraintDimensionRatio="1"
         app:layout_constraintEnd_toStartOf="@id/end_guideline"
         app:layout_constraintStart_toEndOf="@id/tasks_rate_btn"
-        app:layout_constraintTop_toBottomOf="@id/progress_view"
-        tools:src="@tools:sample/backgrounds/scenic" />
+        app:layout_constraintTop_toBottomOf="@id/stats_guideline"
+        app:title="@string/stats_productivity_title" />
 
     <androidx.constraintlayout.widget.Group
         android:layout_width="match_parent"
@@ -77,6 +85,7 @@
         android:id="@+id/tasks_header_tv"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:layout_marginTop="16dp"
         android:gravity="center_vertical"
         android:paddingTop="16dp"
         android:text="@string/your_tasks"
@@ -101,6 +110,7 @@
         android:id="@+id/recycler_view"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:layout_marginTop="16dp"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@id/end_guideline"
@@ -121,4 +131,11 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         app:layout_constraintGuide_end="16dp" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/stats_guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toBottomOf="@id/progress_view" />
 </androidx.constraintlayout.widget.ConstraintLayout>

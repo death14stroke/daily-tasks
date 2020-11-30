@@ -12,7 +12,7 @@ private val DIFF_CALLBACK = object : DiffUtil.ItemCallback<Month>() {
         oldItem == newItem
 
     override fun areItemsTheSame(oldItem: Month, newItem: Month) =
-        oldItem.month == newItem.month && oldItem.year == newItem.year
+        oldItem.index == newItem.index && oldItem.year == newItem.year
 }
 
 class MonthAdapter(private val itemClickListener: ((View) -> Unit)?) :

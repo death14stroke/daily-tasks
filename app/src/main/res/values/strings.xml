@@ -24,4 +24,7 @@
     <string name="menu_select_gallery">Select from gallery</string>
     <string name="menu_remove_photo">Remove photo</string>
     <string name="user_name">User name</string>
+    <string name="stats_completed_title">Completed</string>
+    <string name="stats_daily_title">Tasks/Day</string>
+    <string name="stats_productivity_title">Productivity</string>
 </resources>

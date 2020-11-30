@@ -62,6 +62,10 @@ class SignupActivity : AppCompatActivity(),
 
         binding.proceedBtn.setOnClickListener {
             val userName = binding.nameEt.text.toString().trim()
+            if (userName.isBlank()) {
+                binding.nameInput.error = "Username cannot be blank"
+                return@setOnClickListener
+            }
 
             lifecycleScope.launch { ProfileRepository.saveUsername(userName) }
             selectedImageUri?.let { imageUri ->
@@ -71,6 +75,7 @@ class SignupActivity : AppCompatActivity(),
             }
 
             startActivity(Intent(this, MainActivity::class.java))
+            finish()
         }
     }
 

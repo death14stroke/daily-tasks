@@ -5,7 +5,7 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import com.andruid.magic.dailytasks.data.MonthStats
+import com.andruid.magic.dailytasks.data.MonthlyStats
 import kotlinx.coroutines.flow.Flow
 
 @Dao
@@ -35,7 +35,7 @@ interface TaskDao {
     suspend fun getCompletedTasksCountByCategory(month: Int, year: Int, category: String): Int
 
     @Query("SELECT day, COUNT(*) as taskCnt FROM tasks WHERE status = 1 AND year = :year AND month = :month GROUP BY day,month,year ORDER BY day")
-    suspend fun getMonthlyStats(month: Int, year: Int): List<MonthStats>?
+    suspend fun getMonthlyStats(month: Int, year: Int): List<MonthlyStats>?
 
     @Query("SELECT MIN(time) FROM tasks WHERE status = 1")
     suspend fun getOldestCompletedTaskTime(): Long?

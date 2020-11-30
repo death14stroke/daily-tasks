@@ -6,19 +6,16 @@
     <data>
 
         <variable
-            name="title"
-            type="String" />
-
-        <variable
             name="count"
             type="Integer" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/root_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/stats_completed_bg"
-        android:padding="8dp">
+        android:padding="8dp"
+        tools:background="@drawable/stats_completed_bg">
 
         <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/details_btn"
@@ -34,7 +31,8 @@
             android:layout_height="wrap_content"
             android:padding="4dp"
             android:text="@{String.valueOf(count)}"
-            android:textAppearance="?textAppearanceHeadline6"
+            android:textAppearance="?textAppearanceHeadline5"
+            android:textStyle="bold"
             app:layout_constraintBottom_toTopOf="@id/title_tv"
             app:layout_constraintStart_toStartOf="parent"
             tools:text="356" />
@@ -44,8 +42,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="4dp"
-            android:text="@{title}"
-            android:textAppearance="?textAppearanceCaption"
+            android:textAppearance="?textAppearanceSubtitle2"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             tools:text="Completed" />

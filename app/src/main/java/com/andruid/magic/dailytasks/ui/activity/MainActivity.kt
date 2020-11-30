@@ -1,21 +1,22 @@
 package com.andruid.magic.dailytasks.ui.activity
 
 import android.content.Intent
+import android.graphics.Typeface
 import android.os.Bundle
 import android.text.Spannable
 import android.text.SpannableString
-import android.text.style.RelativeSizeSpan
+import android.text.style.StyleSpan
 import android.widget.TextView
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import coil.load
-import com.andruid.magic.dailytasks.repository.ProfileRepository
 import com.andruid.magic.dailytasks.data.STATUS_DONE
 import com.andruid.magic.dailytasks.data.STATUS_PENDING
 import com.andruid.magic.dailytasks.database.Task
 import com.andruid.magic.dailytasks.database.TaskRepository
 import com.andruid.magic.dailytasks.databinding.ActivityMainBinding
+import com.andruid.magic.dailytasks.repository.ProfileRepository
 import com.andruid.magic.dailytasks.ui.adapter.TaskAdapter
 import com.andruid.magic.dailytasks.ui.viewbinding.viewBinding
 import com.andruid.magic.dailytasks.ui.viewmodel.TaskViewModel
@@ -65,7 +66,7 @@ class MainActivity : AppCompatActivity() {
                 val span = SpannableString(message).apply {
                     val start = greeting.length + 1
                     setSpan(
-                        RelativeSizeSpan(2f),
+                        StyleSpan(Typeface.BOLD),
                         start,
                         message.length,
                         Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
@@ -79,9 +80,8 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun initStats() {
-        binding.completedTasksBtn.title = "Completed"
         taskViewModel.tasksCompletedLiveData.observe(this) {
-            binding.completedTasksBtn.count = it
+            binding.completedTasksBtn.setCount(it)
         }
     }
 

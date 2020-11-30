@@ -3,6 +3,7 @@ package com.andruid.magic.dailytasks.paging
 import android.util.Log
 import androidx.paging.PagingSource
 import com.andruid.magic.dailytasks.data.Month
+import com.andruid.magic.dailytasks.data.toMonth
 import java.util.*
 
 class MonthDataSource(private val limitMillis: Long) : PagingSource<Calendar, Month>() {
@@ -23,15 +24,11 @@ class MonthDataSource(private val limitMillis: Long) : PagingSource<Calendar, Mo
         val months = mutableListOf<Month>()
 
         for (i in 0 until params.loadSize) {
-            val month = Month(
-                month = key!!.get(Calendar.MONTH),
-                year = key.get(Calendar.YEAR),
-                title = "${key.getDisplayName(Calendar.MONTH, Calendar.SHORT, Locale.getDefault())} ${key.get(Calendar.YEAR)}"
-            )
+            val month = key!!.toMonth().also {
+                Log.d("monthLog", "month = $it")
+            }
 
-            Log.d("monthLog", "month = $month")
-
-            if ((month.year < limitYear) || (month.year == limitYear && month.month < limitMonth)) {
+            if ((month.year < limitYear) || (month.year == limitYear && month.index < limitMonth)) {
                 key = null
                 break
             }

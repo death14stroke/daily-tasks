@@ -3,7 +3,9 @@ package com.andruid.magic.dailytasks.ui.custom
 import android.content.Context
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.LinearSnapHelper
 import androidx.recyclerview.widget.RecyclerView
+import com.andruid.magic.dailytasks.util.ScreenUtils
 import kotlin.math.abs
 
 class SliderLayoutManager(
@@ -11,6 +13,13 @@ class SliderLayoutManager(
     private val recyclerView: RecyclerView,
     private val callback: OnItemSelectedListener?
 ) : LinearLayoutManager(context, HORIZONTAL, true) {
+    init {
+        val padding = ScreenUtils.getScreenWidth(context) / 2 - ScreenUtils.dpToPx(context, 32)
+        recyclerView.setPadding(padding, 0, padding, 0)
+
+        LinearSnapHelper().attachToRecyclerView(recyclerView)
+    }
+
     override fun onScrollStateChanged(state: Int) {
         super.onScrollStateChanged(state)
 
