@@ -11,6 +11,7 @@ import com.andruid.magic.dailytasks.data.STATUS_PENDING
 import com.andruid.magic.dailytasks.database.Task
 import com.andruid.magic.dailytasks.database.TaskRepository
 import com.andruid.magic.dailytasks.databinding.ActivityAddTaskBinding
+import com.andruid.magic.dailytasks.repository.ReminderManager
 import com.andruid.magic.dailytasks.ui.viewbinding.viewBinding
 import com.andruid.magic.dailytasks.util.getDateDetails
 import com.andruid.magic.dailytasks.util.getTaskTimeFromPicker
@@ -62,7 +63,8 @@ class AddTaskActivity : AppCompatActivity() {
             )
 
             lifecycleScope.launch {
-                TaskRepository.insertTask(task)
+                val taskId = TaskRepository.insertTask(task)
+                ReminderManager.scheduleReminder(this@AddTaskActivity, task.copy(id = taskId))
                 finish()
             }
         }

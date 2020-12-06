@@ -9,9 +9,8 @@ object TaskRepository {
         database = TaskDatabase(application.applicationContext)
     }
 
-    suspend fun insertTask(task: Task) {
+    suspend fun insertTask(task: Task) =
         database.taskDao().insertTask(task)
-    }
 
     fun getTasks() = database.taskDao().getTasks()
 
@@ -45,4 +44,7 @@ object TaskRepository {
 
     fun getTotalTasksCount() =
         database.taskDao().getTotalTasksCount()
+
+    suspend fun getTaskById(taskId: Long) =
+        database.taskDao().getTaskById(taskId)
 }

@@ -11,7 +11,7 @@ import kotlinx.coroutines.flow.Flow
 @Dao
 interface TaskDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertTask(task: Task)
+    suspend fun insertTask(task: Task): Long
 
     @Query("SELECT * FROM tasks ORDER BY status, time DESC")
     fun getTasks(): PagingSource<Int, Task>
@@ -45,4 +45,7 @@ interface TaskDao {
 
     @Query("SELECT COUNT(*) FROM tasks")
     fun getTotalTasksCount(): Flow<Int>
+
+    @Query("SELECT * FROM tasks WHERE id = :taskId")
+    suspend fun getTaskById(taskId: Long): Task?
 }
