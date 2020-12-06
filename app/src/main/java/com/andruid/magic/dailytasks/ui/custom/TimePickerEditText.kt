@@ -1,27 +1,20 @@
 package com.andruid.magic.dailytasks.ui.custom
 
-import android.app.TimePickerDialog
 import android.content.Context
 import android.os.Build
 import android.text.InputType
 import android.util.AttributeSet
 import android.view.View
+import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.view.ContextThemeWrapper
+import androidx.fragment.app.FragmentManager
 import com.google.android.material.textfield.TextInputEditText
+import com.google.android.material.timepicker.MaterialTimePicker
+import com.google.android.material.timepicker.TimeFormat
 
 class TimePickerEditText @JvmOverloads constructor(
     context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
 ) : TextInputEditText(context, attrs, defStyleAttr) {
-    private val timeSelectListener =
-        TimePickerDialog.OnTimeSetListener { _, hour, minute ->
-            val ms = getMilliSecondsForTime(hour, minute)
-            setText(formatTime(ms))
-
-            selectedHour = hour
-            selectedMinute = minute
-
-            onTimeChangeListener?.invoke(hour, minute)
-        }
-
     var onTimeChangeListener: ((Int, Int) -> Unit)? = null
 
     var selectedHour = 0
@@ -35,7 +28,8 @@ class TimePickerEditText @JvmOverloads constructor(
             isFocusable = false
 
         val (currHours, currMinutes) = getCurrentHourMinutes()
-        timeSelectListener.onTimeSet(null, currHours, currMinutes)
+        updateUI(currHours, currMinutes)
+
         setOnClickListener(null)
     }
 
@@ -49,11 +43,41 @@ class TimePickerEditText @JvmOverloads constructor(
     }
 
     private fun showTimePicker() {
-        val (hour, minute) = getCurrentHourMinutes()
+        val (currHour, currMinute) = getCurrentHourMinutes()
 
-        TimePickerDialog(context, timeSelectListener, hour, minute, false).apply {
-            setTitle("Select time")
-            show()
+        val timePicker = MaterialTimePicker.Builder()
+            .setTimeFormat(TimeFormat.CLOCK_12H)
+            .setHour(currHour)
+            .setMinute(currMinute)
+            .setTitleText("Select time")
+            .build()
+        timePicker.addOnPositiveButtonClickListener {
+            val hour = timePicker.hour
+            val minute = timePicker.minute
+
+            updateUI(hour, minute)
+        }
+
+        getSupportFragmentManager(context)?.let { fragmentManager ->
+            timePicker.show(fragmentManager, "time-picker-dialog")
+        }
+    }
+
+    private fun updateUI(hour: Int, minute: Int) {
+        val ms = getMilliSecondsForTime(hour, minute)
+        setText(formatTime(ms))
+
+        selectedHour = hour
+        selectedMinute = minute
+
+        onTimeChangeListener?.invoke(hour, minute)
+    }
+
+    private fun View.getSupportFragmentManager(context: Context): FragmentManager? {
+        return when (context) {
+            is AppCompatActivity -> context.supportFragmentManager
+            is ContextThemeWrapper -> getSupportFragmentManager(context.baseContext)
+            else -> null
         }
     }
 }

@@ -15,6 +15,18 @@
         <item name="windowActionBarOverlay">true</item>
         <item name="android:windowActionBarOverlay">true</item>
         <item name="actionBarStyle">@style/Theme.DailyTasks.TransparentActionBar</item>
+        <item name="materialAlertDialogTheme">@style/Theme.DailyTasks.Dialog</item>
+        <item name="android:navigationBarColor">?attr/colorPrimary</item>
+    </style>
+
+    <style name="Theme.DailyTasks.TimePickerActivity">
+        <item name="colorPrimary">@color/scooter</item>
+        <item name="android:statusBarColor">@color/ebony</item>
+        <item name="android:navigationBarColor">@color/ebony</item>
+    </style>
+
+    <style name="Theme.DailyTasks.Dialog" parent="Theme.MaterialComponents.DayNight.Dialog">
+        <item name="colorPrimary">@color/scooter</item>
     </style>
 
     <style name="Theme.DailyTasks.NoActionBar" parent="Theme.MaterialComponents.DayNight.NoActionBar" />
