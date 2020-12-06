@@ -69,16 +69,45 @@ class StatisticsActivity : AppCompatActivity() {
     }
 
     private fun initBarChart() {
+        binding.barChart.apply {
+            setScaleEnabled(false)
+            description.isEnabled = false
+            legend.isEnabled = false
 
+            axisLeft.apply {
+                granularity = 1f
+                textColor = color(R.color.white)
+            }
+
+            axisRight.setDrawLabels(false)
+
+            xAxis.apply {
+                granularity = 1f
+                textColor = color(R.color.white)
+                setDrawGridLines(false)
+                position = XAxis.XAxisPosition.BOTTOM
+                valueFormatter = IAxisValueFormatter { value, _ ->
+                    "${value.toInt() + 1}"
+                }
+            }
+        }
     }
 
     private suspend fun buildBarChart(month: Month) {
         val entryList = ChartRepository.buildBarChartData(month)
-        val barDataSet = BarDataSet(entryList, "Daily tasks count")
-        val barData = BarData(barDataSet)
+        val barDataSet = BarDataSet(entryList, "").apply {
+            color = color(R.color.dodger_blue)
+            highLightColor = color(R.color.scooter)
+            highLightAlpha = 255
+        }
+        val barData = BarData(barDataSet).apply {
+            setDrawValues(false)
+            barWidth = 0.5f
+        }
 
         binding.barChart.apply {
             data = barData
+            setVisibleXRange(7f, 7f)
             invalidate()
         }
     }
@@ -88,19 +117,28 @@ class StatisticsActivity : AppCompatActivity() {
             setDrawGridBackground(false)
             setScaleEnabled(false)
             description.isEnabled = false
-
             legend.isEnabled = false
-            axisLeft.granularity = 1f
+
+            axisLeft.apply {
+                granularity = 1f
+                textColor = color(R.color.white)
+            }
+
             axisRight.setDrawLabels(false)
 
             xAxis.apply {
                 position = XAxis.XAxisPosition.BOTTOM
                 granularity = 1f
+                textColor = color(R.color.white)
+                setDrawGridLines(false)
+
+                spaceMax = 0.5f
+                spaceMin = 0.5f
 
                 valueFormatter = IAxisValueFormatter { value, _ ->
                     when (value) {
-                        1f -> "Work"
-                        2f -> "Personal"
+                        0f -> "Work"
+                        1f -> "Personal"
                         else -> ""
                     }
                 }
@@ -112,6 +150,7 @@ class StatisticsActivity : AppCompatActivity() {
         val entryList = ChartRepository.buildLineChartData(month)
         val lineDataSet = LineDataSet(entryList, "Completed Tasks").apply {
             setDrawFilled(true)
+            setDrawValues(false)
 
             fillDrawable = drawable(R.drawable.line_chart_bg)
             color = color(R.color.chart_act_line_color)

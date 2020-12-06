@@ -38,5 +38,11 @@ object TaskRepository {
         database.taskDao().getMonthlyStats(month, year)
 
     suspend fun getTaskHistoryStartTime() =
-        database.taskDao().getOldestCompletedTaskTime() ?: System.currentTimeMillis()
+        database.taskDao().getOldestCompletedTaskTime()
+
+    fun getTaskHistoryStartTimeFlow() =
+        database.taskDao().getOldestCompletedTaskTimeFlow()
+
+    fun getTotalTasksCount() =
+        database.taskDao().getTotalTasksCount()
 }

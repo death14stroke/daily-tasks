@@ -15,7 +15,8 @@ object ChartRepository {
         return withContext(Dispatchers.Default) {
             val dbData = mutableMapOf<Int, Int>()
             repeat(month.noOfDays) { day ->
-                dbData[day] = 0
+                //TODO: for debug
+                dbData[day] = 10
             }
 
             monthlyStats.forEach { monthStats ->

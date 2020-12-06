@@ -19,4 +19,7 @@ class TaskViewModel : ViewModel() {
         .asLiveData()
 
     val tasksCompletedLiveData = TaskRepository.getStatusTasksCount(STATUS_DONE).asLiveData()
+
+    val tasksPerDayLiveData = StatsCalculator.calculateTasksPerDay()
+        .asLiveData()
 }

@@ -65,4 +65,9 @@
         <item name="android:gravity">start|center_vertical</item>
         <item name="android:textSize">16sp</item>
     </style>
+
+    <style name="TextLabelStyle" parent="Widget.MaterialComponents.TextView">
+        <item name="android:textAppearance">?textAppearanceSubtitle1</item>
+        <item name="android:textStyle">bold</item>
+    </style>
 </resources>

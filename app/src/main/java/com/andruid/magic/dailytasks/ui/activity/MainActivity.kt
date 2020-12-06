@@ -83,6 +83,10 @@ class MainActivity : AppCompatActivity() {
         taskViewModel.tasksCompletedLiveData.observe(this) {
             binding.completedTasksBtn.setCount(it)
         }
+
+        taskViewModel.tasksPerDayLiveData.observe(this) {
+            binding.tasksRateBtn.setCount(it)
+        }
     }
 
     private fun initRecyclerView() {

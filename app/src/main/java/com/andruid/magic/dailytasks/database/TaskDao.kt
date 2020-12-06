@@ -38,5 +38,11 @@ interface TaskDao {
     suspend fun getMonthlyStats(month: Int, year: Int): List<MonthlyStats>?
 
     @Query("SELECT MIN(time) FROM tasks WHERE status = 1")
+    fun getOldestCompletedTaskTimeFlow(): Flow<Long?>
+
+    @Query("SELECT MIN(time) FROM tasks WHERE status = 1")
     suspend fun getOldestCompletedTaskTime(): Long?
+
+    @Query("SELECT COUNT(*) FROM tasks")
+    fun getTotalTasksCount(): Flow<Int>
 }

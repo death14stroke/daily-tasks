@@ -27,4 +27,6 @@
     <string name="stats_completed_title">Completed</string>
     <string name="stats_daily_title">Tasks/Day</string>
     <string name="stats_productivity_title">Productivity</string>
+    <string name="bar_chart_title">Completed Tasks</string>
+    <string name="line_chart_title">Task Type</string>
 </resources>
