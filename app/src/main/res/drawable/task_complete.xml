@@ -2,7 +2,7 @@
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
     <item>
         <shape android:shape="oval">
-            <solid android:color="@color/ebony" />
+            <solid android:color="?attr/colorTaskIconCompleteBg" />
         </shape>
     </item>
     <item android:drawable="@drawable/ic_check" />

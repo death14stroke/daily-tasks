@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/ebony"
-    android:paddingTop="16dp"
+    android:paddingTop="@dimen/standard_margin"
     tools:context=".ui.activity.MainActivity">
 
     <com.google.android.material.textview.MaterialTextView
@@ -36,8 +36,8 @@
         android:id="@+id/progress_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:paddingBottom="16dp"
+        android:layout_marginTop="@dimen/standard_margin"
+        android:paddingBottom="@dimen/standard_margin"
         app:layout_constraintTop_toBottomOf="@id/greetings_tv" />
 
     <com.andruid.magic.dailytasks.ui.custom.StatsView
@@ -55,7 +55,7 @@
         android:id="@+id/tasks_rate_btn"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginHorizontal="16dp"
+        android:layout_marginHorizontal="@dimen/standard_margin"
         app:background="@drawable/stats_daily_bg"
         app:layout_constraintDimensionRatio="1"
         app:layout_constraintEnd_toStartOf="@id/productivity_btn"
@@ -85,9 +85,9 @@
         android:id="@+id/tasks_header_tv"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="@dimen/standard_margin"
         android:gravity="center_vertical"
-        android:paddingTop="16dp"
+        android:paddingTop="@dimen/standard_margin"
         android:text="@string/your_tasks"
         android:textAppearance="?textAppearanceHeadline6"
         app:layout_constraintBottom_toTopOf="@id/recycler_view"
@@ -99,10 +99,10 @@
         android:id="@+id/add_tasks_iv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="@dimen/standard_margin"
         android:background="@drawable/rounded_button"
         android:foreground="@drawable/ripple_foreground_button"
-        android:padding="16dp"
+        android:padding="@dimen/standard_margin"
         android:src="@drawable/ic_add"
         app:layout_constraintEnd_toStartOf="@id/end_guideline"
         app:layout_constraintTop_toTopOf="@id/tasks_header_tv"
@@ -112,7 +112,7 @@
         android:id="@+id/recycler_view"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="@dimen/standard_margin"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@id/end_guideline"
@@ -125,14 +125,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_begin="16dp" />
+        app:layout_constraintGuide_begin="@dimen/standard_margin" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/end_guideline"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_end="16dp" />
+        app:layout_constraintGuide_end="@dimen/standard_margin" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/stats_guideline"

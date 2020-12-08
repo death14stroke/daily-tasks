@@ -1,21 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="purple_200">#FFBB86FC</color>
-    <color name="purple_500">#FF6200EE</color>
-    <color name="purple_700">#FF3700B3</color>
-    <color name="teal_200">#FF03DAC5</color>
-    <color name="teal_700">#FF018786</color>
-    <color name="black">#FF000000</color>
-    <color name="white">#FFFFFFFF</color>
+    <color name="ebony">#070915</color>
+    <color name="ebony_light">#0E111F</color>
+    <color name="ebony_search">#0C0F1E</color>
 
     <color name="scooter">#2EBDD8</color>
     <color name="dodger_blue">#3A78F8</color>
-    <color name="ebony">#070915</color>
-    <color name="ebony_light">#0E111F</color>
-    <color name="bright_gray">#333845</color>
     <color name="purple_heart">#653FC9</color>
-    <color name="ebony_search">#0C0F1E</color>
+
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="bright_gray">#333845</color>
+
     <color name="chart_color">#E03C1E</color>
     <color name="chart_line_color">#F79F6B</color>
     <color name="chart_act_line_color">#E38955</color>
+    <color name="scooter_light">#F3FDFF</color>
+    <color name="task_complete_bg">#D2DBDD</color>
 </resources>

@@ -4,4 +4,7 @@
         <attr name="background" format="reference" />
         <attr name="title" format="string" />
     </declare-styleable>
+
+    <attr name="colorTaskIconIncompleteBg" format="color" />
+    <attr name="colorTaskIconCompleteBg" format="color" />
 </resources>

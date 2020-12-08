@@ -14,7 +14,7 @@
         android:id="@+id/root_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:foreground="@drawable/ripple_foreground"
+        android:foreground="@drawable/ripple_foreground_stats_view"
         android:padding="8dp"
         tools:background="@drawable/stats_completed_bg"
         tools:ignore="UnusedAttribute">
@@ -34,6 +34,7 @@
             android:padding="4dp"
             android:text="@{String.valueOf(count)}"
             android:textAppearance="?textAppearanceHeadline5"
+            android:textColor="@color/white"
             android:textStyle="bold"
             app:layout_constraintBottom_toTopOf="@id/title_tv"
             app:layout_constraintStart_toStartOf="parent"
@@ -45,6 +46,7 @@
             android:layout_height="wrap_content"
             android:padding="4dp"
             android:textAppearance="?textAppearanceSubtitle2"
+            android:textColor="@color/white"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             tools:text="Completed" />
