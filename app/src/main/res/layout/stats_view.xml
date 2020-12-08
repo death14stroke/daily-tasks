@@ -14,8 +14,10 @@
         android:id="@+id/root_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:foreground="@drawable/ripple_foreground"
         android:padding="8dp"
-        tools:background="@drawable/stats_completed_bg">
+        tools:background="@drawable/stats_completed_bg"
+        tools:ignore="UnusedAttribute">
 
         <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/details_btn"

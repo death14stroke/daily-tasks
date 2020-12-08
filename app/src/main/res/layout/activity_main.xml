@@ -101,10 +101,12 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:background="@drawable/rounded_button"
+        android:foreground="@drawable/ripple_foreground_button"
         android:padding="16dp"
         android:src="@drawable/ic_add"
         app:layout_constraintEnd_toStartOf="@id/end_guideline"
-        app:layout_constraintTop_toTopOf="@id/tasks_header_tv" />
+        app:layout_constraintTop_toTopOf="@id/tasks_header_tv"
+        tools:ignore="UnusedAttribute" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_view"

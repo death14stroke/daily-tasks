@@ -16,6 +16,16 @@
 
     <style name="Theme.DailyTasks.NoActionBar" parent="Theme.MaterialComponents.DayNight.NoActionBar" />
 
+    <style name="Theme.DailyTasks.TransparentActionBar">
+        <item name="background">@null</item>
+    </style>
+
+    <style name="Theme.DailyTasks.TimePickerActivity">
+        <item name="colorPrimary">@color/scooter</item>
+        <item name="android:statusBarColor">@color/ebony</item>
+        <item name="android:navigationBarColor">@color/ebony</item>
+    </style>
+
     <style name="RadioButtonStyle" parent="Theme.DailyTasks">
         <item name="android:background">@drawable/radio_selector</item>
         <item name="android:button">@null</item>

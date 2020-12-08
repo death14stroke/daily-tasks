@@ -65,6 +65,8 @@ class StatisticsActivity : AppCompatActivity() {
                         lifecycleScope.launch { buildBarChart(month) }
                     }
                 })
+
+            smoothScrollToPosition(0)
         }
     }
 
