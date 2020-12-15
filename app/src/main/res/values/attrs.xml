@@ -9,4 +9,6 @@
     <attr name="colorTaskIconCompleteBg" format="color" />
     <attr name="colorTaskCompletePrimary" format="color" />
     <attr name="colorTaskCompleteSecondary" format="color" />
+
+    <attr name="colorInputBorder" format="color" />
 </resources>

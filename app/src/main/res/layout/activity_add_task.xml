@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/ebony"
+    android:background="?android:attr/colorBackground"
     tools:context=".ui.activity.AddTaskActivity">
 
     <com.google.android.material.imageview.ShapeableImageView
@@ -12,13 +12,10 @@
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:layout_marginBottom="24dp"
-        android:background="@color/dodger_blue"
         android:elevation="24dp"
-        android:outlineAmbientShadowColor="@color/dodger_blue"
-        android:outlineSpotShadowColor="@color/dodger_blue"
         android:scaleType="fitXY"
         android:src="@drawable/new_task"
-        android:tint="@color/white"
+        style="@style/CreateTaskIconStyle"
         app:layout_constraintBottom_toTopOf="@id/create_task_tv"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -34,6 +31,7 @@
         android:gravity="center"
         android:text="@string/create_new_task"
         android:textAppearance="?textAppearanceHeadline6"
+        android:textColor="@color/white"
         app:layout_constraintBottom_toTopOf="@id/taskLabelTV"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -75,9 +73,7 @@
             android:layout_height="wrap_content"
             android:hint="@string/title_hint"
             android:paddingHorizontal="24dp"
-            android:paddingVertical="16dp"
-            android:textColor="@color/white"
-            android:textColorHint="@color/bright_gray" />
+            android:paddingVertical="16dp" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textview.MaterialTextView
@@ -117,8 +113,6 @@
             android:layout_height="wrap_content"
             android:paddingHorizontal="24dp"
             android:paddingVertical="16dp"
-            android:textColor="@color/white"
-            android:textColorHint="@color/bright_gray"
             tools:text="9:00 PM" />
     </com.google.android.material.textfield.TextInputLayout>
 

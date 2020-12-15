@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
 
     <style name="Theme.DailyTasks" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <item name="colorPrimary">@color/ebony</item>
@@ -16,12 +16,48 @@
 
         <item name="materialAlertDialogTheme">@style/Theme.DailyTasks.Dialog</item>
 
-        <item name="android:ambientShadowAlpha">0.4</item>
-        <item name="android:spotShadowAlpha">0.8</item>
-
         <item name="colorTaskIconIncompleteBg">@color/ebony_light</item>
         <item name="colorTaskIconCompleteBg">@color/ebony</item>
         <item name="colorTaskCompletePrimary">@color/bright_gray</item>
         <item name="colorTaskCompleteSecondary">@color/bright_gray</item>
+    </style>
+
+    <style name="Theme.DailyTasks.CreateTask" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+        <item name="colorPrimary">@color/dodger_blue</item>
+        <item name="colorPrimaryVariant">@color/scooter</item>
+        <item name="colorSecondary">@color/scooter</item>
+        <item name="colorSecondaryVariant">@color/dodger_blue</item>
+        <item name="colorSurface">@color/ebony_light</item>
+
+        <item name="android:colorBackground">@color/ebony</item>
+
+        <item name="android:ambientShadowAlpha">0.4</item>
+        <item name="android:spotShadowAlpha">0.8</item>
+
+        <item name="windowActionBarOverlay">true</item>
+        <item name="android:windowActionBarOverlay">true</item>
+        <item name="actionBarStyle">@style/Theme.DailyTasks.TransparentActionBar</item>
+
+        <item name="colorInputBorder">@color/bright_gray</item>
+    </style>
+
+    <style name="EditTextStyle" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        <item name="boxBackgroundColor">@color/ebony</item>
+        <item name="boxCornerRadiusBottomEnd">8dp</item>
+        <item name="boxCornerRadiusBottomStart">8dp</item>
+        <item name="boxCornerRadiusTopEnd">8dp</item>
+        <item name="boxCornerRadiusTopStart">8dp</item>
+        <item name="boxStrokeColor">@drawable/box_color_selector</item>
+        <item name="boxStrokeWidth">2dp</item>
+        <item name="boxStrokeWidthFocused">2dp</item>
+        <item name="hintEnabled">false</item>
+        <item name="hintTextColor">@color/bright_gray</item>
+    </style>
+
+    <style name="CreateTaskIconStyle">
+        <item name="tint">@color/white</item>
+        <item name="android:background">@color/dodger_blue</item>
+        <item name="android:outlineAmbientShadowColor" tools:targetApi="p">@color/dodger_blue</item>
+        <item name="android:outlineSpotShadowColor" tools:targetApi="p">@color/dodger_blue</item>
     </style>
 </resources>

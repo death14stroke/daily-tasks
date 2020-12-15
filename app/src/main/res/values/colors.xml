@@ -17,4 +17,5 @@
     <color name="chart_act_line_color">#E38955</color>
     <color name="scooter_light">#F3FDFF</color>
     <color name="task_complete_bg">#D2DBDD</color>
+    <color name="edit_text_bg">#F5F9FC</color>
 </resources>
