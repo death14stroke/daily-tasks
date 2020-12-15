@@ -21,5 +21,7 @@
 
         <item name="colorTaskIconIncompleteBg">@color/ebony_light</item>
         <item name="colorTaskIconCompleteBg">@color/ebony</item>
+        <item name="colorTaskCompletePrimary">@color/bright_gray</item>
+        <item name="colorTaskCompleteSecondary">@color/bright_gray</item>
     </style>
 </resources>

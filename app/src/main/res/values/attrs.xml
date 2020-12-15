@@ -7,4 +7,6 @@
 
     <attr name="colorTaskIconIncompleteBg" format="color" />
     <attr name="colorTaskIconCompleteBg" format="color" />
+    <attr name="colorTaskCompletePrimary" format="color" />
+    <attr name="colorTaskCompleteSecondary" format="color" />
 </resources>
