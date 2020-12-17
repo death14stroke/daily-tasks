@@ -26,6 +26,7 @@
                 android:layout_height="?attr/actionBarSize"
                 android:layout_gravity="center_vertical"
                 android:background="@color/purple_heart"
+                android:theme="@style/Theme.DailyTasks.ToolBar"
                 app:layout_collapseMode="pin"
                 app:title="Completed Tasks"
                 app:titleTextColor="@color/white" />
@@ -52,6 +53,7 @@
             android:layout_marginBottom="16dp"
             android:background="@drawable/search_background"
             app:iconifiedByDefault="false"
+            android:theme="@style/Theme.DailyTasks.SearchView"
             app:layout_constraintBottom_toTopOf="@id/recycler_view"
             app:layout_constraintEnd_toStartOf="@id/end_guideline"
             app:layout_constraintStart_toEndOf="@id/start_guideline"

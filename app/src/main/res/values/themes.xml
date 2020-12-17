@@ -57,6 +57,18 @@
         <item name="background">@null</item>
     </style>
 
+    <style name="Theme.DailyTasks.ToolBar">
+        <item name="colorOnPrimary">@color/white</item>
+    </style>
+
+    <style name="Theme.DailyTasks.SearchView" parent="Widget.AppCompat.SearchView">
+        <item name="colorSearchBackground">@color/task_complete_bg</item>
+    </style>
+
+    <style name="Theme.DailyTasks.CompletedTaskIconImageView">
+        <item name="colorTaskIconCompleteBg">@color/scooter</item>
+    </style>
+
     <style name="Theme.DailyTasks.Dialog" parent="Theme.MaterialComponents.DayNight.Dialog">
         <item name="colorPrimary">@color/scooter</item>
     </style>

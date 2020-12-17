@@ -11,4 +11,6 @@
     <attr name="colorTaskCompleteSecondary" format="color" />
 
     <attr name="colorInputBorder" format="color" />
+
+    <attr name="colorSearchBackground" format="color" />
 </resources>

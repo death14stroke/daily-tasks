@@ -1,11 +1,9 @@
 package com.andruid.magic.dailytasks.ui.viewmodel
 
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.switchMap
+import androidx.lifecycle.*
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
-import androidx.paging.liveData
+import androidx.paging.cachedIn
 import com.andruid.magic.dailytasks.database.TaskRepository
 
 class SearchViewModel : ViewModel() {
@@ -16,7 +14,10 @@ class SearchViewModel : ViewModel() {
             PagingConfig(10),
             pagingSourceFactory = { TaskRepository.searchCompletedTasks(query) }
         )
-        pager.liveData
+
+        pager.flow
+            .cachedIn(viewModelScope)
+            .asLiveData()
     }
 
     fun updateQuery(query: String) {

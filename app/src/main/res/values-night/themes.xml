@@ -41,6 +41,14 @@
         <item name="colorInputBorder">@color/bright_gray</item>
     </style>
 
+    <style name="Theme.DailyTasks.SearchView" parent="Widget.AppCompat.SearchView">
+        <item name="colorSearchBackground">@color/ebony</item>
+    </style>
+
+    <style name="Theme.DailyTasks.CompletedTaskIconImageView">
+        <item name="colorTaskIconCompleteBg">@color/dodger_blue</item>
+    </style>
+
     <style name="EditTextStyle" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
         <item name="boxBackgroundColor">@color/ebony</item>
         <item name="boxCornerRadiusBottomEnd">8dp</item>
