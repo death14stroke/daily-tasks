@@ -26,7 +26,7 @@
                 android:layout_height="?attr/actionBarSize"
                 android:layout_gravity="center_vertical"
                 android:background="@color/purple_heart"
-                android:theme="@style/Theme.DailyTasks.ToolBar"
+                app:theme="@style/Theme.DailyTasks.ToolBar"
                 app:layout_collapseMode="pin"
                 app:title="Completed Tasks"
                 app:titleTextColor="@color/white" />

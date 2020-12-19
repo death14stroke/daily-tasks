@@ -8,7 +8,7 @@
         <item name="colorSecondaryVariant">@color/dodger_blue</item>
         <item name="colorOnSecondary">@color/black</item>
         <item name="colorSurface">@color/white</item>
-        <item name="android:textColorSecondary">@color/task_complete_bg</item>
+        <item name="android:textColorSecondary">@color/geyser</item>
 
         <item name="android:statusBarColor">?attr/colorPrimary</item>
         <item name="android:navigationBarColor">@color/white</item>
@@ -20,10 +20,10 @@
 
         <item name="materialAlertDialogTheme">@style/Theme.DailyTasks.Dialog</item>
 
-        <item name="colorTaskIconIncompleteBg">@color/scooter_light</item>
-        <item name="colorTaskIconCompleteBg">@color/task_complete_bg</item>
-        <item name="colorTaskCompletePrimary">@color/task_complete_bg</item>
-        <item name="colorTaskCompleteSecondary">@color/task_complete_bg</item>
+        <item name="colorTaskIconIncompleteBg">@color/twilight_blue</item>
+        <item name="colorTaskIconCompleteBg">@color/geyser</item>
+        <item name="colorTaskCompletePrimary">@color/geyser</item>
+        <item name="colorTaskCompleteSecondary">@color/geyser</item>
     </style>
 
     <style name="Theme.DailyTasks.CreateTask" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
@@ -58,15 +58,20 @@
     </style>
 
     <style name="Theme.DailyTasks.ToolBar">
-        <item name="colorOnPrimary">@color/white</item>
+        <item name="colorControlNormal">@color/white</item>
     </style>
 
     <style name="Theme.DailyTasks.SearchView" parent="Widget.AppCompat.SearchView">
-        <item name="colorSearchBackground">@color/task_complete_bg</item>
+        <item name="colorSearchBackground">@color/geyser</item>
     </style>
 
     <style name="Theme.DailyTasks.CompletedTaskIconImageView">
         <item name="colorTaskIconCompleteBg">@color/scooter</item>
+    </style>
+
+    <style name="Theme.DailyTasks.BarChart">
+        <item name="colorBarChartBarNormal">@color/bar_day_mode</item>
+        <item name="colorBarChartBarHighlight">@color/dodger_blue</item>
     </style>
 
     <style name="Theme.DailyTasks.Dialog" parent="Theme.MaterialComponents.DayNight.Dialog">
@@ -84,7 +89,7 @@
     </style>
 
     <style name="EditTextStyle" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
-        <item name="boxBackgroundColor">@color/edit_text_bg</item>
+        <item name="boxBackgroundColor">@color/black_squeeze</item>
         <item name="boxCornerRadiusBottomEnd">8dp</item>
         <item name="boxCornerRadiusBottomStart">8dp</item>
         <item name="boxCornerRadiusTopEnd">8dp</item>
@@ -93,7 +98,7 @@
         <item name="boxStrokeWidth">2dp</item>
         <item name="boxStrokeWidthFocused">2dp</item>
         <item name="hintEnabled">false</item>
-        <item name="hintTextColor">@color/task_complete_bg</item>
+        <item name="hintTextColor">@color/geyser</item>
     </style>
 
     <style name="TextInputLayoutAppearance" parent="Widget.Design.TextInputLayout">
@@ -133,7 +138,7 @@
 
     <style name="CreateTaskIconStyle">
         <item name="tint">@color/dodger_blue</item>
-        <item name="android:background">@color/edit_text_bg</item>
+        <item name="android:background">@color/black_squeeze</item>
         <item name="android:outlineAmbientShadowColor" tools:targetApi="p">@color/ebony_light</item>
         <item name="android:outlineSpotShadowColor" tools:targetApi="p">@color/ebony_light</item>
     </style>

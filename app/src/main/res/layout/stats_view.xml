@@ -23,6 +23,7 @@
             android:id="@+id/details_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            app:tint="#80FFFFFF"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/ic_right_arrow" />

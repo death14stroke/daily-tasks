@@ -13,4 +13,7 @@
     <attr name="colorInputBorder" format="color" />
 
     <attr name="colorSearchBackground" format="color" />
+
+    <attr name="colorBarChartBarNormal" format="color" />
+    <attr name="colorBarChartBarHighlight" format="color" />
 </resources>

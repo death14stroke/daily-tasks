@@ -6,6 +6,7 @@
         <item name="colorSecondary">@color/scooter</item>
         <item name="colorSecondaryVariant">@color/dodger_blue</item>
         <item name="colorSurface">@color/ebony_light</item>
+        <item name="android:textColorSecondary">@color/bright_gray</item>
 
         <item name="android:statusBarColor">?attr/colorPrimary</item>
         <item name="android:navigationBarColor">?attr/colorPrimaryVariant</item>
@@ -30,6 +31,8 @@
         <item name="colorSurface">@color/ebony_light</item>
 
         <item name="android:colorBackground">@color/ebony</item>
+        <item name="android:statusBarColor">@color/ebony</item>
+        <item name="android:navigationBarColor">@color/ebony_light</item>
 
         <item name="android:ambientShadowAlpha">0.4</item>
         <item name="android:spotShadowAlpha">0.8</item>
@@ -41,12 +44,21 @@
         <item name="colorInputBorder">@color/bright_gray</item>
     </style>
 
+    <style name="Theme.DailyTasks.ToolBar">
+        <item name="colorControlNormal">@color/white</item>
+    </style>
+
     <style name="Theme.DailyTasks.SearchView" parent="Widget.AppCompat.SearchView">
         <item name="colorSearchBackground">@color/ebony</item>
     </style>
 
     <style name="Theme.DailyTasks.CompletedTaskIconImageView">
         <item name="colorTaskIconCompleteBg">@color/dodger_blue</item>
+    </style>
+
+    <style name="Theme.DailyTasks.BarChart">
+        <item name="colorBarChartBarNormal">@color/dodger_blue</item>
+        <item name="colorBarChartBarHighlight">@color/scooter</item>
     </style>
 
     <style name="EditTextStyle" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">

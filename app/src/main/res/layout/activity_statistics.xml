@@ -26,6 +26,7 @@
                 android:layout_height="?attr/actionBarSize"
                 android:layout_gravity="center_vertical"
                 android:background="@color/scooter"
+                app:theme="@style/Theme.DailyTasks.ToolBar"
                 app:layout_collapseMode="pin"
                 app:title="Tasks"
                 app:titleTextColor="@color/white" />
@@ -75,6 +76,7 @@
             android:id="@+id/bar_chart"
             android:layout_width="0dp"
             android:layout_height="0dp"
+            android:theme="@style/Theme.DailyTasks.BarChart"
             app:layout_constraintBottom_toTopOf="@id/bar_chart_guideline"
             app:layout_constraintEnd_toStartOf="@id/end_guideline"
             app:layout_constraintHeight_percent="0.4"

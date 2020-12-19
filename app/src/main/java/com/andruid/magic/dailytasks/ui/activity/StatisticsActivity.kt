@@ -1,10 +1,13 @@
 package com.andruid.magic.dailytasks.ui.activity
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.View
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
+import androidx.core.content.res.getColorOrThrow
+import androidx.core.content.res.use
 import androidx.lifecycle.lifecycleScope
 import com.andruid.magic.dailytasks.R
 import com.andruid.magic.dailytasks.data.Month
@@ -71,6 +74,11 @@ class StatisticsActivity : AppCompatActivity() {
     }
 
     private fun initBarChart() {
+        val attributes = intArrayOf(android.R.attr.textColorPrimary)
+        val dataTextColor = theme.obtainStyledAttributes(attributes).use { typedArray ->
+            typedArray.getColorOrThrow(0)
+        }
+
         binding.barChart.apply {
             setScaleEnabled(false)
             description.isEnabled = false
@@ -78,14 +86,14 @@ class StatisticsActivity : AppCompatActivity() {
 
             axisLeft.apply {
                 granularity = 1f
-                textColor = color(R.color.white)
+                textColor = dataTextColor
             }
 
             axisRight.setDrawLabels(false)
 
             xAxis.apply {
                 granularity = 1f
-                textColor = color(R.color.white)
+                textColor = dataTextColor
                 setDrawGridLines(false)
                 position = XAxis.XAxisPosition.BOTTOM
                 valueFormatter = IAxisValueFormatter { value, _ ->
@@ -95,11 +103,19 @@ class StatisticsActivity : AppCompatActivity() {
         }
     }
 
+    @SuppressLint("ResourceType")
     private suspend fun buildBarChart(month: Month) {
+        val attributes = intArrayOf(R.attr.colorBarChartBarNormal, R.attr.colorBarChartBarHighlight)
+        val (colorNormal, colorHighlight) = binding.barChart.context.theme.obtainStyledAttributes(
+            attributes
+        ).use { typedArray ->
+            typedArray.getColorOrThrow(0) to typedArray.getColorOrThrow(1)
+        }
+
         val entryList = ChartRepository.buildBarChartData(month)
         val barDataSet = BarDataSet(entryList, "").apply {
-            color = color(R.color.dodger_blue)
-            highLightColor = color(R.color.scooter)
+            color = colorNormal
+            highLightColor = colorHighlight
             highLightAlpha = 255
         }
         val barData = BarData(barDataSet).apply {
@@ -115,6 +131,11 @@ class StatisticsActivity : AppCompatActivity() {
     }
 
     private fun initLineChart() {
+        val attributes = intArrayOf(android.R.attr.textColorPrimary)
+        val dataTextColor = theme.obtainStyledAttributes(attributes).use { typedArray ->
+            typedArray.getColorOrThrow(0)
+        }
+
         binding.lineChart.apply {
             setDrawGridBackground(false)
             setScaleEnabled(false)
@@ -123,7 +144,7 @@ class StatisticsActivity : AppCompatActivity() {
 
             axisLeft.apply {
                 granularity = 1f
-                textColor = color(R.color.white)
+                textColor = dataTextColor
             }
 
             axisRight.setDrawLabels(false)
@@ -131,7 +152,7 @@ class StatisticsActivity : AppCompatActivity() {
             xAxis.apply {
                 position = XAxis.XAxisPosition.BOTTOM
                 granularity = 1f
-                textColor = color(R.color.white)
+                textColor = dataTextColor
                 setDrawGridLines(false)
 
                 spaceMax = 0.5f
@@ -155,8 +176,8 @@ class StatisticsActivity : AppCompatActivity() {
             setDrawValues(false)
 
             fillDrawable = drawable(R.drawable.line_chart_bg)
-            color = color(R.color.chart_act_line_color)
-            setCircleColor(color(R.color.chart_line_color))
+            color = color(R.color.terracotta)
+            setCircleColor(color(R.color.sandy_brown))
 
             setDrawCircleHole(false)
             lineWidth = 5f

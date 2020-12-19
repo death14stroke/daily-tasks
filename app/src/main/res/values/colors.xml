@@ -12,10 +12,12 @@
     <color name="white">#FFFFFFFF</color>
     <color name="bright_gray">#333845</color>
 
-    <color name="chart_color">#E03C1E</color>
-    <color name="chart_line_color">#F79F6B</color>
-    <color name="chart_act_line_color">#E38955</color>
-    <color name="scooter_light">#F3FDFF</color>
-    <color name="task_complete_bg">#D2DBDD</color>
-    <color name="edit_text_bg">#F5F9FC</color>
+    <color name="cinnabar">#E03C1E</color>
+    <color name="sandy_brown">#F79F6B</color>
+    <color name="terracotta">#E38955</color>
+    <color name="twilight_blue">#F3FDFF</color>
+    <color name="geyser">#D2DBDD</color>
+    <color name="black_squeeze">#F5F9FC</color>
+
+    <color name="bar_day_mode">#ABE5EF</color>
 </resources>
