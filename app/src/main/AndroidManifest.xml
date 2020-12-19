@@ -45,16 +45,14 @@
         <activity
             android:name=".ui.activity.AddTaskActivity"
             android:parentActivityName=".ui.activity.MainActivity"
-            android:theme="@style/Theme.DailyTasks.CreateTask" />
+            android:theme="@style/Theme.DailyTasks.CreateTaskActivity" />
 
         <activity
             android:name=".ui.activity.CompletedTasksActivity"
-            android:parentActivityName=".ui.activity.MainActivity"
-            android:theme="@style/Theme.DailyTasks.NoActionBar" />
+            android:parentActivityName=".ui.activity.MainActivity" />
 
         <activity
             android:name=".ui.activity.StatisticsActivity"
-            android:parentActivityName=".ui.activity.MainActivity"
-            android:theme="@style/Theme.DailyTasks.NoActionBar" />
+            android:parentActivityName=".ui.activity.MainActivity" />
     </application>
 </manifest>

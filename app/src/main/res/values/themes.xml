@@ -14,78 +14,70 @@
         <item name="android:navigationBarColor">@color/white</item>
         <item name="android:windowLightNavigationBar" tools:targetApi="o_mr1">true</item>
 
-        <item name="windowActionBarOverlay">true</item>
-        <item name="android:windowActionBarOverlay">true</item>
-        <item name="actionBarStyle">@style/Theme.DailyTasks.TransparentActionBar</item>
-
         <item name="materialAlertDialogTheme">@style/Theme.DailyTasks.Dialog</item>
+    </style>
 
+    <style name="BottomSheetMenuItemStyle" parent="Widget.MaterialComponents.TextView">
+        <item name="android:layout_height">48dp</item>
+        <item name="android:paddingStart">16dp</item>
+        <item name="android:paddingEnd">16dp</item>
+        <item name="android:drawablePadding">32dp</item>
+        <item name="android:gravity">start|center_vertical</item>
+        <item name="android:textSize">16sp</item>
+    </style>
+
+    <style name="Theme.DailyTasks.TaskItem">
         <item name="colorTaskIconIncompleteBg">@color/twilight_blue</item>
         <item name="colorTaskIconCompleteBg">@color/geyser</item>
         <item name="colorTaskCompletePrimary">@color/geyser</item>
         <item name="colorTaskCompleteSecondary">@color/geyser</item>
     </style>
 
-    <style name="Theme.DailyTasks.CreateTask" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+    <style name="CircularImageAppearance">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">50%</item>
+    </style>
+
+    <style name="Theme.DailyTasks.CreateTaskActivity">
         <item name="colorPrimary">@color/dodger_blue</item>
         <item name="colorPrimaryVariant">@color/scooter</item>
-        <item name="colorOnPrimary">@color/white</item>
-        <item name="colorSecondary">@color/scooter</item>
-        <item name="colorSecondaryVariant">@color/dodger_blue</item>
-        <item name="colorOnSecondary">@color/black</item>
-        <item name="colorSurface">@color/white</item>
-
-        <item name="android:statusBarColor">@color/dodger_blue</item>
-        <item name="android:navigationBarColor">@color/white</item>
-        <item name="android:windowLightNavigationBar" tools:targetApi="o_mr1">true</item>
 
         <item name="android:colorBackground">@color/dodger_blue</item>
+
+        <item name="windowActionBarOverlay">true</item>
+        <item name="android:windowActionBarOverlay">true</item>
 
         <item name="android:ambientShadowAlpha">0.4</item>
         <item name="android:spotShadowAlpha">0.8</item>
 
-        <item name="windowActionBarOverlay">true</item>
-        <item name="android:windowActionBarOverlay">true</item>
-        <item name="actionBarStyle">@style/Theme.DailyTasks.TransparentActionBar</item>
-
         <item name="colorInputBorder">@color/dodger_blue</item>
-    </style>
-
-    <style name="Theme.DailyTasks.NoActionBar" parent="Theme.MaterialComponents.DayNight.NoActionBar" />
-
-    <style name="Theme.DailyTasks.TransparentActionBar">
-        <item name="background">@null</item>
-    </style>
-
-    <style name="Theme.DailyTasks.ToolBar">
-        <item name="colorControlNormal">@color/white</item>
-    </style>
-
-    <style name="Theme.DailyTasks.SearchView" parent="Widget.AppCompat.SearchView">
-        <item name="colorSearchBackground">@color/geyser</item>
-    </style>
-
-    <style name="Theme.DailyTasks.CompletedTaskIconImageView">
-        <item name="colorTaskIconCompleteBg">@color/scooter</item>
-    </style>
-
-    <style name="Theme.DailyTasks.BarChart">
-        <item name="colorBarChartBarNormal">@color/bar_day_mode</item>
-        <item name="colorBarChartBarHighlight">@color/dodger_blue</item>
     </style>
 
     <style name="Theme.DailyTasks.Dialog" parent="Theme.MaterialComponents.DayNight.Dialog">
         <item name="colorPrimary">@color/scooter</item>
     </style>
 
-    <style name="RadioButtonStyle" parent="Theme.DailyTasks">
-        <item name="android:background">@drawable/radio_selector</item>
-        <item name="android:button">@null</item>
-        <item name="android:gravity">center</item>
-        <item name="android:textColor">@drawable/radio_text_selector</item>
-        <item name="android:outlineSpotShadowColor" tools:targetApi="p">@color/dodger_blue</item>
-        <item name="android:outlineAmbientShadowColor" tools:targetApi="p">@color/dodger_blue</item>
-        <item name="android:stateListAnimator">@animator/elevation_animator</item>
+    <style name="CloseIconToolbarStyle">
+        <item name="android:background">?attr/colorPrimary</item>
+    </style>
+
+    <style name="CreateTaskIconStyle">
+        <item name="tint">@color/dodger_blue</item>
+        <item name="android:background">@color/black_squeeze</item>
+        <item name="android:outlineAmbientShadowColor" tools:targetApi="p">@color/ebony_light</item>
+        <item name="android:outlineSpotShadowColor" tools:targetApi="p">@color/ebony_light</item>
+    </style>
+
+    <style name="TextLabelStyle" parent="Widget.MaterialComponents.TextView">
+        <item name="android:textAppearance">?textAppearanceSubtitle1</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="Theme.DailyTasks.TextInput" parent="Widget.Design.TextInputLayout">
+        <item name="colorControlNormal">@color/white</item>
+        <item name="colorControlActivated">@color/scooter</item>
+        <item name="colorControlHighlight">@color/bright_gray</item>
+        <item name="colorInputBorder">@color/dodger_blue</item>
     </style>
 
     <style name="EditTextStyle" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
@@ -101,15 +93,14 @@
         <item name="hintTextColor">@color/geyser</item>
     </style>
 
-    <style name="TextInputLayoutAppearance" parent="Widget.Design.TextInputLayout">
-        <item name="colorControlNormal">@color/white</item>
-        <item name="colorControlActivated">@color/scooter</item>
-        <item name="colorControlHighlight">@color/bright_gray</item>
-    </style>
-
-    <style name="CircularImageAppearance">
-        <item name="cornerFamily">rounded</item>
-        <item name="cornerSize">50%</item>
+    <style name="RadioButtonStyle">
+        <item name="android:background">@drawable/radio_selector</item>
+        <item name="android:button">@null</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textColor">@drawable/radio_text_selector</item>
+        <item name="android:outlineSpotShadowColor" tools:targetApi="p">@color/dodger_blue</item>
+        <item name="android:outlineAmbientShadowColor" tools:targetApi="p">@color/dodger_blue</item>
+        <item name="android:stateListAnimator">@animator/elevation_animator</item>
     </style>
 
     <style name="ButtonStyle" parent="Widget.MaterialComponents.Button">
@@ -122,24 +113,20 @@
         <item name="android:outlineAmbientShadowColor" tools:targetApi="p">@color/dodger_blue</item>
     </style>
 
-    <style name="BottomSheetMenuItemStyle" parent="Widget.MaterialComponents.TextView">
-        <item name="android:layout_height">48dp</item>
-        <item name="android:paddingStart">16dp</item>
-        <item name="android:paddingEnd">16dp</item>
-        <item name="android:drawablePadding">32dp</item>
-        <item name="android:gravity">start|center_vertical</item>
-        <item name="android:textSize">16sp</item>
+    <style name="Theme.DailyTasks.Toolbar">
+        <item name="colorControlNormal">@color/white</item>
     </style>
 
-    <style name="TextLabelStyle" parent="Widget.MaterialComponents.TextView">
-        <item name="android:textAppearance">?textAppearanceSubtitle1</item>
-        <item name="android:textStyle">bold</item>
+    <style name="Theme.DailyTasks.SearchView" parent="Widget.AppCompat.SearchView">
+        <item name="colorSearchBackground">@color/geyser</item>
     </style>
 
-    <style name="CreateTaskIconStyle">
-        <item name="tint">@color/dodger_blue</item>
-        <item name="android:background">@color/black_squeeze</item>
-        <item name="android:outlineAmbientShadowColor" tools:targetApi="p">@color/ebony_light</item>
-        <item name="android:outlineSpotShadowColor" tools:targetApi="p">@color/ebony_light</item>
+    <style name="Theme.DailyTasks.CompletedTaskIconImageView">
+        <item name="colorTaskIconCompleteBg">@color/scooter</item>
+    </style>
+
+    <style name="Theme.DailyTasks.BarChart">
+        <item name="colorBarChartBarNormal">@color/bar_day_mode</item>
+        <item name="colorBarChartBarHighlight">@color/dodger_blue</item>
     </style>
 </resources>

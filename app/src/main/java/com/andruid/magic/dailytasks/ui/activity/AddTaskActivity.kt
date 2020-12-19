@@ -29,11 +29,9 @@ class AddTaskActivity : AppCompatActivity() {
     }
 
     private fun initActionBar() {
-        supportActionBar?.let {
-            it.setDisplayHomeAsUpEnabled(true)
-            it.title = null
-            it.setHomeAsUpIndicator(R.drawable.ic_close)
-        }
+        setSupportActionBar(binding.toolBar)
+
+        supportActionBar?.title = null
     }
 
     private fun initListeners() {
