@@ -10,7 +10,7 @@ import com.andruid.magic.dailytasks.data.ACTION_ALARM
 import com.andruid.magic.dailytasks.data.EXTRA_TASK_ID
 import com.andruid.magic.dailytasks.data.STATUS_DONE
 import com.andruid.magic.dailytasks.database.TaskRepository
-import com.andruid.magic.dailytasks.repository.ReminderManager
+import com.andruid.magic.dailytasks.manager.ReminderManager
 import kotlinx.coroutines.runBlocking
 
 class AlarmReceiver : BroadcastReceiver() {

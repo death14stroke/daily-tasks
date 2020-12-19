@@ -12,9 +12,9 @@ import androidx.lifecycle.lifecycleScope
 import com.andruid.magic.dailytasks.R
 import com.andruid.magic.dailytasks.data.Month
 import com.andruid.magic.dailytasks.databinding.ActivityStatisticsBinding
-import com.andruid.magic.dailytasks.repository.ChartRepository
+import com.andruid.magic.dailytasks.manager.ChartsManager
 import com.andruid.magic.dailytasks.ui.adapter.MonthAdapter
-import com.andruid.magic.dailytasks.ui.custom.SliderLayoutManager
+import com.andruid.magic.dailytasks.ui.custom.horizontalslider.SliderLayoutManager
 import com.andruid.magic.dailytasks.ui.viewbinding.viewBinding
 import com.andruid.magic.dailytasks.ui.viewmodel.MonthViewModel
 import com.andruid.magic.dailytasks.util.color
@@ -112,7 +112,7 @@ class StatisticsActivity : AppCompatActivity() {
             typedArray.getColorOrThrow(0) to typedArray.getColorOrThrow(1)
         }
 
-        val entryList = ChartRepository.buildBarChartData(month)
+        val entryList = ChartsManager.buildBarChartData(month)
         val barDataSet = BarDataSet(entryList, "").apply {
             color = colorNormal
             highLightColor = colorHighlight
@@ -170,7 +170,7 @@ class StatisticsActivity : AppCompatActivity() {
     }
 
     private suspend fun buildLineChart(month: Month) {
-        val entryList = ChartRepository.buildLineChartData(month)
+        val entryList = ChartsManager.buildLineChartData(month)
         val lineDataSet = LineDataSet(entryList, "Completed Tasks").apply {
             setDrawFilled(true)
             setDrawValues(false)

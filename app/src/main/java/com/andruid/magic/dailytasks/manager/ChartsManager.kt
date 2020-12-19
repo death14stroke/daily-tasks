@@ -1,4 +1,4 @@
-package com.andruid.magic.dailytasks.repository
+package com.andruid.magic.dailytasks.manager
 
 import com.andruid.magic.dailytasks.data.CATEGORY_PERSONAL
 import com.andruid.magic.dailytasks.data.CATEGORY_WORK
@@ -9,9 +9,10 @@ import com.github.mikephil.charting.data.Entry
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
-object ChartRepository {
+object ChartsManager {
     suspend fun buildBarChartData(month: Month): List<BarEntry> {
         val monthlyStats = TaskRepository.getMonthlyStats(month.index, month.year) ?: emptyList()
+
         return withContext(Dispatchers.Default) {
             val dbData = mutableMapOf<Int, Int>()
             repeat(month.noOfDays) { day ->

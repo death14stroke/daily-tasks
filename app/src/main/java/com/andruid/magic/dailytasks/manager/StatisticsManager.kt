@@ -1,12 +1,13 @@
-package com.andruid.magic.dailytasks.util
+package com.andruid.magic.dailytasks.manager
 
 import com.andruid.magic.dailytasks.data.STATUS_DONE
 import com.andruid.magic.dailytasks.database.TaskRepository
+import com.andruid.magic.dailytasks.util.getMidnightTimeMillis
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.zip
 import java.util.concurrent.TimeUnit
 
-object StatsCalculator {
+object StatisticsManager {
     fun calculateDailyProgress(): Flow<Int> {
         val fromMillis = getMidnightTimeMillis()
         val toMillis = getMidnightTimeMillis(1)

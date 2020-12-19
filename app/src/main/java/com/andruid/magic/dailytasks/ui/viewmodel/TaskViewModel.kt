@@ -8,7 +8,7 @@ import androidx.paging.PagingConfig
 import androidx.paging.cachedIn
 import com.andruid.magic.dailytasks.data.STATUS_DONE
 import com.andruid.magic.dailytasks.database.TaskRepository
-import com.andruid.magic.dailytasks.util.StatsCalculator
+import com.andruid.magic.dailytasks.manager.StatisticsManager
 
 class TaskViewModel : ViewModel() {
     val tasksLiveData = Pager(
@@ -16,11 +16,11 @@ class TaskViewModel : ViewModel() {
         pagingSourceFactory = { TaskRepository.getTasks() }
     ).flow.cachedIn(viewModelScope).asLiveData()
 
-    val progressLiveData = StatsCalculator.calculateDailyProgress()
+    val progressLiveData = StatisticsManager.calculateDailyProgress()
         .asLiveData()
 
     val tasksCompletedLiveData = TaskRepository.getStatusTasksCount(STATUS_DONE).asLiveData()
 
-    val tasksPerDayLiveData = StatsCalculator.calculateTasksPerDay()
+    val tasksPerDayLiveData = StatisticsManager.calculateTasksPerDay()
         .asLiveData()
 }

@@ -18,7 +18,8 @@
         <receiver
             android:name=".receiver.AlarmReceiver"
             android:enabled="true"
-            android:exported="true" />
+            android:exported="true"
+            tools:ignore="ExportedReceiver" />
 
         <provider
             android:name="androidx.core.content.FileProvider"
@@ -30,7 +31,9 @@
                 android:resource="@xml/provider_paths" />
         </provider>
 
-        <activity android:name=".ui.activity.SplashActivity">
+        <activity
+            android:name=".ui.activity.SplashActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -38,21 +41,37 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".ui.activity.SignupActivity" />
+        <activity
+            android:name=".ui.activity.SignupActivity"
+            android:screenOrientation="portrait" />
 
-        <activity android:name=".ui.activity.MainActivity" />
+        <activity
+            android:name=".ui.activity.MainActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
 
         <activity
             android:name=".ui.activity.AddTaskActivity"
+            android:exported="false"
             android:parentActivityName=".ui.activity.MainActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/Theme.DailyTasks.CreateTaskActivity" />
 
         <activity
             android:name=".ui.activity.CompletedTasksActivity"
-            android:parentActivityName=".ui.activity.MainActivity" />
+            android:exported="false"
+            android:parentActivityName=".ui.activity.MainActivity"
+            android:screenOrientation="portrait" />
 
         <activity
             android:name=".ui.activity.StatisticsActivity"
-            android:parentActivityName=".ui.activity.MainActivity" />
+            android:exported="false"
+            android:parentActivityName=".ui.activity.MainActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".ui.activity.AlertActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
     </application>
 </manifest>

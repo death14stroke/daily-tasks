@@ -118,7 +118,7 @@
     </style>
 
     <style name="Theme.DailyTasks.SearchView" parent="Widget.AppCompat.SearchView">
-        <item name="colorSearchBackground">@color/geyser</item>
+        <item name="colorSearchBackground">@color/twilight_blue</item>
     </style>
 
     <style name="Theme.DailyTasks.CompletedTaskIconImageView">

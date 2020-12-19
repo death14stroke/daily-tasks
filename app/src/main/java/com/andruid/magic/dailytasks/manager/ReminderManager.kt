@@ -1,4 +1,4 @@
-package com.andruid.magic.dailytasks.repository
+package com.andruid.magic.dailytasks.manager
 
 import android.app.*
 import android.content.Context
@@ -9,10 +9,13 @@ import androidx.core.app.NotificationCompat
 import androidx.core.content.getSystemService
 import com.andruid.magic.dailytasks.R
 import com.andruid.magic.dailytasks.data.ACTION_ALARM
+import com.andruid.magic.dailytasks.data.EXTRA_TASK
 import com.andruid.magic.dailytasks.data.EXTRA_TASK_ID
 import com.andruid.magic.dailytasks.database.Task
 import com.andruid.magic.dailytasks.receiver.AlarmReceiver
+import com.andruid.magic.dailytasks.ui.activity.AlertActivity
 import com.andruid.magic.dailytasks.ui.activity.MainActivity
+import java.util.*
 
 object ReminderManager {
     private const val REMINDER_CHANNEL_NAME = "Tasks reminder"
@@ -55,14 +58,24 @@ object ReminderManager {
         val pendingIntent =
             PendingIntent.getActivity(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT)
 
+        val fullScreenIntent = Intent(context, AlertActivity::class.java)
+            .putExtra(EXTRA_TASK, task)
+        val fullScreenPendingIntent = PendingIntent.getActivity(
+            context,
+            0,
+            fullScreenIntent,
+            PendingIntent.FLAG_UPDATE_CURRENT
+        )
+
         return NotificationCompat.Builder(context, REMINDER_CHANNEL_ID)
             .setSmallIcon(R.mipmap.ic_launcher_round)
-            .setPriority(NotificationCompat.PRIORITY_MAX)
-            .setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
+            .setPriority(NotificationCompat.PRIORITY_HIGH)
+            .setCategory(NotificationCompat.CATEGORY_ALARM)
             .setContentIntent(pendingIntent)
-            .setContentTitle("New task alert")
+            .setFullScreenIntent(fullScreenPendingIntent, true)
+            .setContentTitle(context.getString(R.string.reminder_noti_title))
             .setContentText(task.title)
-            .setSubText(task.category)
+            .setSubText(task.category.toUpperCase(Locale.getDefault()))
             .setShowWhen(true)
             .build()
     }

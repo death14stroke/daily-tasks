@@ -1,6 +1,6 @@
 package com.andruid.magic.dailytasks.util
 
-import com.andruid.magic.dailytasks.ui.custom.getMilliSecondsForTime
+import com.andruid.magic.dailytasks.ui.custom.timepickerinput.getMilliSecondsForTime
 import java.util.*
 
 fun getTaskTimeFromPicker(hour: Int, minutes: Int): Long {

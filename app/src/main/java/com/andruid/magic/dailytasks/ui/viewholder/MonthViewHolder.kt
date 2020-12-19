@@ -10,7 +10,7 @@ import androidx.core.content.res.use
 import androidx.recyclerview.widget.RecyclerView
 import com.andruid.magic.dailytasks.data.Month
 import com.andruid.magic.dailytasks.databinding.LayoutMonthBinding
-import com.andruid.magic.dailytasks.ui.custom.ISliderViewHolder
+import com.andruid.magic.dailytasks.ui.custom.horizontalslider.ISliderViewHolder
 
 @SuppressLint("ResourceType")
 class MonthViewHolder(private val binding: LayoutMonthBinding) :

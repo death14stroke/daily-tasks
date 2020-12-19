@@ -32,7 +32,7 @@
             android:layout_marginBottom="24dp"
             android:elevation="24dp"
             android:scaleType="fitXY"
-            android:src="@drawable/new_task"
+            android:src="@drawable/logo"
             app:layout_constraintBottom_toTopOf="@id/create_task_tv"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -124,7 +124,7 @@
             app:layout_constraintEnd_toStartOf="@id/end_guideline"
             app:layout_constraintStart_toEndOf="@id/start_guideline">
 
-            <com.andruid.magic.dailytasks.ui.custom.TimePickerEditText
+            <com.andruid.magic.dailytasks.ui.custom.timepickerinput.TimePickerEditText
                 android:id="@+id/timePickerET"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

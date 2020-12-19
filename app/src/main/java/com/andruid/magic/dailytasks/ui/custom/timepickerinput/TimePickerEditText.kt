@@ -1,4 +1,4 @@
-package com.andruid.magic.dailytasks.ui.custom
+package com.andruid.magic.dailytasks.ui.custom.timepickerinput
 
 import android.content.Context
 import android.os.Build

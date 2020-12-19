@@ -1,4 +1,4 @@
-package com.andruid.magic.dailytasks.ui.custom
+package com.andruid.magic.dailytasks.ui.custom.horizontalslider
 
 import android.content.Context
 import android.view.View
