@@ -29,8 +29,6 @@ class AddTaskActivity : AppCompatActivity() {
     }
 
     private fun initActionBar() {
-        setSupportActionBar(binding.toolBar)
-
         supportActionBar?.title = null
     }
 
