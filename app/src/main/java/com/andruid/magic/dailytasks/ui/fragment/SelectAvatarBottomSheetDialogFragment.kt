@@ -6,11 +6,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.IntDef
 import com.andruid.magic.dailytasks.databinding.BottomsheetSelectAvatarBinding
-import com.google.android.material.bottomsheet.BottomSheetDialogFragment
+import com.andruid.magic.dailytasks.ui.custom.RoundedBottomSheetDialogFragment
 
 class SelectAvatarBottomSheetDialogFragment(
     private val menuItemClickListener: MenuItemClickListener
-) : BottomSheetDialogFragment() {
+) : RoundedBottomSheetDialogFragment() {
     companion object {
         @IntDef(MENU_CAMERA, MENU_GALLERY, MENU_DELETE)
         @Retention(AnnotationRetention.SOURCE)
@@ -20,7 +20,8 @@ class SelectAvatarBottomSheetDialogFragment(
         const val MENU_GALLERY = 1
         const val MENU_DELETE = 2
 
-        fun newInstance(menuItemClickListener: MenuItemClickListener) = SelectAvatarBottomSheetDialogFragment(menuItemClickListener)
+        fun newInstance(menuItemClickListener: MenuItemClickListener) =
+            SelectAvatarBottomSheetDialogFragment(menuItemClickListener)
     }
 
     private lateinit var binding: BottomsheetSelectAvatarBinding

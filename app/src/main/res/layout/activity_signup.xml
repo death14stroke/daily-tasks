@@ -27,13 +27,14 @@
         android:layout_marginBottom="24dp"
         android:paddingTop="16dp"
         android:text="@string/select_your_avatar"
-        android:textAppearance="?textAppearanceSubtitle1"
+        android:textAppearance="?textAppearanceHeadline6"
+        android:textColor="@color/white"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@id/center_guideline"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <View
+    <androidx.constraintlayout.widget.Group
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:background="@drawable/rounded_background"
@@ -47,8 +48,7 @@
         android:gravity="center_vertical"
         android:paddingTop="16dp"
         android:text="@string/user_name"
-        android:textAppearance="?textAppearanceSubtitle1"
-        android:textStyle="bold"
+        style="@style/TextLabelStyle"
         app:layout_constraintEnd_toStartOf="@id/end_guideline"
         app:layout_constraintStart_toEndOf="@id/start_guideline"
         app:layout_constraintTop_toBottomOf="@id/center_guideline" />
@@ -69,12 +69,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/user_name_hint"
-            android:paddingHorizontal="24dp"
-            android:paddingVertical="16dp"
-            android:textColor="@color/white"
-            android:maxLines="1"
             android:maxLength="20"
-            android:textColorHint="@color/bright_gray" />
+            android:maxLines="1"
+            android:paddingHorizontal="24dp"
+            android:paddingVertical="16dp" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.button.MaterialButton

@@ -14,8 +14,8 @@ object TaskRepository {
 
     fun getTasks() = database.taskDao().getTasks()
 
-    suspend fun updateTaskStatus(id: Long, status: Int) {
-        database.taskDao().updateStatus(id, status)
+    suspend fun completeTask(id: Long, endTime: Long) {
+        database.taskDao().completeTask(id, endTime)
     }
 
     fun getTotalTasksCount(fromMillis: Long, toMillis: Long) =

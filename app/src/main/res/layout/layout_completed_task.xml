@@ -51,7 +51,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@id/guideline"
             app:layout_constraintTop_toBottomOf="@id/titleTV"
-            app:showTime="@{task.time}"
+            app:showTime="@{task.startTime}"
             tools:text="9:00 AM" />
 
         <com.google.android.material.textview.MaterialTextView

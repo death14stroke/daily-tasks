@@ -55,7 +55,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/create_task_iv" />
 
-        <View
+        <androidx.constraintlayout.widget.Group
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:background="@drawable/rounded_background"

@@ -29,6 +29,7 @@ class AddTaskActivity : AppCompatActivity() {
     }
 
     private fun initActionBar() {
+        setSupportActionBar(binding.toolBar)
         supportActionBar?.title = null
     }
 
@@ -50,7 +51,7 @@ class AddTaskActivity : AppCompatActivity() {
             val task = Task(
                 title = title,
                 repeat = binding.repeatSwitch.isChecked,
-                time = taskMillis,
+                startTime = taskMillis,
                 day = day,
                 month = month,
                 year = year,

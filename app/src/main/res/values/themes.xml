@@ -17,6 +17,18 @@
         <item name="materialAlertDialogTheme">@style/Theme.DailyTasks.Dialog</item>
     </style>
 
+    <style name="Theme.DailyTasks.BottomSheetDialog" parent="Theme.Design.Light.BottomSheetDialog">
+        <item name="colorSurface">@color/white</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:navigationBarColor">@color/white</item>
+        <item name="android:windowIsFloating">false</item>
+        <item name="bottomSheetStyle">@style/BottomSheetStyle</item>
+    </style>
+
+    <style name="BottomSheetStyle" parent="Widget.Design.BottomSheet.Modal">
+        <item name="android:background">@drawable/bottom_sheet_bg</item>
+    </style>
+
     <style name="BottomSheetMenuItemStyle" parent="Widget.MaterialComponents.TextView">
         <item name="android:layout_height">48dp</item>
         <item name="android:paddingStart">16dp</item>
@@ -24,6 +36,7 @@
         <item name="android:drawablePadding">32dp</item>
         <item name="android:gravity">start|center_vertical</item>
         <item name="android:textSize">16sp</item>
+        <item name="android:foreground">?selectableItemBackground</item>
     </style>
 
     <style name="Theme.DailyTasks.TaskItem">
@@ -76,7 +89,7 @@
     <style name="Theme.DailyTasks.TextInput" parent="Widget.Design.TextInputLayout">
         <item name="colorControlNormal">@color/white</item>
         <item name="colorControlActivated">@color/scooter</item>
-        <item name="colorControlHighlight">@color/bright_gray</item>
+        <item name="colorControlHighlight">@color/geyser</item>
         <item name="colorInputBorder">@color/dodger_blue</item>
     </style>
 

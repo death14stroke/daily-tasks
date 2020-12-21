@@ -43,6 +43,7 @@
 
         <activity
             android:name=".ui.activity.SignupActivity"
+            android:exported="false"
             android:screenOrientation="portrait" />
 
         <activity

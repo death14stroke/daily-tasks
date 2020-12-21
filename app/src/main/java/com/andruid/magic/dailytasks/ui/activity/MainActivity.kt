@@ -34,7 +34,7 @@ class MainActivity : AppCompatActivity() {
             lifecycleScope.launch {
                 val completed = showCompleteTaskDialog()
                 if (completed)
-                    TaskRepository.updateTaskStatus(task.id, STATUS_DONE)
+                    TaskRepository.completeTask(task.id, System.currentTimeMillis())
             }
         }
     }

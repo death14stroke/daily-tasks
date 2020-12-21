@@ -10,3 +10,4 @@ const val ACTION_ALARM = "com.andruid.magic.dailytasks.ALARM"
 
 const val EXTRA_TASK_ID = "task_id"
 const val EXTRA_TASK = "task"
+const val EXTRA_IMAGE_URI = "image_uri"

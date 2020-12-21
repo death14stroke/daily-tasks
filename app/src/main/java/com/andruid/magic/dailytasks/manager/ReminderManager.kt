@@ -31,10 +31,10 @@ object ReminderManager {
         val alarmManager = context.getSystemService<AlarmManager>()!!
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M)
             alarmManager.setExactAndAllowWhileIdle(
-                AlarmManager.RTC_WAKEUP, task.time, pendingIntent
+                AlarmManager.RTC_WAKEUP, task.startTime, pendingIntent
             )
         else
-            alarmManager.setExact(AlarmManager.RTC_WAKEUP, task.time, pendingIntent)
+            alarmManager.setExact(AlarmManager.RTC_WAKEUP, task.startTime, pendingIntent)
     }
 
     fun buildNotification(context: Context, task: Task): Notification {

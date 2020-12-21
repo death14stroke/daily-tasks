@@ -14,6 +14,14 @@
         <item name="materialAlertDialogTheme">@style/Theme.DailyTasks.Dialog</item>
     </style>
 
+    <style name="Theme.DailyTasks.BottomSheetDialog" parent="Theme.MaterialComponents.BottomSheetDialog">
+        <item name="colorSurface">@color/ebony_light</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:navigationBarColor">@color/ebony_light</item>
+        <item name="android:windowIsFloating">false</item>
+        <item name="bottomSheetStyle">@style/BottomSheetStyle</item>
+    </style>
+
     <style name="Theme.DailyTasks.TaskItem">
         <item name="colorTaskIconIncompleteBg">@color/ebony_light</item>
         <item name="colorTaskIconCompleteBg">@color/ebony</item>

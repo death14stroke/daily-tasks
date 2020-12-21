@@ -31,4 +31,5 @@
     <string name="line_chart_title">Task Type</string>
     <string name="reminder">Reminder!!</string>
     <string name="reminder_noti_title">New task reminder!!</string>
+    <string name="username_input_error">Username cannot be blank</string>
 </resources>

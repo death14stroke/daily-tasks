@@ -13,16 +13,16 @@ interface TaskDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertTask(task: Task): Long
 
-    @Query("SELECT * FROM tasks ORDER BY status, time DESC")
+    @Query("SELECT * FROM tasks ORDER BY status, startTime DESC")
     fun getTasks(): PagingSource<Int, Task>
 
-    @Query("UPDATE tasks SET status = :status WHERE id = :id")
-    suspend fun updateStatus(id: Long, status: Int)
+    @Query("UPDATE tasks SET status = 1, endTime = :endTime WHERE id = :id")
+    suspend fun completeTask(id: Long, endTime: Long)
 
-    @Query("SELECT COUNT(*) FROM tasks WHERE time >= :from AND time <= :to")
+    @Query("SELECT COUNT(*) FROM tasks WHERE startTime >= :from AND startTime <= :to")
     fun getTotalTasksCount(from: Long, to: Long): Flow<Int>
 
-    @Query("SELECT COUNT(*) FROM tasks WHERE status = :status AND time >= :from AND time <= :to")
+    @Query("SELECT COUNT(*) FROM tasks WHERE status = :status AND startTime >= :from AND startTime <= :to")
     fun getStatusTasksCount(status: Int, from: Long, to: Long): Flow<Int>
 
     @Query("SELECT COUNT(*) FROM tasks WHERE status = :status")
@@ -37,10 +37,10 @@ interface TaskDao {
     @Query("SELECT day, COUNT(*) as taskCnt FROM tasks WHERE status = 1 AND year = :year AND month = :month GROUP BY day,month,year ORDER BY day")
     suspend fun getMonthlyStats(month: Int, year: Int): List<MonthlyStats>?
 
-    @Query("SELECT MIN(time) FROM tasks WHERE status = 1")
+    @Query("SELECT MIN(startTime) FROM tasks WHERE status = 1")
     fun getOldestCompletedTaskTimeFlow(): Flow<Long?>
 
-    @Query("SELECT MIN(time) FROM tasks WHERE status = 1")
+    @Query("SELECT MIN(startTime) FROM tasks WHERE status = 1")
     suspend fun getOldestCompletedTaskTime(): Long?
 
     @Query("SELECT COUNT(*) FROM tasks")
