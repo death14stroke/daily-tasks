@@ -3,6 +3,7 @@ package com.andruid.magic.dailytasks.ui.activity
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.widget.addTextChangedListener
 import androidx.lifecycle.lifecycleScope
 import com.andruid.magic.dailytasks.R
 import com.andruid.magic.dailytasks.data.CATEGORY_PERSONAL
@@ -37,7 +38,7 @@ class AddTaskActivity : AppCompatActivity() {
         binding.addTasksBtn.setOnClickListener {
             val title = binding.taskNameET.text.toString().trim()
             if (title.isBlank()) {
-                binding.taskNameInput.error = "Please enter task name"
+                binding.taskNameInput.error = getString(R.string.task_name_error)
                 return@setOnClickListener
             }
 
@@ -64,6 +65,15 @@ class AddTaskActivity : AppCompatActivity() {
                 ReminderManager.scheduleReminder(this@AddTaskActivity, task.copy(id = taskId))
                 finish()
             }
+        }
+
+        binding.taskNameET.addTextChangedListener {
+            val name = it.toString().trim()
+
+            binding.taskNameInput.error = if (name.isBlank())
+                getString(R.string.username_input_error)
+            else
+                null
         }
     }
 

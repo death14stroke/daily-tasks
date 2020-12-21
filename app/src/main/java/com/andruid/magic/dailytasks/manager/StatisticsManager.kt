@@ -1,9 +1,11 @@
 package com.andruid.magic.dailytasks.manager
 
+import android.util.Log
 import com.andruid.magic.dailytasks.data.STATUS_DONE
 import com.andruid.magic.dailytasks.database.TaskRepository
 import com.andruid.magic.dailytasks.util.getMidnightTimeMillis
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.zip
 import java.util.concurrent.TimeUnit
 
@@ -33,11 +35,22 @@ object StatisticsManager {
             val diffMillis = currentTime - (fromTime ?: currentTime)
             val days = TimeUnit.MILLISECONDS.toDays(diffMillis)
 
+            Log.d("statsLog", "tasks = $tasks, days = $days")
+
             try {
                 (tasks / days).toInt()
             } catch (e: ArithmeticException) {
                 0
             }
+        }
+    }
+
+    fun calculateTimePerTask(): Flow<Long> {
+        return TaskRepository.getTaskElapsedTimes().map { elapsedTimes ->
+            val count = elapsedTimes.size
+            val totalTime = elapsedTimes.sum()
+
+            totalTime / count
         }
     }
 }

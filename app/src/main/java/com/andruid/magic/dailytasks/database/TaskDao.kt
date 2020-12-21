@@ -48,4 +48,7 @@ interface TaskDao {
 
     @Query("SELECT * FROM tasks WHERE id = :taskId")
     suspend fun getTaskById(taskId: Long): Task?
+
+    @Query("SELECT (endTime - startTime) AS elapsedTime FROM tasks WHERE status = 1")
+    fun getTaskElapsedTimes(): Flow<List<Long>>
 }

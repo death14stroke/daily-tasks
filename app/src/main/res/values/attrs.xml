@@ -5,6 +5,10 @@
         <attr name="title" format="string" />
     </declare-styleable>
 
+    <declare-styleable name="ProductivityStatsView">
+        <attr name="title" />
+    </declare-styleable>
+
     <attr name="colorTaskIconIncompleteBg" format="color" />
     <attr name="colorTaskIconCompleteBg" format="color" />
     <attr name="colorTaskCompletePrimary" format="color" />

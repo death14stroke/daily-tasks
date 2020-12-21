@@ -47,4 +47,6 @@ object TaskRepository {
 
     suspend fun getTaskById(taskId: Long) =
         database.taskDao().getTaskById(taskId)
+
+    fun getTaskElapsedTimes() = database.taskDao().getTaskElapsedTimes()
 }

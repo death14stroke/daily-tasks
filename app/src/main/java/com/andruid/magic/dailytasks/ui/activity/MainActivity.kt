@@ -11,7 +11,6 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import coil.load
-import com.andruid.magic.dailytasks.data.STATUS_DONE
 import com.andruid.magic.dailytasks.data.STATUS_PENDING
 import com.andruid.magic.dailytasks.database.Task
 import com.andruid.magic.dailytasks.database.TaskRepository
@@ -104,6 +103,10 @@ class MainActivity : AppCompatActivity() {
 
         binding.tasksRateBtn.setOnClickListener {
             startActivity(Intent(this, StatisticsActivity::class.java))
+        }
+
+        binding.productivityBtn.setOnClickListener {
+            startActivity(Intent(this, ProductivityActivity::class.java))
         }
     }
 }

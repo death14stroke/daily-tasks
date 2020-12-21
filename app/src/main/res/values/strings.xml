@@ -32,4 +32,5 @@
     <string name="reminder">Reminder!!</string>
     <string name="reminder_noti_title">New task reminder!!</string>
     <string name="username_input_error">Username cannot be blank</string>
+    <string name="task_name_error">Please enter task name</string>
 </resources>

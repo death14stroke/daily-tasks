@@ -71,6 +71,12 @@
             android:screenOrientation="portrait" />
 
         <activity
+            android:name=".ui.activity.ProductivityActivity"
+            android:exported="false"
+            android:parentActivityName=".ui.activity.MainActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
             android:name=".ui.activity.AlertActivity"
             android:exported="false"
             android:screenOrientation="portrait" />

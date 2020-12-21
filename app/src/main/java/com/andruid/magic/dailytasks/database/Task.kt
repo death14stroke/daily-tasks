@@ -14,7 +14,7 @@ data class Task(
     val title: String,
     val repeat: Boolean = false,
     val startTime: Long,
-    val endTime: Long = -1,
+    val endTime: Long = 0,
     val day: Int,
     val month: Int,
     val year: Int,
