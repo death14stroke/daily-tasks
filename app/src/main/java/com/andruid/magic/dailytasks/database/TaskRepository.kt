@@ -49,4 +49,8 @@ object TaskRepository {
         database.taskDao().getTaskById(taskId)
 
     fun getTaskElapsedTimes() = database.taskDao().getTaskElapsedTimes()
+
+    suspend fun getWeeklyStats(fromMillis: Long, toMillis: Long) = database.taskDao().getWeeklyStats(fromMillis, toMillis)
+
+    fun getMostActiveTasks() = database.taskDao().getMostActiveTasks()
 }

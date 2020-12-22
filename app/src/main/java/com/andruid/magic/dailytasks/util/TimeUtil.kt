@@ -1,6 +1,7 @@
 package com.andruid.magic.dailytasks.util
 
 import com.andruid.magic.dailytasks.ui.custom.timepickerinput.getMilliSecondsForTime
+import java.text.SimpleDateFormat
 import java.util.*
 
 fun getTaskTimeFromPicker(hour: Int, minutes: Int): Long {
@@ -48,14 +49,14 @@ fun getGreetingMessage(): String {
     }
 }
 
-fun getCurrentWeekMillis(): Long {
-    val calendar = Calendar.getInstance().apply {
-        set(Calendar.DAY_OF_WEEK, Calendar.MONDAY)
-        set(Calendar.HOUR_OF_DAY, 0)
-        set(Calendar.MINUTE, 0)
-        set(Calendar.SECOND, 0)
-        set(Calendar.MILLISECOND, 0)
-    }
+fun getCurrentWeekStartMillis(): Long {
+    val calendar = Calendar.getInstance().setFirstDayOfWeek()
+
+    return calendar.timeInMillis
+}
+
+fun getCurrentWeekEndMillis(): Long {
+    val calendar = Calendar.getInstance().setLastDayOfWeek()
 
     return calendar.timeInMillis
 }
@@ -70,4 +71,34 @@ fun getCurrentMonthMillis(): Long {
     }
 
     return calendar.timeInMillis
+}
+
+fun showDate(millis: Long): String {
+    val sdf = SimpleDateFormat("dd MMM", Locale.getDefault())
+    return sdf.format(millis)
+}
+
+fun getCurrentDay(): String {
+    return Calendar.getInstance()
+        .getDisplayName(Calendar.DAY_OF_WEEK, Calendar.LONG, Locale.getDefault()) ?: "Undefined"
+}
+
+fun Calendar.setFirstDayOfWeek(): Calendar {
+    set(Calendar.DAY_OF_WEEK, Calendar.SUNDAY)
+    set(Calendar.HOUR_OF_DAY, 0)
+    set(Calendar.MINUTE, 0)
+    set(Calendar.SECOND, 0)
+    set(Calendar.MILLISECOND, 0)
+
+    return this
+}
+
+fun Calendar.setLastDayOfWeek(): Calendar {
+    set(Calendar.DAY_OF_WEEK, Calendar.SATURDAY)
+    set(Calendar.HOUR_OF_DAY, 23)
+    set(Calendar.MINUTE, 59)
+    set(Calendar.SECOND, 59)
+    set(Calendar.MILLISECOND, 0)
+
+    return this
 }

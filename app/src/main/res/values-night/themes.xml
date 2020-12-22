@@ -89,4 +89,12 @@
         <item name="colorBarChartBarNormal">@color/dodger_blue</item>
         <item name="colorBarChartBarHighlight">@color/scooter</item>
     </style>
+
+    <style name="Theme.DailyTasks.ProductivityStats">
+        <item name="colorCardBackground">@color/ebony</item>
+    </style>
+
+    <style name="Theme.DailyTasks.RoundIcon">
+        <item name="colorIconBackground">@color/dodger_blue</item>
+    </style>
 </resources>

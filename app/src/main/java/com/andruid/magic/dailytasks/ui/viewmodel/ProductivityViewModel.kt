@@ -5,14 +5,14 @@ import androidx.lifecycle.asLiveData
 import com.andruid.magic.dailytasks.database.TaskRepository
 import com.andruid.magic.dailytasks.manager.StatisticsManager
 import com.andruid.magic.dailytasks.util.getCurrentMonthMillis
-import com.andruid.magic.dailytasks.util.getCurrentWeekMillis
+import com.andruid.magic.dailytasks.util.getCurrentWeekStartMillis
 
 class ProductivityViewModel : ViewModel() {
     val timePerTaskLiveData = StatisticsManager.calculateTimePerTask()
         .asLiveData()
 
     val tasksThisWeekLiveData =
-        TaskRepository.getTotalTasksCount(getCurrentWeekMillis(), System.currentTimeMillis())
+        TaskRepository.getTotalTasksCount(getCurrentWeekStartMillis(), System.currentTimeMillis())
             .asLiveData()
 
     val tasksThisMonthLiveData =
@@ -21,5 +21,9 @@ class ProductivityViewModel : ViewModel() {
 
     val totalTasksLiveData =
         TaskRepository.getTotalTasksCount()
+            .asLiveData()
+
+    val mostActiveTasksLiveData =
+        TaskRepository.getMostActiveTasks()
             .asLiveData()
 }

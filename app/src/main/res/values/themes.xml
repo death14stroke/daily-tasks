@@ -142,4 +142,12 @@
         <item name="colorBarChartBarNormal">@color/bar_day_mode</item>
         <item name="colorBarChartBarHighlight">@color/dodger_blue</item>
     </style>
+
+    <style name="Theme.DailyTasks.ProductivityStats">
+        <item name="colorCardBackground">@color/twilight_blue</item>
+    </style>
+
+    <style name="Theme.DailyTasks.RoundIcon">
+        <item name="colorIconBackground">@color/scooter</item>
+    </style>
 </resources>
