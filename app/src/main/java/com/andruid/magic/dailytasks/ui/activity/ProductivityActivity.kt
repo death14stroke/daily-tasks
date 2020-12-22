@@ -13,17 +13,13 @@ import com.andruid.magic.dailytasks.manager.ChartsManager
 import com.andruid.magic.dailytasks.ui.adapter.MostActiveTaskAdapter
 import com.andruid.magic.dailytasks.ui.viewbinding.viewBinding
 import com.andruid.magic.dailytasks.ui.viewmodel.ProductivityViewModel
-import com.andruid.magic.dailytasks.util.getCurrentDay
-import com.andruid.magic.dailytasks.util.getCurrentWeekEndMillis
-import com.andruid.magic.dailytasks.util.getCurrentWeekStartMillis
-import com.andruid.magic.dailytasks.util.showDate
+import com.andruid.magic.dailytasks.util.*
 import com.github.mikephil.charting.components.XAxis
 import com.github.mikephil.charting.data.BarData
 import com.github.mikephil.charting.data.BarDataSet
 import com.github.mikephil.charting.formatter.IAxisValueFormatter
 import kotlinx.coroutines.launch
 import java.util.*
-import java.util.concurrent.TimeUnit
 
 class ProductivityActivity : AppCompatActivity() {
     private val binding by viewBinding(ActivityProductivityBinding::inflate)
@@ -79,20 +75,7 @@ class ProductivityActivity : AppCompatActivity() {
         }
 
         productivityViewModel.timePerTaskLiveData.observe(this) { millis ->
-            val days = TimeUnit.MILLISECONDS.toDays(millis)
-            if (days > 0) {
-                binding.timePerTaskTv.text = "$days days"
-                return@observe
-            }
-
-            val hours = TimeUnit.MILLISECONDS.toHours(millis)
-            if (hours > 0) {
-                binding.timePerTaskTv.text = "$hours h"
-                return@observe
-            }
-
-            val minutes = TimeUnit.MILLISECONDS.toMinutes(millis)
-            binding.timePerTaskTv.text = "$minutes min"
+            binding.timePerTaskTv.text = getTimeString(millis)
         }
     }
 
@@ -112,18 +95,27 @@ class ProductivityActivity : AppCompatActivity() {
             description.isEnabled = false
             legend.isEnabled = false
 
-            axisLeft.apply {
-                granularity = 1f
-                textColor = dataTextColor
-            }
+            setDrawBorders(false)
 
-            axisRight.setDrawLabels(false)
+            axisLeft.apply {
+                setDrawLabels(false)
+                setDrawGridLines(false)
+                setDrawAxisLine(false)
+            }
+            axisRight.apply {
+                setDrawLabels(false)
+                setDrawGridLines(false)
+                setDrawAxisLine(false)
+            }
 
             xAxis.apply {
                 granularity = 1f
-                textColor = dataTextColor
-                setDrawGridLines(false)
                 position = XAxis.XAxisPosition.BOTTOM
+                textColor = dataTextColor
+
+                setDrawGridLines(false)
+                setDrawAxisLine(false)
+
                 valueFormatter = IAxisValueFormatter { value, _ ->
                     val cal = Calendar.getInstance().apply {
                         set(Calendar.DAY_OF_WEEK, value.toInt() + 1)

@@ -20,6 +20,7 @@ import com.andruid.magic.dailytasks.ui.adapter.TaskAdapter
 import com.andruid.magic.dailytasks.ui.viewbinding.viewBinding
 import com.andruid.magic.dailytasks.ui.viewmodel.TaskViewModel
 import com.andruid.magic.dailytasks.util.getGreetingMessage
+import com.andruid.magic.dailytasks.util.getTimeString
 import com.andruid.magic.dailytasks.util.showCompleteTaskDialog
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
@@ -80,11 +81,15 @@ class MainActivity : AppCompatActivity() {
 
     private fun initStats() {
         taskViewModel.tasksCompletedLiveData.observe(this) {
-            binding.completedTasksBtn.setCount(it)
+            binding.completedTasksBtn.setValue(it.toString())
         }
 
         taskViewModel.tasksPerDayLiveData.observe(this) {
-            binding.tasksRateBtn.setCount(it)
+            binding.tasksRateBtn.setValue(it.toString())
+        }
+
+        taskViewModel.timePerTaskLiveData.observe(this) {
+            binding.productivityBtn.setValue(getTimeString(it))
         }
     }
 

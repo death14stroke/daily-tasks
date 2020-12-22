@@ -21,7 +21,7 @@ class StatsView @JvmOverloads constructor(
         binding =
             DataBindingUtil.inflate<StatsViewBinding>(inflater, R.layout.stats_view, this, true)
                 .apply {
-                    count = 0
+                    value = "0"
                 }
 
         context.obtainStyledAttributes(attrs, R.styleable.StatsView, defStyleAttr, 0).use {
@@ -33,7 +33,7 @@ class StatsView @JvmOverloads constructor(
         }
     }
 
-    fun setCount(count: Int) {
-        binding.count = count
+    fun setValue(value: String) {
+        binding.value = value
     }
 }

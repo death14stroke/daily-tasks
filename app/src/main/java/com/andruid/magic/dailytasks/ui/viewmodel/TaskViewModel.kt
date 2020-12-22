@@ -23,4 +23,7 @@ class TaskViewModel : ViewModel() {
 
     val tasksPerDayLiveData = StatisticsManager.calculateTasksPerDay()
         .asLiveData()
+
+    val timePerTaskLiveData = StatisticsManager.calculateTimePerTask()
+        .asLiveData()
 }
