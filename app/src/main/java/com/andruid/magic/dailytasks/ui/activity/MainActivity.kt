@@ -12,7 +12,9 @@ import android.widget.TextView
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
+import androidx.transition.TransitionManager
 import coil.load
+import com.andruid.magic.dailytasks.R
 import com.andruid.magic.dailytasks.data.STATUS_PENDING
 import com.andruid.magic.dailytasks.database.Task
 import com.andruid.magic.dailytasks.database.TaskRepository
@@ -63,6 +65,7 @@ class MainActivity : AppCompatActivity() {
         taskViewModel.progressLiveData.observe(this) {
             binding.progressView.progress = it
         }
+
     }
 
     private fun initGreeting() {
@@ -81,7 +84,10 @@ class MainActivity : AppCompatActivity() {
                 }
 
                 binding.greetingsTv.setText(span, TextView.BufferType.SPANNABLE)
-                binding.profileIv.load(File(user.profileImagePath))
+                binding.profileIv.load(File(user.profileImagePath)) {
+                    placeholder(R.drawable.user)
+                    error(R.drawable.user)
+                }
             }
         }
     }

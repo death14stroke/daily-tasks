@@ -17,6 +17,15 @@
         <item name="materialAlertDialogTheme">@style/Theme.DailyTasks.Dialog</item>
     </style>
 
+    <style name="Theme.DailyTasks.Splash">
+        <item name="android:windowBackground">@drawable/splash_bg</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowActionBar">false</item>
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:navigationBarColor">@color/ebony</item>
+    </style>
+
     <style name="Theme.DailyTasks.BottomSheetDialog" parent="Theme.Design.Light.BottomSheetDialog">
         <item name="colorSurface">@color/white</item>
         <item name="android:statusBarColor">@android:color/transparent</item>
@@ -149,5 +158,10 @@
 
     <style name="Theme.DailyTasks.RoundIcon">
         <item name="colorIconBackground">@color/scooter</item>
+    </style>
+
+    <style name="DialogAnimation">
+        <item name="android:windowEnterAnimation">@android:anim/fade_in</item>
+        <item name="android:windowExitAnimation">@android:anim/fade_out</item>
     </style>
 </resources>

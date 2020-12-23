@@ -52,7 +52,7 @@ object ChartsManager {
 
                 Log.d("calLog", "${weekStats.day}/${weekStats.month}/${weekStats.year} - day of week = ${calendar[Calendar.DAY_OF_WEEK]}")
 
-                dbData[calendar[Calendar.DAY_OF_WEEK] - 1] = weekStats.taskCnt
+                dbData[calendar[Calendar.DAY_OF_WEEK] - calendar.firstDayOfWeek] = weekStats.taskCnt
             }
 
             dbData.map { entry -> BarEntry(entry.key.toFloat(), entry.value.toFloat()) }

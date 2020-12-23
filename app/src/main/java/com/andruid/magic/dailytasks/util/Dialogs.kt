@@ -10,7 +10,7 @@ import kotlin.coroutines.suspendCoroutine
 suspend fun Context.showCompleteTaskDialog(): Boolean {
     lateinit var result: Continuation<Boolean>
 
-    MaterialAlertDialogBuilder(this)
+    val dialog = MaterialAlertDialogBuilder(this)
         .setTitle(R.string.dialog_task_complete_title)
         .setMessage(R.string.dialog_task_complete_body)
         .setPositiveButton(R.string.yes) { _, _ ->
@@ -20,7 +20,10 @@ suspend fun Context.showCompleteTaskDialog(): Boolean {
             result.resume(false)
         }
         .create()
-        .show()
+
+    dialog.window?.attributes?.windowAnimations = R.style.DialogAnimation
+
+    dialog.show()
 
     return suspendCoroutine { continuation -> result = continuation }
 }

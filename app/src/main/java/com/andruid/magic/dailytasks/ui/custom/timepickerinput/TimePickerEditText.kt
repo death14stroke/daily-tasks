@@ -53,6 +53,7 @@ class TimePickerEditText @JvmOverloads constructor(
             .setMinute(currMinute)
             .setTitleText("Select time")
             .build()
+
         timePicker.addOnPositiveButtonClickListener {
             val hour = timePicker.hour
             val minute = timePicker.minute
