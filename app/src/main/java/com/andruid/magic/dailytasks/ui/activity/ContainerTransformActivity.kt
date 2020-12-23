@@ -1,5 +1,7 @@
 package com.andruid.magic.dailytasks.ui.activity
 
+import android.app.Instrumentation
+import android.os.Build
 import android.os.Bundle
 import android.view.View
 import android.view.Window
@@ -27,6 +29,13 @@ abstract class ContainerTransformActivity(
         }
 
         super.onCreate(savedInstanceState)
+    }
+
+    override fun onStop() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q && !isFinishing)
+            Instrumentation().callActivityOnSaveInstanceState(this, Bundle())
+
+        super.onStop()
     }
 
     fun initCollapsingActionBar(toolbar: Toolbar, @ColorInt statusBarColor: Int) {

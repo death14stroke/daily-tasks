@@ -112,7 +112,7 @@ class ProductivityActivity : ContainerTransformActivity("productivity_transition
 
                 valueFormatter = IAxisValueFormatter { value, _ ->
                     val cal = Calendar.getInstance().apply {
-                        set(Calendar.DAY_OF_WEEK, value.toInt() + 1)
+                        set(Calendar.DAY_OF_WEEK, value.toInt() + 2)
                     }
 
                     return@IAxisValueFormatter cal.getDisplayName(

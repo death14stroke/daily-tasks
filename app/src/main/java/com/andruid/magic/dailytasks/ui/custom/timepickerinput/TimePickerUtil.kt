@@ -16,14 +16,3 @@ internal fun getCurrentHourMinutes(): Pair<Int, Int> {
         hour to minute
     }
 }
-
-fun getMilliSecondsForTime(hour: Int, minutes: Int): Long {
-    val calender = Calendar.getInstance().apply {
-        set(Calendar.HOUR_OF_DAY, hour)
-        set(Calendar.MINUTE, minutes)
-        set(Calendar.SECOND, 0)
-        set(Calendar.MILLISECOND, 0)
-    }
-
-    return calender.timeInMillis
-}

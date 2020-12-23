@@ -118,8 +118,8 @@
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/timePickerInput"
             style="@style/EditTextStyle"
-            android:layout_width="374dp"
-            android:layout_height="51dp"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
             android:layout_marginBottom="24dp"
             app:layout_constraintBottom_toTopOf="@id/categoryLabelTV"
             app:layout_constraintEnd_toStartOf="@id/end_guideline"

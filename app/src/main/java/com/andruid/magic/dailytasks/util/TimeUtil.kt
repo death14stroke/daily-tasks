@@ -1,15 +1,20 @@
 package com.andruid.magic.dailytasks.util
 
-import com.andruid.magic.dailytasks.ui.custom.timepickerinput.getMilliSecondsForTime
 import java.util.*
 
+private const val TASK_WAIT_TIME_MILLIS = 5 * 60 * 1000L
+
 fun getTaskTimeFromPicker(hour: Int, minutes: Int): Long {
-    val time = getMilliSecondsForTime(hour, minutes)
+    val calendar = Calendar.getInstance().setTime(hour, minutes)
+    val time = calendar.timeInMillis
     val currentTime = System.currentTimeMillis()
 
-    if (time - currentTime >= 60 * 1000L)
+    if (time - currentTime >= TASK_WAIT_TIME_MILLIS)
         return time
-    return getMilliSecondsForTime(hour, minutes) + 24 * 60 * 60 * 1000L
+
+    calendar[Calendar.DAY_OF_MONTH]++
+
+    return calendar.timeInMillis
 }
 
 fun getMidnightTimeMillis(dayOffset: Int = 0): Long {

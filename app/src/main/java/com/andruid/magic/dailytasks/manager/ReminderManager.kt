@@ -77,6 +77,7 @@ object ReminderManager {
             .setContentText(task.title)
             .setSubText(task.category.toUpperCase(Locale.getDefault()))
             .setShowWhen(true)
+            .setAutoCancel(true)
             .build()
     }
 }

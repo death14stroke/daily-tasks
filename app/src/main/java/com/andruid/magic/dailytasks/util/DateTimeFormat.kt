@@ -27,9 +27,5 @@ fun getDateDetails(millis: Long): Array<Int> {
         timeInMillis = millis
     }
 
-    val day = calendar.get(Calendar.DAY_OF_MONTH)
-    val month = calendar.get(Calendar.MONTH)
-    val year = calendar.get(Calendar.YEAR)
-
-    return arrayOf(day, month, year)
+    return arrayOf(calendar[Calendar.DAY_OF_MONTH], calendar[Calendar.MONTH], calendar[Calendar.YEAR])
 }

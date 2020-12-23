@@ -41,14 +41,18 @@ object ChartsManager {
                 dbData[it] = 0
             }
 
-            weeklyStats.forEach { weekStats ->
-                val calendar = Calendar.getInstance().apply {
-                    set(Calendar.DAY_OF_MONTH, weekStats.day)
-                    set(Calendar.MONTH, weekStats.month)
-                    set(Calendar.YEAR, weekStats.year)
-                }
+            val calendar = Calendar.getInstance().apply {
+                firstDayOfWeek = Calendar.MONDAY
+            }
 
-                dbData[calendar.get(Calendar.DAY_OF_WEEK) - 1] = weekStats.taskCntWeek
+            weeklyStats.forEach { weekStats ->
+                calendar[Calendar.DAY_OF_MONTH] = weekStats.day
+                calendar[Calendar.MONTH] = weekStats.month
+                calendar[Calendar.YEAR] = weekStats.year
+
+                Log.d("calLog", "${weekStats.day}/${weekStats.month}/${weekStats.year} - day of week = ${calendar[Calendar.DAY_OF_WEEK]}")
+
+                dbData[calendar[Calendar.DAY_OF_WEEK] - 1] = weekStats.taskCnt
             }
 
             dbData.map { entry -> BarEntry(entry.key.toFloat(), entry.value.toFloat()) }

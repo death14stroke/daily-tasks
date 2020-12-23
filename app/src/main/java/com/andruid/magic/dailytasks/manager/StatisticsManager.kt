@@ -8,6 +8,7 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.zip
 import java.util.concurrent.TimeUnit
+import kotlin.math.max
 
 object StatisticsManager {
     fun calculateDailyProgress(): Flow<Int> {
@@ -32,7 +33,7 @@ object StatisticsManager {
 
         return noOfTasks.zip(fromMillis) { tasks, fromTime ->
             val currentTime = System.currentTimeMillis()
-            val diffMillis = currentTime - (fromTime ?: currentTime)
+            val diffMillis = max(currentTime - (fromTime ?: currentTime), 0)
             val days = TimeUnit.MILLISECONDS.toDays(diffMillis)
 
             Log.d("statsLog", "tasks = $tasks, days = $days")
@@ -48,9 +49,14 @@ object StatisticsManager {
     fun calculateTimePerTask(): Flow<Long> {
         return TaskRepository.getTaskElapsedTimes().map { elapsedTimes ->
             val count = elapsedTimes.size
-            val totalTime = elapsedTimes.sum()
+            val totalTime = elapsedTimes.map { time -> max(time, 0) }.sum()
 
-            totalTime / count
+            try {
+                totalTime / count
+            } catch (e: ArithmeticException) {
+                e.printStackTrace()
+                0
+            }
         }
     }
 }

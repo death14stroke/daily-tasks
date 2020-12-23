@@ -8,9 +8,11 @@ import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.view.ContextThemeWrapper
 import androidx.fragment.app.FragmentManager
+import com.andruid.magic.dailytasks.util.setTime
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.timepicker.MaterialTimePicker
 import com.google.android.material.timepicker.TimeFormat
+import java.util.*
 
 class TimePickerEditText @JvmOverloads constructor(
     context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
@@ -64,7 +66,8 @@ class TimePickerEditText @JvmOverloads constructor(
     }
 
     private fun updateUI(hour: Int, minute: Int) {
-        val ms = getMilliSecondsForTime(hour, minute)
+        val calendar = Calendar.getInstance().setTime(hour, minute)
+        val ms = calendar.timeInMillis
         setText(formatTime(ms))
 
         selectedHour = hour

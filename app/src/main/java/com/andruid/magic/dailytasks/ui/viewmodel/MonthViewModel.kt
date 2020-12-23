@@ -8,6 +8,7 @@ import androidx.paging.PagingConfig
 import androidx.paging.cachedIn
 import com.andruid.magic.dailytasks.database.TaskRepository
 import com.andruid.magic.dailytasks.paging.MonthDataSource
+import com.andruid.magic.dailytasks.util.setMidnight
 import kotlinx.coroutines.runBlocking
 import java.util.*
 

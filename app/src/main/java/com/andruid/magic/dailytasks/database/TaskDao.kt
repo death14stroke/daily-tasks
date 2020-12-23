@@ -5,8 +5,7 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import com.andruid.magic.dailytasks.data.MonthlyStats
-import com.andruid.magic.dailytasks.data.WeeklyStats
+import com.andruid.magic.dailytasks.data.DailyStats
 import kotlinx.coroutines.flow.Flow
 
 @Dao
@@ -35,8 +34,8 @@ interface TaskDao {
     @Query("SELECT COUNT(*) FROM tasks WHERE status = 1 AND month = :month AND year = :year AND category = :category")
     suspend fun getCompletedTasksCountByCategory(month: Int, year: Int, category: String): Int
 
-    @Query("SELECT day, COUNT(*) as taskCnt FROM tasks WHERE status = 1 AND year = :year AND month = :month GROUP BY day,month,year ORDER BY year,month,day")
-    suspend fun getMonthlyStats(month: Int, year: Int): List<MonthlyStats>?
+    @Query("SELECT day, month, year, COUNT(*) AS taskCnt FROM tasks WHERE status = 1 AND year = :year AND month = :month GROUP BY day,month,year ORDER BY year,month,day")
+    suspend fun getMonthlyStats(month: Int, year: Int): List<DailyStats>?
 
     @Query("SELECT MIN(startTime) FROM tasks WHERE status = 1")
     fun getOldestCompletedTaskTimeFlow(): Flow<Long?>
@@ -53,8 +52,8 @@ interface TaskDao {
     @Query("SELECT (endTime - startTime) AS elapsedTime FROM tasks WHERE status = 1")
     fun getTaskElapsedTimes(): Flow<List<Long>>
 
-    @Query("SELECT day,month,year, COUNT(*) as taskCntWeek FROM tasks WHERE status = 1 AND endTime >= :from AND endTime <= :to GROUP BY day,month,year ORDER BY year,month,day")
-    suspend fun getWeeklyStats(from: Long, to: Long): List<WeeklyStats>?
+    @Query("SELECT day, month, year, COUNT(*) AS taskCnt FROM tasks WHERE status = 1 AND startTime >= :from AND startTime <= :to GROUP BY day,month,year ORDER BY year,month,day")
+    suspend fun getWeeklyStats(from: Long, to: Long): List<DailyStats>?
 
     @Query("SELECT * FROM tasks WHERE status = 1 ORDER BY (endTime - startTime) DESC LIMIT 3")
     fun getMostActiveTasks(): Flow<List<Task>>

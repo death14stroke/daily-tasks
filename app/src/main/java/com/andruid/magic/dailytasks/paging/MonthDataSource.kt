@@ -1,46 +1,46 @@
 package com.andruid.magic.dailytasks.paging
 
-import android.util.Log
 import androidx.paging.PagingSource
 import com.andruid.magic.dailytasks.data.Month
 import com.andruid.magic.dailytasks.data.toMonth
+import com.andruid.magic.dailytasks.util.setMidnight
 import java.util.*
 
 class MonthDataSource(private val limitMillis: Long) : PagingSource<Calendar, Month>() {
-    private val limitMonth: Int
-    private val limitYear: Int
-
-    init {
-        val calendar = Calendar.getInstance().apply {
-            timeInMillis = limitMillis
-        }
-
-        limitMonth = calendar.get(Calendar.MONTH)
-        limitYear = calendar.get(Calendar.YEAR)
+    private val currCalendar = Calendar.getInstance()
+    private val limitCal: Calendar = Calendar.getInstance().apply {
+        timeInMillis = limitMillis
+        setMidnight()
     }
 
     override suspend fun load(params: LoadParams<Calendar>): LoadResult<Calendar, Month> {
-        var key: Calendar? = params.key ?: return LoadResult.Error(Throwable("Null key"))
+        val calendar = params.key!!
         val months = mutableListOf<Month>()
+        var nextKey: Calendar? = calendar
+        var count = params.loadSize
 
-        for (i in 0 until params.loadSize) {
-            val month = key!!.toMonth().also {
-                Log.d("monthLog", "month = $it")
-            }
+        if (calendar[Calendar.MONTH] == currCalendar[Calendar.MONTH] && calendar[Calendar.YEAR] == currCalendar[Calendar.YEAR]) {
+            val month = calendar.toMonth().copy(noOfDays = currCalendar[Calendar.DAY_OF_MONTH])
+            months.add(month)
+            count--
+        }
 
-            if ((month.year < limitYear) || (month.year == limitYear && month.index < limitMonth)) {
-                key = null
+        while (count-- > 0) {
+            if (calendar.timeInMillis < limitCal.timeInMillis && calendar[Calendar.MONTH] != limitCal[Calendar.MONTH]) {
+                nextKey = null
                 break
             }
 
+            val month = calendar.toMonth()
             months.add(month)
-            key.add(Calendar.MONTH, -1)
+
+            calendar[Calendar.MONTH]--
         }
 
         return LoadResult.Page(
             data = months,
             prevKey = null,
-            nextKey = key
+            nextKey = nextKey
         )
     }
 }
