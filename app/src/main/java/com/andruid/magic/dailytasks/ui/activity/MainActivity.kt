@@ -1,11 +1,13 @@
 package com.andruid.magic.dailytasks.ui.activity
 
+import android.app.ActivityOptions
 import android.content.Intent
 import android.graphics.Typeface
 import android.os.Bundle
 import android.text.Spannable
 import android.text.SpannableString
 import android.text.style.StyleSpan
+import android.view.Window
 import android.widget.TextView
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
@@ -22,6 +24,7 @@ import com.andruid.magic.dailytasks.ui.viewmodel.TaskViewModel
 import com.andruid.magic.dailytasks.util.getGreetingMessage
 import com.andruid.magic.dailytasks.util.getTimeString
 import com.andruid.magic.dailytasks.util.showCompleteTaskDialog
+import com.google.android.material.transition.platform.MaterialContainerTransformSharedElementCallback
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import java.io.File
@@ -41,6 +44,10 @@ class MainActivity : AppCompatActivity() {
     private val taskAdapter by lazy { TaskAdapter(taskClickListener) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        window.requestFeature(Window.FEATURE_ACTIVITY_TRANSITIONS)
+        setExitSharedElementCallback(MaterialContainerTransformSharedElementCallback())
+        window.sharedElementsUseOverlay = false
+
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
@@ -99,19 +106,39 @@ class MainActivity : AppCompatActivity() {
 
     private fun initListeners() {
         binding.addTasksIv.setOnClickListener {
-            startActivity(Intent(this, AddTaskActivity::class.java))
+            val options = ActivityOptions.makeSceneTransitionAnimation(
+                this,
+                it,
+                "add_task_transition" // The transition name to be matched in Activity B.
+            ).toBundle()
+            startActivity(Intent(this, AddTaskActivity::class.java), options)
         }
 
         binding.completedTasksBtn.setOnClickListener {
-            startActivity(Intent(this, CompletedTasksActivity::class.java))
+            val options = ActivityOptions.makeSceneTransitionAnimation(
+                this,
+                it,
+                "completed_tasks_transition" // The transition name to be matched in Activity B.
+            ).toBundle()
+            startActivity(Intent(this, CompletedTasksActivity::class.java), options)
         }
 
         binding.tasksRateBtn.setOnClickListener {
-            startActivity(Intent(this, StatisticsActivity::class.java))
+            val options = ActivityOptions.makeSceneTransitionAnimation(
+                this,
+                it,
+                "tasks_rate_transition" // The transition name to be matched in Activity B.
+            ).toBundle()
+            startActivity(Intent(this, StatisticsActivity::class.java), options)
         }
 
         binding.productivityBtn.setOnClickListener {
-            startActivity(Intent(this, ProductivityActivity::class.java))
+            val options = ActivityOptions.makeSceneTransitionAnimation(
+                this,
+                it,
+                "productivity_transition" // The transition name to be matched in Activity B.
+            ).toBundle()
+            startActivity(Intent(this, ProductivityActivity::class.java), options)
         }
     }
 }

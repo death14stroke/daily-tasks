@@ -57,6 +57,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
                 app:layout_collapseMode="pin"
+                app:navigationIcon="@drawable/ic_back_arrow"
                 app:theme="@style/Theme.DailyTasks.Toolbar"
                 app:title="Productivity"
                 app:titleTextColor="@color/white" />

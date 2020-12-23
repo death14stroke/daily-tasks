@@ -3,7 +3,6 @@ package com.andruid.magic.dailytasks.ui.activity
 import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.activity.viewModels
-import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.res.getColorOrThrow
 import androidx.core.content.res.use
 import androidx.lifecycle.lifecycleScope
@@ -21,7 +20,7 @@ import com.github.mikephil.charting.formatter.IAxisValueFormatter
 import kotlinx.coroutines.launch
 import java.util.*
 
-class ProductivityActivity : AppCompatActivity() {
+class ProductivityActivity : ContainerTransformActivity("productivity_transition") {
     private val binding by viewBinding(ActivityProductivityBinding::inflate)
     private val productivityViewModel by viewModels<ProductivityViewModel>()
     private val mostActiveTaskAdapter = MostActiveTaskAdapter()
@@ -30,7 +29,7 @@ class ProductivityActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
-        initActionBar()
+        initCollapsingActionBar(binding.toolBar, color(R.color.ebony))
         initStats()
         initHeaders()
         initBarChart()
@@ -77,11 +76,6 @@ class ProductivityActivity : AppCompatActivity() {
         productivityViewModel.timePerTaskLiveData.observe(this) { millis ->
             binding.timePerTaskTv.text = getTimeString(millis)
         }
-    }
-
-    private fun initActionBar() {
-        setSupportActionBar(binding.toolBar)
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
     }
 
     private fun initBarChart() {

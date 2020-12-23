@@ -27,6 +27,7 @@
                 android:layout_gravity="center_vertical"
                 android:background="@color/purple_heart"
                 app:layout_collapseMode="pin"
+                app:navigationIcon="@drawable/ic_back_arrow"
                 app:theme="@style/Theme.DailyTasks.Toolbar"
                 app:title="Completed Tasks"
                 app:titleTextColor="@color/white" />

@@ -2,7 +2,6 @@ package com.andruid.magic.dailytasks.ui.activity
 
 import android.os.Bundle
 import android.util.Log
-import androidx.appcompat.app.AppCompatActivity
 import androidx.core.widget.addTextChangedListener
 import androidx.lifecycle.lifecycleScope
 import com.andruid.magic.dailytasks.R
@@ -18,20 +17,24 @@ import com.andruid.magic.dailytasks.util.getDateDetails
 import com.andruid.magic.dailytasks.util.getTaskTimeFromPicker
 import kotlinx.coroutines.launch
 
-class AddTaskActivity : AppCompatActivity() {
+class AddTaskActivity : ContainerTransformActivity("add_task_transition") {
     private val binding by viewBinding(ActivityAddTaskBinding::inflate)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
-        initListeners()
         initActionBar()
+        initListeners()
     }
 
     private fun initActionBar() {
         setSupportActionBar(binding.toolBar)
         supportActionBar?.title = null
+
+        binding.toolBar.setNavigationOnClickListener {
+            onBackPressed()
+        }
     }
 
     private fun initListeners() {
@@ -63,7 +66,7 @@ class AddTaskActivity : AppCompatActivity() {
             lifecycleScope.launch {
                 val taskId = TaskRepository.insertTask(task)
                 ReminderManager.scheduleReminder(this@AddTaskActivity, task.copy(id = taskId))
-                finish()
+                onBackPressed()
             }
         }
 

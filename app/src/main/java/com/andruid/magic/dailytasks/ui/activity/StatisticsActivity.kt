@@ -4,8 +4,6 @@ import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.View
 import androidx.activity.viewModels
-import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContextCompat
 import androidx.core.content.res.getColorOrThrow
 import androidx.core.content.res.use
 import androidx.lifecycle.lifecycleScope
@@ -25,7 +23,7 @@ import com.github.mikephil.charting.formatter.IAxisValueFormatter
 import kotlinx.coroutines.launch
 import java.util.*
 
-class StatisticsActivity : AppCompatActivity() {
+class StatisticsActivity : ContainerTransformActivity("tasks_rate_transition") {
     private val binding by viewBinding(ActivityStatisticsBinding::inflate)
     private val monthViewModel by viewModels<MonthViewModel>()
     private val monthAdapter = MonthAdapter {
@@ -37,7 +35,7 @@ class StatisticsActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
-        initActionBar()
+        initCollapsingActionBar(binding.toolBar, color(R.color.scooter))
         initMonthSlider()
         initLineChart()
         initBarChart()
@@ -45,13 +43,6 @@ class StatisticsActivity : AppCompatActivity() {
         monthViewModel.monthsLiveData.observe(this) {
             monthAdapter.submitData(lifecycle, it)
         }
-    }
-
-    private fun initActionBar() {
-        setSupportActionBar(binding.toolBar)
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
-
-        window.statusBarColor = ContextCompat.getColor(this, R.color.scooter)
     }
 
     private fun initMonthSlider() {

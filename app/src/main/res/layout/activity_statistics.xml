@@ -26,8 +26,8 @@
                 android:layout_height="?attr/actionBarSize"
                 android:layout_gravity="center_vertical"
                 android:background="@color/scooter"
-                app:theme="@style/Theme.DailyTasks.Toolbar"
                 app:layout_collapseMode="pin"
+                app:navigationIcon="@drawable/ic_back_arrow"
                 app:title="Tasks"
                 app:titleTextColor="@color/white" />
         </com.google.android.material.appbar.CollapsingToolbarLayout>
@@ -75,8 +75,8 @@
         <com.github.mikephil.charting.charts.BarChart
             android:id="@+id/bar_chart"
             android:layout_width="0dp"
-            android:layout_marginBottom="8dp"
             android:layout_height="0dp"
+            android:layout_marginBottom="8dp"
             android:theme="@style/Theme.DailyTasks.BarChart"
             app:layout_constraintBottom_toTopOf="@id/bar_chart_guideline"
             app:layout_constraintEnd_toStartOf="@id/end_guideline"
@@ -101,10 +101,10 @@
             android:id="@+id/line_chart"
             android:layout_width="0dp"
             android:layout_height="0dp"
+            android:layout_marginBottom="8dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@id/end_guideline"
             app:layout_constraintHeight_percent="0.4"
-            android:layout_marginBottom="8dp"
             app:layout_constraintStart_toEndOf="@id/start_guideline"
             app:layout_constraintTop_toBottomOf="@id/line_chart_title_tv" />
 
