@@ -11,6 +11,8 @@ import java.util.concurrent.TimeUnit
 import kotlin.math.max
 
 object StatisticsManager {
+    private val TAG = "${StatisticsManager::class.simpleName}Log"
+
     fun calculateDailyProgress(): Flow<Int> {
         val fromMillis = getMidnightTimeMillis()
         val toMillis = getMidnightTimeMillis(1)
@@ -36,7 +38,7 @@ object StatisticsManager {
             val diffMillis = max(currentTime - (fromTime ?: currentTime), 0)
             val days = TimeUnit.MILLISECONDS.toDays(diffMillis)
 
-            Log.d("statsLog", "tasks = $tasks, days = $days")
+            Log.d(TAG, "tasks = $tasks, days = $days")
 
             try {
                 (tasks / days).toInt()

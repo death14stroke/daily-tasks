@@ -8,7 +8,7 @@ import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.view.ContextThemeWrapper
 import androidx.fragment.app.FragmentManager
-import com.andruid.magic.dailytasks.util.setTime
+import com.andruid.magic.dailytasks.util.getTaskTimeFromPicker
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.timepicker.MaterialTimePicker
 import com.google.android.material.timepicker.TimeFormat
@@ -17,11 +17,7 @@ import java.util.*
 class TimePickerEditText @JvmOverloads constructor(
     context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
 ) : TextInputEditText(context, attrs, defStyleAttr) {
-    var onTimeChangeListener: ((Int, Int) -> Unit)? = null
-
-    var selectedHour = 0
-        private set
-    var selectedMinute = 0
+    var selectedMillis = 0L
         private set
 
     init {
@@ -29,8 +25,7 @@ class TimePickerEditText @JvmOverloads constructor(
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)
             isFocusable = false
 
-        val (currHours, currMinutes) = getCurrentHourMinutes()
-        updateUI(currHours, currMinutes)
+        updateUI(System.currentTimeMillis())
 
         setOnClickListener(null)
     }
@@ -57,8 +52,9 @@ class TimePickerEditText @JvmOverloads constructor(
         timePicker.addOnPositiveButtonClickListener {
             val hour = timePicker.hour
             val minute = timePicker.minute
+            val millis = getTaskTimeFromPicker(hour, minute)
 
-            updateUI(hour, minute)
+            updateUI(millis)
         }
 
         getSupportFragmentManager(context)?.let { fragmentManager ->
@@ -66,15 +62,14 @@ class TimePickerEditText @JvmOverloads constructor(
         }
     }
 
-    private fun updateUI(hour: Int, minute: Int) {
-        val calendar = Calendar.getInstance().setTime(hour, minute)
-        val ms = calendar.timeInMillis
-        setText(formatTime(ms))
+    private fun updateUI(millis: Long) {
+        val calendar = Calendar.getInstance().apply {
+            timeInMillis = millis
+        }
 
-        selectedHour = hour
-        selectedMinute = minute
+        setText(getTimeString(millis, calendar[Calendar.DAY_OF_MONTH]))
 
-        onTimeChangeListener?.invoke(hour, minute)
+        selectedMillis = millis
     }
 
     private fun View.getSupportFragmentManager(context: Context): FragmentManager? {
@@ -83,5 +78,15 @@ class TimePickerEditText @JvmOverloads constructor(
             is ContextThemeWrapper -> getSupportFragmentManager(context.baseContext)
             else -> null
         }
+    }
+
+    private fun getTimeString(millis: Long, day: Int): String {
+        val today = Calendar.getInstance()[Calendar.DAY_OF_MONTH]
+        val dayString = if (today == day)
+            "Today"
+        else
+            "Tomorrow"
+
+        return "${formatTime(millis)}, $dayString"
     }
 }

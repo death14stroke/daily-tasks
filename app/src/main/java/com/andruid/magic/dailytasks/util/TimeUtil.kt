@@ -2,7 +2,7 @@ package com.andruid.magic.dailytasks.util
 
 import java.util.*
 
-private const val TASK_WAIT_TIME_MILLIS = 5 * 60 * 1000L
+private const val TASK_WAIT_TIME_MILLIS = 2 * 60 * 1000L
 
 fun getTaskTimeFromPicker(hour: Int, minutes: Int): Long {
     val calendar = Calendar.getInstance().setTime(hour, minutes)

@@ -1,7 +1,6 @@
 package com.andruid.magic.dailytasks.ui.activity
 
 import android.os.Bundle
-import android.util.Log
 import androidx.core.widget.addTextChangedListener
 import androidx.lifecycle.lifecycleScope
 import com.andruid.magic.dailytasks.R
@@ -14,7 +13,6 @@ import com.andruid.magic.dailytasks.databinding.ActivityAddTaskBinding
 import com.andruid.magic.dailytasks.manager.ReminderManager
 import com.andruid.magic.dailytasks.ui.viewbinding.viewBinding
 import com.andruid.magic.dailytasks.util.getDateDetails
-import com.andruid.magic.dailytasks.util.getTaskTimeFromPicker
 import kotlinx.coroutines.launch
 
 class AddTaskActivity : ContainerTransformActivity("add_task_transition") {
@@ -45,12 +43,8 @@ class AddTaskActivity : ContainerTransformActivity("add_task_transition") {
                 return@setOnClickListener
             }
 
-            val hour = binding.timePickerET.selectedHour
-            val minutes = binding.timePickerET.selectedMinute
-
-            val taskMillis = getTaskTimeFromPicker(hour, minutes)
+            val taskMillis = binding.timePickerET.selectedMillis
             val (day, month, year) = getDateDetails(taskMillis)
-            Log.d("msLog", "selected time = $taskMillis")
 
             val task = Task(
                 title = title,

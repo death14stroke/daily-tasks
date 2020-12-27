@@ -12,6 +12,8 @@ import kotlinx.coroutines.withContext
 import java.util.*
 
 object ChartsManager {
+    private val TAG = "${ChartsManager::class.simpleName}Log"
+
     suspend fun buildBarChartData(month: Month): List<BarEntry> {
         val monthlyStats = TaskRepository.getMonthlyStats(month.index, month.year) ?: emptyList()
 
@@ -33,7 +35,7 @@ object ChartsManager {
         val weeklyStats =
             TaskRepository.getWeeklyStats(weekStartMillis, weekEndMillis) ?: emptyList()
 
-        Log.d("statsLog", "weekly stats = $weeklyStats")
+        Log.d(TAG, "weekly stats = $weeklyStats")
 
         return withContext(Dispatchers.Default) {
             val dbData = mutableMapOf<Int, Int>()
@@ -50,7 +52,10 @@ object ChartsManager {
                 calendar[Calendar.MONTH] = weekStats.month
                 calendar[Calendar.YEAR] = weekStats.year
 
-                Log.d("calLog", "${weekStats.day}/${weekStats.month}/${weekStats.year} - day of week = ${calendar[Calendar.DAY_OF_WEEK]}")
+                Log.d(
+                    TAG,
+                    "${weekStats.day}/${weekStats.month}/${weekStats.year} - day of week = ${calendar[Calendar.DAY_OF_WEEK]}"
+                )
 
                 dbData[calendar[Calendar.DAY_OF_WEEK] - calendar.firstDayOfWeek] = weekStats.taskCnt
             }
