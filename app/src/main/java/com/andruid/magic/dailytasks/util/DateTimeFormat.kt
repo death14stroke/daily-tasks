@@ -1,7 +1,10 @@
 package com.andruid.magic.dailytasks.util
 
-import java.text.SimpleDateFormat
-import java.util.*
+import java.time.Instant
+import java.time.LocalDate
+import java.time.LocalDateTime
+import java.time.ZoneId
+import java.time.format.DateTimeFormatter
 import java.util.concurrent.TimeUnit
 
 fun getTimeString(millis: Long): String {
@@ -17,15 +20,17 @@ fun getTimeString(millis: Long): String {
     return "$minutes min"
 }
 
-fun showDate(millis: Long): String {
-    val sdf = SimpleDateFormat("dd MMM", Locale.getDefault())
-    return sdf.format(millis)
+fun getDateDetails(millis: Long): Array<Int> {
+    val dateTime = LocalDateTime.ofInstant(Instant.ofEpochMilli(millis), ZoneId.systemDefault())
+
+    return arrayOf(
+        dateTime.dayOfMonth,
+        dateTime.monthValue,
+        dateTime.year
+    )
 }
 
-fun getDateDetails(millis: Long): Array<Int> {
-    val calendar = Calendar.getInstance().apply {
-        timeInMillis = millis
-    }
-
-    return arrayOf(calendar[Calendar.DAY_OF_MONTH], calendar[Calendar.MONTH], calendar[Calendar.YEAR])
+fun LocalDate.showDayAndMonth(): String {
+    val formatter = DateTimeFormatter.ofPattern("dd MMM")
+    return format(formatter)
 }

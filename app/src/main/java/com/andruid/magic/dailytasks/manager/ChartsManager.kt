@@ -9,6 +9,9 @@ import com.github.mikephil.charting.data.BarEntry
 import com.github.mikephil.charting.data.Entry
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
+import java.time.DayOfWeek
+import java.time.LocalDate
+import java.time.temporal.WeekFields
 import java.util.*
 
 object ChartsManager {
@@ -43,21 +46,17 @@ object ChartsManager {
                 dbData[it] = 0
             }
 
-            val calendar = Calendar.getInstance().apply {
-                firstDayOfWeek = Calendar.MONDAY
-            }
+            val firstDayOfWeek = WeekFields.of(Locale.getDefault()).firstDayOfWeek
+            Log.d(TAG, "First day of week = $firstDayOfWeek, value = ${firstDayOfWeek.value}")
 
             weeklyStats.forEach { weekStats ->
-                calendar[Calendar.DAY_OF_MONTH] = weekStats.day
-                calendar[Calendar.MONTH] = weekStats.month
-                calendar[Calendar.YEAR] = weekStats.year
+                val localDate = LocalDate.now()
+                    .withDayOfMonth(weekStats.day)
+                    .withMonth(weekStats.month)
+                    .withYear(weekStats.year)
+                    .also { Log.d(TAG, "date = $it, day of week = ${it.dayOfWeek}, value = ${it.dayOfWeek.value}") }
 
-                Log.d(
-                    TAG,
-                    "${weekStats.day}/${weekStats.month}/${weekStats.year} - day of week = ${calendar[Calendar.DAY_OF_WEEK]}"
-                )
-
-                dbData[calendar[Calendar.DAY_OF_WEEK] - calendar.firstDayOfWeek] = weekStats.taskCnt
+                dbData[localDate.mapToDayOfWeek()] = weekStats.taskCnt
             }
 
             dbData.map { entry -> BarEntry(entry.key.toFloat(), entry.value.toFloat()) }
@@ -76,5 +75,14 @@ object ChartsManager {
         )
 
         return listOf(workEntry, personalEntry)
+    }
+
+    private fun LocalDate.mapToDayOfWeek(): Int {
+        val firstDayOfWeek = WeekFields.of(Locale.getDefault()).firstDayOfWeek
+
+        return if (firstDayOfWeek == DayOfWeek.SUNDAY)
+            dayOfWeek.value % firstDayOfWeek.value
+        else
+            dayOfWeek.value - firstDayOfWeek.value
     }
 }

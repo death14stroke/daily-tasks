@@ -3,39 +3,49 @@ package com.andruid.magic.dailytasks.paging
 import androidx.paging.PagingSource
 import com.andruid.magic.dailytasks.data.Month
 import com.andruid.magic.dailytasks.data.toMonth
-import com.andruid.magic.dailytasks.util.setMidnight
-import java.util.*
+import java.time.Instant
+import java.time.LocalDate
+import java.time.LocalDateTime
+import java.time.ZoneId
+import java.time.temporal.ChronoUnit
 
-class MonthDataSource(private val limitMillis: Long) : PagingSource<Calendar, Month>() {
-    private val currCalendar = Calendar.getInstance()
-    private val limitCal: Calendar = Calendar.getInstance().apply {
-        timeInMillis = limitMillis
-        setMidnight()
-    }
+class MonthDataSource(limitMillis: Long) : PagingSource<LocalDate, Month>() {
+    private val currDate = LocalDate.now()
+    private val limitDate =
+        LocalDateTime.ofInstant(Instant.ofEpochMilli(limitMillis), ZoneId.systemDefault())
+            .withDayOfMonth(1)
+            .withHour(0)
+            .truncatedTo(ChronoUnit.HOURS)
+            .toLocalDate()
 
-    override suspend fun load(params: LoadParams<Calendar>): LoadResult<Calendar, Month> {
-        val calendar = params.key!!
+    override suspend fun load(params: LoadParams<LocalDate>): LoadResult<LocalDate, Month> {
+        var localDate = params.key!!
         val months = mutableListOf<Month>()
-        var nextKey: Calendar? = calendar
+        var nextKey: LocalDate? = localDate
         var count = params.loadSize
 
-        if (calendar[Calendar.MONTH] == currCalendar[Calendar.MONTH] && calendar[Calendar.YEAR] == currCalendar[Calendar.YEAR]) {
-            val month = calendar.toMonth().copy(noOfDays = currCalendar[Calendar.DAY_OF_MONTH])
+        if (localDate.year == currDate.year && localDate.month == currDate.month) {
+            val month = localDate.toMonth().copy(noOfDays = currDate.dayOfMonth)
             months.add(month)
             count--
+
+            localDate = localDate.minusMonths(1)
         }
 
         while (count-- > 0) {
-            if (calendar.timeInMillis < limitCal.timeInMillis && calendar[Calendar.MONTH] != limitCal[Calendar.MONTH]) {
+            if (localDate.isBefore(limitDate)) {
                 nextKey = null
                 break
             }
 
-            val month = calendar.toMonth()
+            val month = localDate.toMonth()
             months.add(month)
 
-            calendar[Calendar.MONTH]--
+            localDate = localDate.minusMonths(1)
         }
+
+        if (nextKey != null)
+            nextKey = localDate
 
         return LoadResult.Page(
             data = months,

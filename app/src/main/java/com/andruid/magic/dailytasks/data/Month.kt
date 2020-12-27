@@ -1,5 +1,7 @@
 package com.andruid.magic.dailytasks.data
 
+import java.time.LocalDate
+import java.time.format.TextStyle
 import java.util.*
 
 data class Month(
@@ -9,12 +11,11 @@ data class Month(
     val title: String
 )
 
-fun Calendar.toMonth(): Month {
+fun LocalDate.toMonth(): Month {
     return Month(
-        index = get(Calendar.MONTH),
-        year = get(Calendar.YEAR),
-        noOfDays = getActualMaximum(Calendar.DAY_OF_MONTH),
-        title = "${getDisplayName(Calendar.MONTH, Calendar.SHORT, Locale.getDefault())} " +
-                "${get(Calendar.YEAR)}"
+        index = monthValue,
+        year = year,
+        noOfDays = month.length(isLeapYear),
+        title = "${month.getDisplayName(TextStyle.SHORT, Locale.getDefault())} $year"
     )
 }

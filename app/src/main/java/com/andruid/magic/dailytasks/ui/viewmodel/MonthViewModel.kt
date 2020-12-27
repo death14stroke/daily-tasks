@@ -8,14 +8,13 @@ import androidx.paging.PagingConfig
 import androidx.paging.cachedIn
 import com.andruid.magic.dailytasks.database.TaskRepository
 import com.andruid.magic.dailytasks.paging.MonthDataSource
-import com.andruid.magic.dailytasks.util.setMidnight
 import kotlinx.coroutines.runBlocking
-import java.util.*
+import java.time.LocalDate
 
 class MonthViewModel : ViewModel() {
     val monthsLiveData = Pager(
         PagingConfig(pageSize = 10),
-        initialKey = Calendar.getInstance(),
+        initialKey = LocalDate.now(),
         pagingSourceFactory = {
             val limitMillis = runBlocking { TaskRepository.getTaskHistoryStartTime() }
             MonthDataSource(limitMillis ?: System.currentTimeMillis())

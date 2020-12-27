@@ -18,6 +18,9 @@ import com.github.mikephil.charting.data.BarData
 import com.github.mikephil.charting.data.BarDataSet
 import com.github.mikephil.charting.formatter.IAxisValueFormatter
 import kotlinx.coroutines.launch
+import java.time.LocalDate
+import java.time.format.TextStyle
+import java.time.temporal.WeekFields
 import java.util.*
 
 class ProductivityActivity : ContainerTransformActivity("productivity_transition") {
@@ -49,13 +52,13 @@ class ProductivityActivity : ContainerTransformActivity("productivity_transition
     }
 
     private fun initHeaders() {
-        val currentWeekStartMillis = getCurrentWeekStartMillis()
-        val currentWeekEndMillis = getCurrentWeekEndMillis()
+        val weekStart = LocalDate.now().withFirstDayOfWeek()
+        val weekEnd = LocalDate.now().withLastDayOfWeek()
 
         binding.weekTv.text = getString(
             R.string.week_range,
-            showDate(currentWeekStartMillis),
-            showDate(currentWeekEndMillis)
+            weekStart.showDayAndMonth(),
+            weekEnd.showDayAndMonth()
         )
         binding.dayTv.text = getCurrentDay()
     }
@@ -110,14 +113,12 @@ class ProductivityActivity : ContainerTransformActivity("productivity_transition
                 setDrawGridLines(false)
                 setDrawAxisLine(false)
 
-                valueFormatter = IAxisValueFormatter { value, _ ->
-                    val cal = Calendar.getInstance().apply {
-                        set(Calendar.DAY_OF_WEEK, value.toInt() + 2)
-                    }
+                val firstDayOfWeek = WeekFields.of(Locale.getDefault()).firstDayOfWeek
 
-                    return@IAxisValueFormatter cal.getDisplayName(
-                        Calendar.DAY_OF_WEEK,
-                        Calendar.SHORT,
+                valueFormatter = IAxisValueFormatter { value, _ ->
+                    val dayOfWeek = firstDayOfWeek.plus(value.toLong())
+                    return@IAxisValueFormatter dayOfWeek.getDisplayName(
+                        TextStyle.SHORT,
                         Locale.getDefault()
                     )
                 }

@@ -1,35 +1,42 @@
 package com.andruid.magic.dailytasks.util
 
+import java.time.Instant
+import java.time.LocalDate
+import java.time.LocalDateTime
+import java.time.LocalTime
+import java.time.format.TextStyle
 import java.util.*
 
 private const val TASK_WAIT_TIME_MILLIS = 2 * 60 * 1000L
 
 fun getTaskTimeFromPicker(hour: Int, minutes: Int): Long {
-    val calendar = Calendar.getInstance().setTime(hour, minutes)
-    val time = calendar.timeInMillis
-    val currentTime = System.currentTimeMillis()
+    val dateTime = LocalDateTime.now()
+        .withHour(hour)
+        .withMinute(minutes)
+
+    val time = dateTime.toEpochMillis()
+    val currentTime = Instant.now().toEpochMilli()
 
     if (time - currentTime >= TASK_WAIT_TIME_MILLIS)
         return time
 
-    calendar[Calendar.DAY_OF_MONTH]++
-
-    return calendar.timeInMillis
+    return dateTime
+        .plusDays(1)
+        .toEpochMillis()
 }
 
 fun getMidnightTimeMillis(dayOffset: Int = 0): Long {
-    val calendar = Calendar.getInstance().apply {
-        set(Calendar.DAY_OF_MONTH, get(Calendar.DAY_OF_MONTH) + dayOffset)
-        setMidnight()
-    }
-
-    return calendar.timeInMillis
+    return LocalDate.now()
+        .plusDays(dayOffset.toLong())
+        .atStartOfDay()
+        .toEpochMillis()
 }
 
 fun getGreetingMessage(): String {
-    val c = Calendar.getInstance()
+    val hour = LocalTime.now()
+        .hour
 
-    return when (c.get(Calendar.HOUR_OF_DAY)) {
+    return when (hour) {
         in 0..11 -> "Good Morning"
         in 12..15 -> "Good Afternoon"
         in 16..20 -> "Good Evening"
@@ -38,15 +45,29 @@ fun getGreetingMessage(): String {
     }
 }
 
-fun getCurrentWeekStartMillis() =
-    Calendar.getInstance().setFirstDayOfWeek().timeInMillis
+fun getCurrentWeekStartMillis(): Long {
+    return LocalDate.now()
+        .withFirstDayOfWeek()
+        .atStartOfDay()
+        .toEpochMillis()
+}
 
-fun getCurrentWeekEndMillis() =
-    Calendar.getInstance().setLastDayOfWeek().timeInMillis
+fun getCurrentWeekEndMillis(): Long {
+    return LocalDate.now()
+        .withLastDayOfWeek()
+        .atStartOfDay()
+        .toEpochMillis()
+}
 
-fun getCurrentMonthMillis() =
-    Calendar.getInstance().setFirstDayOfMonth().timeInMillis
+fun getCurrentMonthMillis(): Long {
+    return LocalDate.now()
+        .withDayOfMonth(1)
+        .atStartOfDay()
+        .toEpochMillis()
+}
 
-fun getCurrentDay() =
-    Calendar.getInstance()
-        .getDisplayName(Calendar.DAY_OF_WEEK, Calendar.LONG, Locale.getDefault()) ?: "Undefined"
+fun getCurrentDay(): String {
+    return LocalDate.now()
+        .dayOfWeek
+        .getDisplayName(TextStyle.FULL, Locale.getDefault())
+}

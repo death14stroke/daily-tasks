@@ -12,7 +12,10 @@ import com.andruid.magic.dailytasks.util.getTaskTimeFromPicker
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.timepicker.MaterialTimePicker
 import com.google.android.material.timepicker.TimeFormat
-import java.util.*
+import java.time.Instant
+import java.time.LocalDate
+import java.time.LocalDateTime
+import java.time.ZoneId
 
 class TimePickerEditText @JvmOverloads constructor(
     context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
@@ -63,11 +66,9 @@ class TimePickerEditText @JvmOverloads constructor(
     }
 
     private fun updateUI(millis: Long) {
-        val calendar = Calendar.getInstance().apply {
-            timeInMillis = millis
-        }
-
-        setText(getTimeString(millis, calendar[Calendar.DAY_OF_MONTH]))
+        val localDateTime =
+            LocalDateTime.ofInstant(Instant.ofEpochMilli(millis), ZoneId.systemDefault())
+        setText(getTimeString(millis, localDateTime.dayOfMonth))
 
         selectedMillis = millis
     }
@@ -81,7 +82,7 @@ class TimePickerEditText @JvmOverloads constructor(
     }
 
     private fun getTimeString(millis: Long, day: Int): String {
-        val today = Calendar.getInstance()[Calendar.DAY_OF_MONTH]
+        val today = LocalDate.now().dayOfMonth
         val dayString = if (today == day)
             "Today"
         else
