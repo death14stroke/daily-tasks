@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.circularreveal.coordinatorlayout.CircularRevealCoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.activity.ProductivityActivity">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fitsSystemWindows="true">
+
+        <com.google.android.material.appbar.CollapsingToolbarLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/ebony"
+            android:fitsSystemWindows="true"
+            app:contentScrim="@color/ebony"
+            app:expandedTitleGravity="center"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed"
+            app:titleEnabled="false">
+
+            <com.google.android.material.circularreveal.CircularRevealLinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="?attr/actionBarSize"
+                android:background="@drawable/stats_productivity_bg"
+                android:orientation="vertical"
+                app:layout_collapseMode="parallax">
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/time_per_task_tv"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="4dp"
+                    android:textAlignment="center"
+                    android:textAppearance="?textAppearanceHeadline4"
+                    android:textColor="@color/white"
+                    android:textStyle="bold"
+                    tools:text="2 h" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="4dp"
+                    android:text="@string/time_per_task"
+                    android:textAlignment="center"
+                    android:textAllCaps="true"
+                    android:textAppearance="?textAppearanceCaption"
+                    android:textColor="@color/geyser" />
+            </com.google.android.material.circularreveal.CircularRevealLinearLayout>
+
+            <com.google.android.material.appbar.MaterialToolbar
+                android:id="@+id/toolBar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                app:layout_collapseMode="pin"
+                app:navigationIcon="@drawable/ic_back_arrow"
+                app:theme="@style/Theme.DailyTasks.Toolbar"
+                app:title="Productivity"
+                app:titleTextColor="@color/white" />
+        </com.google.android.material.appbar.CollapsingToolbarLayout>
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/ebony"
+        android:paddingTop="32dp"
+        app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
+
+        <androidx.constraintlayout.widget.Group
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:background="@drawable/rounded_background"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/week_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:padding="4dp"
+            android:textAlignment="center"
+            android:textAllCaps="true"
+            android:textAppearance="?textAppearanceCaption"
+            android:textColor="?android:textColorSecondary"
+            app:layout_constraintBottom_toTopOf="@id/day_tv"
+            app:layout_constraintEnd_toStartOf="@id/end_guideline"
+            app:layout_constraintStart_toEndOf="@id/start_guideline"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="13 Apr - 20 Apr" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/day_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:textAlignment="center"
+            android:textAppearance="?textAppearanceHeadline4"
+            android:textColor="?android:textColorPrimary"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@id/title_guideline"
+            app:layout_constraintEnd_toStartOf="@id/end_guideline"
+            app:layout_constraintStart_toEndOf="@id/start_guideline"
+            app:layout_constraintTop_toBottomOf="@id/week_tv"
+            tools:text="Friday" />
+
+        <com.github.mikephil.charting.charts.BarChart
+            android:id="@+id/bar_chart"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="16dp"
+            android:theme="@style/Theme.DailyTasks.BarChart"
+            app:layout_constraintEnd_toStartOf="@id/end_guideline"
+            app:layout_constraintHeight_percent="0.3"
+            app:layout_constraintStart_toEndOf="@id/start_guideline"
+            app:layout_constraintTop_toBottomOf="@id/title_guideline" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@drawable/productivity_stats_bg"
+            android:theme="@style/Theme.DailyTasks.ProductivityStats"
+            app:layout_constraintBottom_toBottomOf="@id/week_stats"
+            app:layout_constraintEnd_toEndOf="@id/total_stats"
+            app:layout_constraintStart_toStartOf="@id/week_stats"
+            app:layout_constraintTop_toTopOf="@id/week_stats" />
+
+        <com.andruid.magic.dailytasks.ui.custom.ProductivityStatsView
+            android:id="@+id/week_stats"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toTopOf="@id/most_active_tv"
+            app:layout_constraintEnd_toStartOf="@id/month_stats"
+            app:layout_constraintStart_toEndOf="@id/start_guideline"
+            app:layout_constraintTop_toBottomOf="@id/bar_chart"
+            app:title="This week" />
+
+        <com.andruid.magic.dailytasks.ui.custom.ProductivityStatsView
+            android:id="@+id/month_stats"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="@id/week_stats"
+            app:layout_constraintEnd_toStartOf="@id/total_stats"
+            app:layout_constraintStart_toEndOf="@id/week_stats"
+            app:layout_constraintTop_toTopOf="@id/week_stats"
+            app:title="This month" />
+
+        <com.andruid.magic.dailytasks.ui.custom.ProductivityStatsView
+            android:id="@+id/total_stats"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="@id/week_stats"
+            app:layout_constraintEnd_toStartOf="@id/end_guideline"
+            app:layout_constraintStart_toEndOf="@id/month_stats"
+            app:layout_constraintTop_toTopOf="@id/week_stats"
+            app:title="All task" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/most_active_tv"
+            style="@style/TextLabelStyle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:paddingTop="8dp"
+            android:paddingBottom="4dp"
+            android:text="@string/most_active"
+            app:layout_constraintBottom_toTopOf="@id/recycler_view"
+            app:layout_constraintEnd_toStartOf="@id/end_guideline"
+            app:layout_constraintStart_toEndOf="@id/start_guideline" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_view"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/end_guideline"
+            app:layout_constraintStart_toEndOf="@id/start_guideline"
+            tools:itemCount="3"
+            tools:listitem="@layout/layout_most_active_task" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/start_guideline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_begin="16dp" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/end_guideline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_end="16dp" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/title_guideline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.15" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</com.google.android.material.circularreveal.coordinatorlayout.CircularRevealCoordinatorLayout>

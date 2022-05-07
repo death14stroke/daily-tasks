@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="count"
+            type="Integer" />
+    </data>
+
+    <com.google.android.material.circularreveal.CircularRevealLinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingTop="16dp"
+        android:paddingBottom="8dp">
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/count_tv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="2dp"
+            android:text="@{String.valueOf(count)}"
+            android:textAlignment="center"
+            android:textAppearance="?textAppearanceHeadline5"
+            android:textStyle="bold"
+            tools:text="45" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/title_tv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="2dp"
+            android:textAlignment="center"
+            android:textAllCaps="true"
+            android:textAppearance="?textAppearanceCaption"
+            tools:text="This week" />
+    </com.google.android.material.circularreveal.CircularRevealLinearLayout>
+</layout>

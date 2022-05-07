@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="StatsView">
+        <attr name="background" format="reference" />
+        <attr name="title" format="string" />
+    </declare-styleable>
+
+    <declare-styleable name="ProductivityStatsView">
+        <attr name="title" />
+    </declare-styleable>
+
+    <attr name="colorTaskIconIncompleteBg" format="color" />
+    <attr name="colorTaskIconCompleteBg" format="color" />
+    <attr name="colorTaskCompletePrimary" format="color" />
+    <attr name="colorTaskCompleteSecondary" format="color" />
+
+    <attr name="colorInputBorder" format="color" />
+
+    <attr name="colorSearchBackground" format="color" />
+
+    <attr name="colorBarChartBarNormal" format="color" />
+    <attr name="colorBarChartBarHighlight" format="color" />
+
+    <attr name="colorCardBackground" format="color" />
+    <attr name="colorIconBackground" format="color" />
+</resources>

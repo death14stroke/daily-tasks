@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/ebony"
+    android:paddingTop="@dimen/standard_margin"
+    tools:context=".ui.activity.MainActivity">
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/greetings_tv"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:gravity="center_vertical"
+        android:textAppearance="?textAppearanceSubtitle1"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toBottomOf="@id/profile_iv"
+        app:layout_constraintEnd_toStartOf="@id/profile_iv"
+        app:layout_constraintStart_toEndOf="@id/start_guideline"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="Good morning,\nSteve Wozniak" />
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/profile_iv"
+        android:layout_width="60dp"
+        android:layout_height="0dp"
+        android:scaleType="fitXY"
+        app:layout_constraintDimensionRatio="1"
+        app:layout_constraintEnd_toStartOf="@id/end_guideline"
+        app:layout_constraintTop_toTopOf="parent"
+        app:shapeAppearanceOverlay="@style/CircularImageAppearance"
+        tools:src="@tools:sample/avatars" />
+
+    <com.andruid.magic.dailytasks.ui.custom.DailyProgressView
+        android:id="@+id/progress_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/standard_margin"
+        android:paddingBottom="@dimen/standard_margin"
+        app:layout_constraintTop_toBottomOf="@id/greetings_tv" />
+
+    <com.andruid.magic.dailytasks.ui.custom.StatsView
+        android:id="@+id/completed_tasks_btn"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:transitionName="completed_tasks_transition"
+        app:background="@drawable/stats_completed_bg"
+        app:layout_constraintDimensionRatio="1"
+        app:layout_constraintEnd_toStartOf="@id/tasks_rate_btn"
+        app:layout_constraintStart_toEndOf="@id/start_guideline"
+        app:layout_constraintTop_toBottomOf="@id/stats_guideline"
+        app:title="@string/stats_completed_title" />
+
+    <com.andruid.magic.dailytasks.ui.custom.StatsView
+        android:id="@+id/tasks_rate_btn"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginHorizontal="@dimen/standard_margin"
+        app:background="@drawable/stats_daily_bg"
+        app:layout_constraintDimensionRatio="1"
+        app:layout_constraintEnd_toStartOf="@id/productivity_btn"
+        app:layout_constraintStart_toEndOf="@id/completed_tasks_btn"
+        app:layout_constraintTop_toBottomOf="@id/stats_guideline"
+        app:title="@string/stats_daily_title" />
+
+    <com.andruid.magic.dailytasks.ui.custom.StatsView
+        android:id="@+id/productivity_btn"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:background="@drawable/stats_productivity_bg"
+        app:layout_constraintDimensionRatio="1"
+        app:layout_constraintEnd_toStartOf="@id/end_guideline"
+        app:layout_constraintStart_toEndOf="@id/tasks_rate_btn"
+        app:layout_constraintTop_toBottomOf="@id/stats_guideline"
+        app:title="@string/stats_productivity_title" />
+
+    <androidx.constraintlayout.widget.Group
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:background="@drawable/rounded_background"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="@id/tasks_header_tv" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/tasks_header_tv"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="@dimen/standard_margin"
+        android:gravity="center_vertical"
+        android:paddingTop="@dimen/standard_margin"
+        android:text="@string/your_tasks"
+        android:textAppearance="?textAppearanceHeadline6"
+        app:layout_constraintBottom_toTopOf="@id/recycler_view"
+        app:layout_constraintEnd_toStartOf="@id/add_tasks_iv"
+        app:layout_constraintStart_toEndOf="@id/start_guideline"
+        app:layout_constraintTop_toBottomOf="@id/completed_tasks_btn" />
+
+    <androidx.appcompat.widget.AppCompatImageButton
+        android:id="@+id/add_tasks_iv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/standard_margin"
+        android:background="@drawable/rounded_button"
+        android:transitionName="add_task_transition"
+        android:foreground="@drawable/ripple_foreground_button"
+        android:padding="@dimen/standard_margin"
+        android:src="@drawable/ic_add"
+        app:layout_constraintEnd_toStartOf="@id/end_guideline"
+        app:layout_constraintTop_toTopOf="@id/tasks_header_tv"
+        tools:ignore="UnusedAttribute" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_view"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="@dimen/standard_margin"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/end_guideline"
+        app:layout_constraintStart_toEndOf="@id/start_guideline"
+        app:layout_constraintTop_toBottomOf="@id/add_tasks_iv"
+        tools:listitem="@layout/layout_task" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/start_guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="@dimen/standard_margin" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/end_guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_end="@dimen/standard_margin" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/stats_guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toBottomOf="@id/progress_view" />
+</androidx.constraintlayout.widget.ConstraintLayout>

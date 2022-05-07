@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="ebony">#070915</color>
+    <color name="ebony_light">#0E111F</color>
+    <color name="ebony_search">#0C0F1E</color>
+
+    <color name="scooter">#2EBDD8</color>
+    <color name="dodger_blue">#3A78F8</color>
+    <color name="purple_heart">#653FC9</color>
+
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="bright_gray">#333845</color>
+
+    <color name="cinnabar">#E03C1E</color>
+    <color name="sandy_brown">#F79F6B</color>
+    <color name="terracotta">#E38955</color>
+    <color name="twilight_blue">#F3FDFF</color>
+    <color name="geyser">#D2DBDD</color>
+    <color name="black_squeeze">#F5F9FC</color>
+
+    <color name="bar_day_mode">#ABE5EF</color>
+</resources>

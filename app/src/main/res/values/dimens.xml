@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="shadow_radius">8dp</dimen>
+    <dimen name="shadow_elevation">8dp</dimen>
+    <dimen name="md_bottom_sheet_separator_top_margin">7dp</dimen>
+
+    <dimen name="stats_view_corner_radius">16dp</dimen>
+    <dimen name="standard_margin">16dp</dimen>
+</resources>

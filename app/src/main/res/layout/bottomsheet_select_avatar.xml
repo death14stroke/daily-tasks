@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.circularreveal.CircularRevealLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="8dp"
+    android:layout_marginBottom="8dp"
+    android:orientation="vertical">
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/menu_camera"
+        style="@style/BottomSheetMenuItemStyle"
+        android:layout_width="match_parent"
+        android:text="@string/menu_select_camera"
+        app:drawableStartCompat="@drawable/ic_camera" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/menu_gallery"
+        style="@style/BottomSheetMenuItemStyle"
+        android:layout_width="match_parent"
+        android:text="@string/menu_select_gallery"
+        app:drawableStartCompat="@drawable/ic_gallery" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="@dimen/md_bottom_sheet_separator_top_margin"
+        android:layout_marginBottom="8dp"
+        android:background="@color/geyser" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/menu_delete"
+        style="@style/BottomSheetMenuItemStyle"
+        android:layout_width="match_parent"
+        android:text="@string/menu_remove_photo"
+        app:drawableStartCompat="@drawable/ic_delete" />
+</com.google.android.material.circularreveal.CircularRevealLinearLayout>

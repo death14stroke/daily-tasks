@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.circularreveal.coordinatorlayout.CircularRevealCoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.activity.StatisticsActivity">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fitsSystemWindows="true">
+
+        <com.google.android.material.appbar.CollapsingToolbarLayout
+            android:layout_width="match_parent"
+            android:layout_height="128dp"
+            android:background="@color/scooter"
+            android:fitsSystemWindows="true"
+            app:expandedTitleGravity="center"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed"
+            app:titleEnabled="false">
+
+            <com.google.android.material.appbar.MaterialToolbar
+                android:id="@+id/toolBar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:layout_gravity="center_vertical"
+                android:background="@color/scooter"
+                app:layout_collapseMode="pin"
+                app:navigationIcon="@drawable/ic_back_arrow"
+                app:title="Tasks"
+                app:titleTextColor="@color/white" />
+        </com.google.android.material.appbar.CollapsingToolbarLayout>
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/scooter"
+        android:overScrollMode="always"
+        android:scrollbars="horizontal"
+        app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
+
+        <androidx.constraintlayout.widget.Group
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:background="@drawable/rounded_background"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/months_rv"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:clipToPadding="false"
+            app:layout_constraintEnd_toStartOf="@id/end_guideline"
+            app:layout_constraintHeight_percent="0.1"
+            app:layout_constraintStart_toEndOf="@id/start_guideline"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:listitem="@layout/layout_month" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/bar_chart_title_tv"
+            style="@style/TextLabelStyle"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:gravity="bottom"
+            android:text="@string/bar_chart_title"
+            android:textAlignment="gravity"
+            app:layout_constraintBottom_toTopOf="@id/bar_chart"
+            app:layout_constraintEnd_toStartOf="@id/end_guideline"
+            app:layout_constraintStart_toEndOf="@id/start_guideline"
+            app:layout_constraintTop_toBottomOf="@id/months_rv" />
+
+        <com.github.mikephil.charting.charts.BarChart
+            android:id="@+id/bar_chart"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginBottom="8dp"
+            android:theme="@style/Theme.DailyTasks.BarChart"
+            app:layout_constraintBottom_toTopOf="@id/bar_chart_guideline"
+            app:layout_constraintEnd_toStartOf="@id/end_guideline"
+            app:layout_constraintHeight_percent="0.4"
+            app:layout_constraintStart_toEndOf="@id/start_guideline"
+            app:layout_constraintTop_toBottomOf="@id/bar_chart_title_tv" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/line_chart_title_tv"
+            style="@style/TextLabelStyle"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:gravity="bottom"
+            android:text="@string/line_chart_title"
+            android:textAlignment="gravity"
+            app:layout_constraintBottom_toTopOf="@id/line_chart"
+            app:layout_constraintEnd_toStartOf="@id/end_guideline"
+            app:layout_constraintStart_toEndOf="@id/start_guideline"
+            app:layout_constraintTop_toBottomOf="@id/bar_chart_guideline" />
+
+        <com.github.mikephil.charting.charts.LineChart
+            android:id="@+id/line_chart"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginBottom="8dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/end_guideline"
+            app:layout_constraintHeight_percent="0.4"
+            app:layout_constraintStart_toEndOf="@id/start_guideline"
+            app:layout_constraintTop_toBottomOf="@id/line_chart_title_tv" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/start_guideline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_begin="16dp" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/end_guideline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_end="16dp" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/bar_chart_guideline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.55" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</com.google.android.material.circularreveal.coordinatorlayout.CircularRevealCoordinatorLayout>

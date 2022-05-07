@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <data>
+
+        <variable
+            name="task"
+            type="com.andruid.magic.dailytasks.database.Task" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/ebony"
+        tools:context=".ui.activity.AlertActivity">
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/reminder_tv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/reminder"
+            android:textAlignment="center"
+            android:textAppearance="?textAppearanceHeadline2"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@id/icon_iv"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/icon_iv"
+            android:layout_width="100dp"
+            android:layout_height="0dp"
+            android:background="@color/dodger_blue"
+            android:src="@drawable/ic_check"
+            android:tint="@color/white"
+            app:layout_constraintBottom_toTopOf="@id/center_guideline"
+            app:layout_constraintDimensionRatio="1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/reminder_tv"
+            app:shapeAppearanceOverlay="@style/CircularImageAppearance" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/title_tv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="4dp"
+            android:text="@{task.title}"
+            android:textAlignment="center"
+            android:textAppearance="?textAppearanceListItem"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@id/time_tv"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/center_guideline"
+            app:layout_constraintVertical_chainStyle="packed"
+            tools:text="Team catch up - Online meeting" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/time_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:padding="4dp"
+            android:textAppearance="?textAppearanceCaption"
+            android:textColor="@color/bright_gray"
+            app:layout_constraintBottom_toTopOf="@id/bottom_guideline"
+            app:layout_constraintEnd_toStartOf="@id/type_tv"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/title_tv"
+            app:showTime="@{task.startTime}"
+            tools:text="9:00 AM" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/type_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:padding="4dp"
+            android:text="@{task.category}"
+            android:textAppearance="?textAppearanceCaption"
+            android:textColor="@color/bright_gray"
+            app:layout_constraintBottom_toBottomOf="@id/time_tv"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/time_tv"
+            app:layout_constraintTop_toTopOf="@id/time_tv"
+            app:textAllCaps="true"
+            tools:text="Work" />
+
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/cancel_btn"
+            style="?borderlessButtonStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_close"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/bottom_guideline" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/center_guideline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.55" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/bottom_guideline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.7" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

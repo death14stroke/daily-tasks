@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.circularreveal.coordinatorlayout.CircularRevealCoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:elevation="0dp">
+
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/toolBar"
+            style="@style/CloseIconToolbarStyle"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            app:navigationIcon="@drawable/ic_close" />
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="?android:attr/colorBackground"
+        app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"
+        tools:context=".ui.activity.AddTaskActivity">
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/create_task_iv"
+            style="@style/CreateTaskIconStyle"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginBottom="24dp"
+            android:elevation="24dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/logo"
+            app:layout_constraintBottom_toTopOf="@id/create_task_tv"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_chainStyle="packed"
+            app:shapeAppearanceOverlay="@style/CircularImageAppearance"
+            tools:targetApi="p" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/create_task_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/create_new_task"
+            android:textAppearance="?textAppearanceHeadline6"
+            android:textColor="@color/white"
+            app:layout_constraintBottom_toTopOf="@id/taskLabelTV"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/create_task_iv" />
+
+        <androidx.constraintlayout.widget.Group
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:background="@drawable/rounded_background"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="@id/taskLabelTV" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/taskLabelTV"
+            style="@style/TextLabelStyle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:paddingTop="16dp"
+            android:text="@string/task_name"
+            app:layout_constraintBottom_toTopOf="@id/taskNameInput"
+            app:layout_constraintEnd_toStartOf="@id/end_guideline"
+            app:layout_constraintStart_toEndOf="@id/start_guideline" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/taskNameInput"
+            style="@style/EditTextStyle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="24dp"
+            android:theme="@style/Theme.DailyTasks.TextInput"
+            app:layout_constraintBottom_toTopOf="@id/timeLabelTV"
+            app:layout_constraintEnd_toStartOf="@id/end_guideline"
+            app:layout_constraintStart_toEndOf="@id/start_guideline">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/taskNameET"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/title_hint"
+                android:paddingHorizontal="24dp"
+                android:paddingVertical="16dp" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/timeLabelTV"
+            style="@style/TextLabelStyle"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:gravity="center_vertical"
+            android:text="@string/time"
+            app:layout_constraintBottom_toBottomOf="@id/repeatSwitch"
+            app:layout_constraintEnd_toStartOf="@id/repeatSwitch"
+            app:layout_constraintStart_toEndOf="@id/start_guideline"
+            app:layout_constraintTop_toTopOf="@id/repeatSwitch" />
+
+        <com.google.android.material.switchmaterial.SwitchMaterial
+            android:id="@+id/repeatSwitch"
+            style="@style/TextLabelStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/repeat"
+            app:layout_constraintBottom_toTopOf="@id/timePickerInput"
+            app:layout_constraintEnd_toStartOf="@id/end_guideline" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/timePickerInput"
+            style="@style/EditTextStyle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="24dp"
+            app:layout_constraintBottom_toTopOf="@id/categoryLabelTV"
+            app:layout_constraintEnd_toStartOf="@id/end_guideline"
+            app:layout_constraintStart_toEndOf="@id/start_guideline">
+
+            <com.andruid.magic.dailytasks.ui.custom.timepickerinput.TimePickerEditText
+                android:id="@+id/timePickerET"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingHorizontal="24dp"
+                android:paddingVertical="16dp"
+                tools:text="9:00 PM" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/categoryLabelTV"
+            style="@style/TextLabelStyle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/category"
+            app:layout_constraintBottom_toTopOf="@id/category_radio_group"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/end_guideline"
+            app:layout_constraintStart_toEndOf="@id/start_guideline" />
+
+        <RadioGroup
+            android:id="@+id/category_radio_group"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:checkedButton="@id/work_radio_btn"
+            android:clipToPadding="false"
+            android:orientation="horizontal"
+            android:paddingStart="16dp"
+            android:paddingTop="12dp"
+            android:paddingEnd="0dp"
+            android:paddingBottom="24dp"
+            android:weightSum="8"
+            app:layout_constraintBottom_toTopOf="@id/add_tasks_btn">
+
+            <com.google.android.material.radiobutton.MaterialRadioButton
+                android:id="@+id/work_radio_btn"
+                style="@style/RadioButtonStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="4dp"
+                android:layout_weight="1"
+                android:text="@string/work" />
+
+            <com.google.android.material.radiobutton.MaterialRadioButton
+                android:id="@+id/personal_radio_btn"
+                style="@style/RadioButtonStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="4dp"
+                android:layout_weight="1"
+                android:text="@string/personal" />
+        </RadioGroup>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/add_tasks_btn"
+            style="@style/ButtonStyle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:paddingVertical="8dp"
+            android:text="@string/add_task"
+            android:textAllCaps="false"
+            app:icon="@android:drawable/ic_input_add"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/end_guideline"
+            app:layout_constraintStart_toEndOf="@id/start_guideline" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/start_guideline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_begin="16dp" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/end_guideline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_end="16dp" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</com.google.android.material.circularreveal.coordinatorlayout.CircularRevealCoordinatorLayout>
