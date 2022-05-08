@@ -8,7 +8,7 @@ import com.andruid.magic.dailytasks.R
 import com.andruid.magic.dailytasks.databinding.ActivityCompletedTasksBinding
 import com.andruid.magic.dailytasks.ui.adapter.CompletedTaskAdapter
 import com.andruid.magic.dailytasks.ui.viewbinding.viewBinding
-import com.andruid.magic.dailytasks.ui.viewmodel.SearchViewModel
+import com.andruid.magic.dailytasks.viewmodel.SearchViewModel
 import com.andruid.magic.dailytasks.util.color
 
 class CompletedTasksActivity : ContainerTransformActivity("completed_tasks_transition") {

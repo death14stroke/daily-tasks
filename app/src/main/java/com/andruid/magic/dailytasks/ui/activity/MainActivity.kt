@@ -22,7 +22,7 @@ import com.andruid.magic.dailytasks.databinding.ActivityMainBinding
 import com.andruid.magic.dailytasks.repository.ProfileRepository
 import com.andruid.magic.dailytasks.ui.adapter.TaskAdapter
 import com.andruid.magic.dailytasks.ui.viewbinding.viewBinding
-import com.andruid.magic.dailytasks.ui.viewmodel.TaskViewModel
+import com.andruid.magic.dailytasks.viewmodel.TaskViewModel
 import com.andruid.magic.dailytasks.util.getGreetingMessage
 import com.andruid.magic.dailytasks.util.getTimeString
 import com.andruid.magic.dailytasks.util.showCompleteTaskDialog

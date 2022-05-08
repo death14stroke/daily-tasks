@@ -36,4 +36,8 @@
     <string name="week_range">%1$s - %2$s</string>
     <string name="most_active">Most Active</string>
     <string name="time_per_task">Time per task</string>
+    <string name="profile_error">Could not create profile</string>
+    <string name="dismiss">Dismiss</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

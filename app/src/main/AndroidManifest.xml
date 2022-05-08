@@ -41,7 +41,7 @@
         <activity
             android:name=".ui.activity.SplashActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/Theme.DailyTasks.Splash" />
+            android:theme="@style/Theme.DailyTasks" />
         <activity
             android:name=".ui.activity.SignupActivity"
             android:exported="false"

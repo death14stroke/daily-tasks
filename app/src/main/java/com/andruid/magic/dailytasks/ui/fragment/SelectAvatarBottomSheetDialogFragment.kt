@@ -4,59 +4,47 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.annotation.IntDef
+import androidx.core.os.bundleOf
+import androidx.fragment.app.setFragmentResult
+import com.andruid.magic.dailytasks.R
+import com.andruid.magic.dailytasks.data.MENU_ITEM
+import com.andruid.magic.dailytasks.data.model.MenuItem
 import com.andruid.magic.dailytasks.databinding.BottomsheetSelectAvatarBinding
 import com.andruid.magic.dailytasks.ui.custom.RoundedBottomSheetDialogFragment
+import com.andruid.magic.dailytasks.ui.viewbinding.viewBinding
 
-class SelectAvatarBottomSheetDialogFragment(
-    private val menuItemClickListener: MenuItemClickListener
-) : RoundedBottomSheetDialogFragment() {
-    companion object {
-        @IntDef(MENU_CAMERA, MENU_GALLERY, MENU_DELETE)
-        @Retention(AnnotationRetention.SOURCE)
-        annotation class MenuItem
-
-        const val MENU_CAMERA = 0
-        const val MENU_GALLERY = 1
-        const val MENU_DELETE = 2
-
-        fun newInstance(menuItemClickListener: MenuItemClickListener) =
-            SelectAvatarBottomSheetDialogFragment(menuItemClickListener)
-    }
-
-    private lateinit var binding: BottomsheetSelectAvatarBinding
+class SelectAvatarBottomSheetDialogFragment : RoundedBottomSheetDialogFragment() {
+    private val binding by viewBinding(BottomsheetSelectAvatarBinding::bind)
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
-        binding = BottomsheetSelectAvatarBinding.inflate(inflater, container, false)
-        return binding.root
+        return inflater.inflate(R.layout.bottomsheet_select_avatar, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         initListeners()
     }
 
     private fun initListeners() {
-        binding.menuGallery.setOnClickListener {
-            menuItemClickListener.onMenuItemClick(MENU_GALLERY)
+        binding.menuCamera.setOnClickListener {
             dismiss()
+            sendMenuItemSelection(MenuItem.MENU_CAMERA)
         }
 
-        binding.menuCamera.setOnClickListener {
-            menuItemClickListener.onMenuItemClick(MENU_CAMERA)
+        binding.menuGallery.setOnClickListener {
             dismiss()
+            sendMenuItemSelection(MenuItem.MENU_GALLERY)
         }
 
         binding.menuDelete.setOnClickListener {
-            menuItemClickListener.onMenuItemClick(MENU_DELETE)
             dismiss()
+            sendMenuItemSelection(MenuItem.MENU_DELETE)
         }
     }
 
-    interface MenuItemClickListener {
-        fun onMenuItemClick(@MenuItem menuItem: Int)
+    private fun sendMenuItemSelection(menuItem: MenuItem) {
+        setFragmentResult(MENU_ITEM, bundleOf(MENU_ITEM to menuItem.ordinal))
     }
 }

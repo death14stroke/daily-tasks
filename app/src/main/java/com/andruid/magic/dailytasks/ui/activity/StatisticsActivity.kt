@@ -14,7 +14,7 @@ import com.andruid.magic.dailytasks.manager.ChartsManager
 import com.andruid.magic.dailytasks.ui.adapter.MonthAdapter
 import com.andruid.magic.dailytasks.ui.custom.horizontalslider.SliderLayoutManager
 import com.andruid.magic.dailytasks.ui.viewbinding.viewBinding
-import com.andruid.magic.dailytasks.ui.viewmodel.MonthViewModel
+import com.andruid.magic.dailytasks.viewmodel.MonthViewModel
 import com.andruid.magic.dailytasks.util.color
 import com.andruid.magic.dailytasks.util.drawable
 import com.github.mikephil.charting.components.XAxis

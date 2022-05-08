@@ -6,7 +6,11 @@
         <entry key="app/src/main/res/drawable/splash_bg.xml" value="0.106" />
         <entry key="app/src/main/res/drawable/splash_icon.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/splash_logo.xml" value="0.106" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_nav_host.xml" value="0.20883534136546184" />
+        <entry key="app/src/main/res/layout/activity_signup.xml" value="0.23097826086956522" />
+        <entry key="app/src/main/res/layout/fragment_home.xml" value="0.13697916666666668" />
+        <entry key="app/src/main/res/layout/fragment_signup.xml" value="0.1" />
       </map>
     </option>
   </component>

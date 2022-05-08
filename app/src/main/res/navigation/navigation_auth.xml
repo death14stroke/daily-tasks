@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation_auth"
+    app:startDestination="@id/signupFragment">
+    <fragment
+        android:id="@+id/signupFragment"
+        android:name="com.andruid.magic.dailytasks.ui.fragment.SignupFragment"
+        android:label="fragment_signup"
+        tools:layout="@layout/fragment_signup">
+        <action
+            android:id="@+id/action_signupFragment_to_selectAvatarBottomSheetDialogFragment"
+            app:destination="@id/selectAvatarBottomSheetDialogFragment" />
+    </fragment>
+    <dialog
+        android:id="@+id/selectAvatarBottomSheetDialogFragment"
+        android:name="com.andruid.magic.dailytasks.ui.fragment.SelectAvatarBottomSheetDialogFragment"
+        android:label="bottom_sheet_select_avatar"
+        tools:layout="@layout/bottomsheet_select_avatar" />
+</navigation>

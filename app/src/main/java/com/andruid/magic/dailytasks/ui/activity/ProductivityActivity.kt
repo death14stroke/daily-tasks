@@ -11,7 +11,7 @@ import com.andruid.magic.dailytasks.databinding.ActivityProductivityBinding
 import com.andruid.magic.dailytasks.manager.ChartsManager
 import com.andruid.magic.dailytasks.ui.adapter.MostActiveTaskAdapter
 import com.andruid.magic.dailytasks.ui.viewbinding.viewBinding
-import com.andruid.magic.dailytasks.ui.viewmodel.ProductivityViewModel
+import com.andruid.magic.dailytasks.viewmodel.ProductivityViewModel
 import com.andruid.magic.dailytasks.util.*
 import com.github.mikephil.charting.components.XAxis
 import com.github.mikephil.charting.data.BarData

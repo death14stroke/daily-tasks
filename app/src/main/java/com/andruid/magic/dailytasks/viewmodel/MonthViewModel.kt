@@ -1,4 +1,4 @@
-package com.andruid.magic.dailytasks.ui.viewmodel
+package com.andruid.magic.dailytasks.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asLiveData

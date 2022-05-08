@@ -15,14 +15,10 @@ import com.andruid.magic.dailytasks.data.EXTRA_IMAGE_URI
 import com.andruid.magic.dailytasks.databinding.ActivitySignupBinding
 import com.andruid.magic.dailytasks.repository.ProfileRepository
 import com.andruid.magic.dailytasks.ui.fragment.SelectAvatarBottomSheetDialogFragment
-import com.andruid.magic.dailytasks.ui.fragment.SelectAvatarBottomSheetDialogFragment.Companion.MENU_CAMERA
-import com.andruid.magic.dailytasks.ui.fragment.SelectAvatarBottomSheetDialogFragment.Companion.MENU_DELETE
-import com.andruid.magic.dailytasks.ui.fragment.SelectAvatarBottomSheetDialogFragment.Companion.MENU_GALLERY
 import com.andruid.magic.dailytasks.ui.viewbinding.viewBinding
 import kotlinx.coroutines.launch
 
-class SignupActivity : AppCompatActivity(),
-    SelectAvatarBottomSheetDialogFragment.MenuItemClickListener {
+class SignupActivity : AppCompatActivity() {
     private val binding by viewBinding(ActivitySignupBinding::inflate)
     private val imageUri by lazy {
         val authority = "${applicationContext.packageName}.provider"
@@ -66,9 +62,7 @@ class SignupActivity : AppCompatActivity(),
 
     private fun initListeners() {
         binding.profileIv.setOnClickListener {
-            SelectAvatarBottomSheetDialogFragment.newInstance(this).run {
-                show(supportFragmentManager, "add_photo_bottom_sheet_dialog")
-            }
+
         }
 
         binding.proceedBtn.setOnClickListener {
@@ -96,22 +90,6 @@ class SignupActivity : AppCompatActivity(),
                 getString(R.string.username_input_error)
             else
                 null
-        }
-    }
-
-    override fun onMenuItemClick(menuItem: Int) {
-        when (menuItem) {
-            MENU_GALLERY -> {
-                selectImageContract.launch("image/*")
-            }
-            MENU_CAMERA -> {
-                takePictureContract.launch(imageUri)
-                selectedImageUri = null
-            }
-            MENU_DELETE -> {
-                binding.profileIv.load(R.drawable.user)
-                selectedImageUri = null
-            }
         }
     }
 
